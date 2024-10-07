@@ -15,5 +15,9 @@ const config: Config = {
     },
   },
   plugins: [],
+  // important: "#root",
+  // corePlugins: {
+  //   preflight: false,
+  // },
 };
 export default config;
