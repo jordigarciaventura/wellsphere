@@ -1,3 +1,5 @@
+import ButtonAppBar from "@/components/ButtonAppBar";
+import ToggleColorMode from "@/components/ToggleColorMode";
 import {
   Button,
   Checkbox,
@@ -8,7 +10,9 @@ import {
 
 export default function Home() {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-4">
+      <ButtonAppBar />
+      <ToggleColorMode />
       <Button variant="text">Button</Button>
       <TextField label="Text Field" variant="outlined" />
       <FormControlLabel control={<Checkbox />} label="Checkbox" />
