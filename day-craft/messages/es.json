@@ -1,0 +1,17 @@
+{
+  "App": {
+    "title": "DayCraft",
+    "description": "Nuestra increíble aplicación"
+  },
+  "Main": {
+    "welcome": "Bienvenido a DayCraft"
+  },
+  "Components": {
+    "language-select": {
+      "language": "Idioma"
+    }
+  },
+  "Footer": {
+    "copyright": "2024 DayCraft. Todos los derechos reservados."
+  }
+}
