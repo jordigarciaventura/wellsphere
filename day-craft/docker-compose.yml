@@ -1,0 +1,13 @@
+# Connection string: postgres://postgres:example@localhost:5433/postgres
+
+services:
+  db:
+    image: postgres:16.4-bullseye
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - 5433:5432
