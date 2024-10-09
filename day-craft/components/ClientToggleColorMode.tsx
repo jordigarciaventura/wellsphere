@@ -1,5 +1,6 @@
 "use client";
 
+import { useAppStore } from "@/state/store";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -9,13 +10,15 @@ import RadioGroup from "@mui/material/RadioGroup";
 import { useColorScheme } from "@mui/material/styles";
 
 interface Props {
-  initialMode: "system" | "light" | "dark";
+  initialMode: "system" | "light" | "dark" | undefined;
 }
 
 export default function ClientToggleColorMode({ initialMode }: Props) {
-  const { mode, setMode } = useColorScheme();
+  const { setMode } = useColorScheme();
 
-  const themeMode = mode ?? initialMode;
+  const storeMode = useAppStore((state) => state.mode);
+
+  const themeMode = storeMode ?? initialMode;
 
   return (
     <Box
