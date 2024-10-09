@@ -9,9 +9,16 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 
-export default async function Home() {
+interface Props {
+  params: { locale: string };
+}
+
+export default async function Home({ params: { locale } }: Props) {
+  // Enable static rendering
+  unstable_setRequestLocale(locale);
+
   const t = await getTranslations("Main");
 
   return (

@@ -1,8 +1,15 @@
 import LanguageSelect from "@/components/LanguageSelect";
 import ToggleColorMode from "@/components/ToggleColorMode";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 
-export default async function Example() {
+interface Props {
+  params: { locale: string };
+}
+
+export default async function Example({ params: { locale } }: Props) {
+  // Enable static rendering
+  unstable_setRequestLocale(locale);
+
   const t = await getTranslations("Main");
 
   return (
