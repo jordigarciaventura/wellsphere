@@ -4,7 +4,7 @@ interface Props {
   params: { locale: string };
 }
 
-export default async function DashboardPage({ params: { locale } }: Props) {
+export default function DashboardPage({ params: { locale } }: Props) {
   // Enable static rendering
   unstable_setRequestLocale(locale);
 
