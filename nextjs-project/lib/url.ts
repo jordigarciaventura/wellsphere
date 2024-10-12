@@ -17,3 +17,11 @@ export const replaceLocale = (url: string, locale: string) => {
 
   return urlObj.toString();
 };
+
+export const getNthRouteSegment = (pathname: string, n: number) => {
+  const segments = pathname.split("/").filter(Boolean);
+  if (n >= segments.length) {
+    return null;
+  }
+  return segments[n];
+};
