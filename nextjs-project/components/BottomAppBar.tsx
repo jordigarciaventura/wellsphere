@@ -23,7 +23,7 @@ export default function BottomAppBar() {
     <BottomNavigation
       value={value}
       className="fixed bottom-0 left-0 right-0 mx-auto max-w-lg"
-      onChange={(_, newValue) => setValue(newValue)}
+      onChange={(_, newValue) => setValue(newValue as string)}
     >
       <BottomNavigationAction
         label="Chats"

@@ -31,7 +31,7 @@ export default async function Example({ params: { locale } }: Props) {
       <TextField label="Text Field" variant="outlined" />
       <FormControlLabel control={<Checkbox />} label="Checkbox" />
       <Typography variant="h6">Typography</Typography>
-      <Link href={route.dashboard}>Dashboard</Link>
+      <Link href={route.home}>Home</Link>
       <h1>{t("welcome")}</h1>;
     </div>
   );
