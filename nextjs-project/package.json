@@ -8,8 +8,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write .",
-    "tsc": "tsc --noEmit"
+    "lint:fix": "next lint --fix",
+    "format": "prettier --write . --ignore-unknown",
+    "tsc": "tsc --noEmit",
+    "prepare": "cd ../ && husky ./nextjs-project/.husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@emotion/cache": "^11.13.1",
@@ -35,6 +43,8 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^8",
     "eslint-config-next": "14.2.14",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.10",
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
     "prettier-plugin-organize-imports": "^4.1.0",
