@@ -19,9 +19,9 @@ import React, { useEffect, useState } from "react";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, _] = useState("");
+  const [error, _setError] = useState("");
   const [message, setMessage] = useState("");
-  const [isLoading, _] = useState(false);
+  const [isLoading, _setIsLoading] = useState(false);
   const searchParams = useSearchParams();
 
   useEffect(() => {

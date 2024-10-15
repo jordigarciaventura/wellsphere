@@ -21,8 +21,8 @@ export default function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, _] = useState("");
-  const [isLoading, _] = useState(false);
+  const [error, _setError] = useState("");
+  const [isLoading, _setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     console.log(e);
