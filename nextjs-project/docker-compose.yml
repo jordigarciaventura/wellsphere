@@ -1,4 +1,4 @@
-# Connection string: postgres://postgres:example@localhost:5433/postgres
+# Connection string: postgres://postgres:example@localhost:5432/postgres
 
 services:
   db:
