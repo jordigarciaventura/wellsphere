@@ -1,88 +1,52 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-import { useRouter } from 'next/navigation'
-import { 
-  Button, 
-  TextField, 
-  Typography, 
-  Container, 
-  Box, 
-  Alert, 
+import { route } from "@/config/site";
+import { Link } from "@/i18n/routing";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import {
+  Alert,
+  Box,
+  Button,
   CircularProgress,
-  Divider
-} from '@mui/material'
-import GitHubIcon from '@mui/icons-material/GitHub'
-import { route } from '@/config/site'
-import { Link } from '@/i18n/routing'
+  Container,
+  Divider,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 export default function SignUpPage() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [error, setError] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
-
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, _] = useState("");
+  const [isLoading, _] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError('')
-    setIsLoading(true)
-
-    if (!name || !email || !password || !confirmPassword) {
-      setError('All fields are required')
-      setIsLoading(false)
-      return
-    }
-
-    if (password !== confirmPassword) {
-      setError('Passwords do not match')
-      setIsLoading(false)
-      return
-    }
-
-    try {
-      const response = await fetch('/api/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
-      })
-
-      if (response.ok) {
-        router.push('/login?message=Account created successfully')
-      } else {
-        const data = await response.json()
-        setError(data.message || 'An error occurred during sign up')
-      }
-    } catch (err) {
-      setError('An error occurred. Please try again.')
-    }
-
-    setIsLoading(false)
-  }
+    console.log(e);
+  };
 
   const handleGitHubSignUp = () => {
-    window.location.href = `https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URI)}&scope=user:email`
-  }
+    console.log("GitHub Sign Up");
+  };
 
   return (
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
           marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         <Typography component="h1" variant="h5">
           Sign Up
         </Typography>
         {error && (
-          <Alert severity="error" sx={{ width: '100%', mt: 2 }}>
+          <Alert severity="error" sx={{ width: "100%", mt: 2 }}>
             {error}
           </Alert>
         )}
@@ -140,7 +104,7 @@ export default function SignUpPage() {
             sx={{ mt: 3, mb: 2 }}
             disabled={isLoading}
           >
-            {isLoading ? <CircularProgress size={24} /> : 'Sign Up'}
+            {isLoading ? <CircularProgress size={24} /> : "Sign Up"}
           </Button>
           <Divider sx={{ my: 2 }}>Or</Divider>
           <Button
@@ -160,5 +124,5 @@ export default function SignUpPage() {
         </Box>
       </Box>
     </Container>
-  )
+  );
 }

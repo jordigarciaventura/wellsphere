@@ -1,90 +1,62 @@
-'use client'
+"use client";
 
-import React, { useState, useEffect } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { 
-  Button, 
-  TextField, 
-  Typography, 
-  Container, 
-  Box, 
-  Alert, 
+import { route } from "@/config/site";
+import { Link } from "@/i18n/routing";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import {
+  Alert,
+  Box,
+  Button,
   CircularProgress,
-  Divider
-} from '@mui/material'
-import GitHubIcon from '@mui/icons-material/GitHub'
-import { route } from '@/config/site'
-import { Link } from '@/i18n/routing'
+  Container,
+  Divider,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { useSearchParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [message, setMessage] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
-  const searchParams = useSearchParams()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, _] = useState("");
+  const [message, setMessage] = useState("");
+  const [isLoading, _] = useState(false);
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const message = searchParams.get('message')
-    if (message) setMessage(message)
-  }, [searchParams])
+    const message = searchParams.get("message");
+    if (message) setMessage(message);
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError('')
-    setIsLoading(true)
-
-    if (!email || !password) {
-      setError('Email and password are required')
-      setIsLoading(false)
-      return
-    }
-
-    try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      })
-
-      if (response.ok) {
-        router.push('/dashboard')
-      } else {
-        const data = await response.json()
-        setError(data.message || 'Invalid email or password')
-      }
-    } catch (err) {
-      setError('An error occurred. Please try again.')
-    }
-
-    setIsLoading(false)
-  }
+    console.log(e);
+  };
 
   const handleGitHubLogin = () => {
-    window.location.href = `https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(process.env.NEXT_PUBLIC_GITHUB_REDIRECT_URI)}&scope=user:email`
-  }
+    console.log("GitHub Log In");
+  };
 
   return (
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
           marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         <Typography component="h1" variant="h5">
           Log In
         </Typography>
         {error && (
-          <Alert severity="error" sx={{ width: '100%', mt: 2 }}>
+          <Alert severity="error" sx={{ width: "100%", mt: 2 }}>
             {error}
           </Alert>
         )}
         {message && (
-          <Alert severity="success" sx={{ width: '100%', mt: 2 }}>
+          <Alert severity="success" sx={{ width: "100%", mt: 2 }}>
             {message}
           </Alert>
         )}
@@ -120,7 +92,7 @@ export default function LoginPage() {
             sx={{ mt: 3, mb: 2 }}
             disabled={isLoading}
           >
-            {isLoading ? <CircularProgress size={24} /> : 'Log In'}
+            {isLoading ? <CircularProgress size={24} /> : "Log In"}
           </Button>
           <Divider sx={{ my: 2 }}>Or</Divider>
           <Button
@@ -140,5 +112,5 @@ export default function LoginPage() {
         </Box>
       </Box>
     </Container>
-  )
+  );
 }

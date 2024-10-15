@@ -1,18 +1,17 @@
+import LoginPage from "components/login";
 import { unstable_setRequestLocale } from "next-intl/server";
-import LoginPage from 'components/login'
 
 interface Props {
   params: { locale: string };
 }
 
 export default function RegisterPage({ params: { locale } }: Props) {
-  "use client"; 
+  "use client";
 
   unstable_setRequestLocale(locale);
 
   return (
     <>
-
       <LoginPage />
     </>
   );
