@@ -1,3 +1,4 @@
+import ClientWelcomePage from "@/components/ClientWelcomePage";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 interface Props {
@@ -8,5 +9,5 @@ export default function WelcomePage({ params: { locale } }: Props) {
   // Enable static rendering
   unstable_setRequestLocale(locale);
 
-  return <div>WelcomePage</div>;
+  return <ClientWelcomePage />;
 }
