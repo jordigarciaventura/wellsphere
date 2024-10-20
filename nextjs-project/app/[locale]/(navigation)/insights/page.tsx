@@ -1,14 +1,13 @@
-import InsightsClient from "../../../../components/InsightsClient";
+import InsightsClient from "@/components/InsightsClient";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 interface Props {
   params: { locale: string };
 }
 
 export default function InsightsPage({ params: { locale } }: Props) {
-  // Página principal chamando o InsightsClient
-  return (
-    <>
-      <InsightsClient locale={locale} />
-    </>
-  );
+  // Enable static rendering
+  unstable_setRequestLocale(locale);
+
+  return <InsightsClient />;
 }

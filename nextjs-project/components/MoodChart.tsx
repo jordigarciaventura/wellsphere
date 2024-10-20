@@ -1,54 +1,61 @@
-"use client"; // Este componente é um Client Component
+"use client";
 
-import { Line } from 'react-chartjs-2';
 import {
+  CategoryScale,
   Chart as ChartJS,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Tooltip,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+
+ChartJS.register(
   LineElement,
   CategoryScale,
   LinearScale,
   PointElement,
   Tooltip,
   Legend,
-} from 'chart.js';
+);
 
-ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
+// Emotion data (from sad to happy)
+const emojis = ["😡", "😐", "😍", "😁"];
 
-// Dados das emoções (de triste para feliz)
-const emojis = ['😡', '😐', '😍', '😁'];
-
-// Dados do gráfico de emoções
+// Mood chart data
 const moodData = {
-  labels: ['W1', 'W2', 'W3', 'W4'], // Semanas no eixo X
+  labels: ["W1", "W2", "W3", "W4"], // Weeks on the X axis
   datasets: [
     {
-      label: 'Mood',
-      data: [0, 1, 3, 2], // Índices das emoções correspondentes
-      backgroundColor: 'rgba(128, 90, 213, 0.2)',
-      borderColor: 'rgba(128, 90, 213, 1)',
+      label: "Mood",
+      data: [0, 1, 3, 2], // Indices of the corresponding emotions
+      backgroundColor: "rgba(128, 90, 213, 0.2)",
+      borderColor: "rgba(128, 90, 213, 1)",
       fill: true,
       tension: 0.4,
       pointRadius: 5,
-      pointBackgroundColor: 'rgba(128, 90, 213, 1)',
+      pointBackgroundColor: "rgba(128, 90, 213, 1)",
     },
   ],
 };
 
-// Opções do gráfico
+// Chart options
 const moodOptions: any = {
   scales: {
     y: {
       beginAtZero: true,
-      max: 3, // Índice máximo do array de emoções
+      max: 3, // Maximum index of the emotion array
       ticks: {
         callback: function (value: number) {
-          return emojis[value]; // Mostra os emojis no eixo Y
+          return emojis[value]; // Shows emojis on the Y axis
         },
-        stepSize: 1, // Passo para alternar entre as emoções
+        stepSize: 1, // Step to alternate between emotions
       },
     },
   },
 };
 
 export default function MoodChart() {
-  return <Line data={moodData} options={moodOptions} />; // Renderiza o gráfico
+  return <Line data={moodData} options={moodOptions} />; // Renders the chart
 }
