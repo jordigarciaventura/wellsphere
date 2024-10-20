@@ -8,10 +8,10 @@ interface Props {
 
 export default async function NavigationLayout({ children }: Readonly<Props>) {
   return (
-    <>
+    <div className="flex h-screen flex-col">
       <TopAppBar />
-      {children}
+      <div className="h-full w-full overflow-auto">{children}</div>
       <BottomAppBar />
-    </>
+    </div>
   );
 }

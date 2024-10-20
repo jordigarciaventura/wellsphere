@@ -1,10 +1,15 @@
 import {
   date,
+  index,
   integer,
+  json,
+  pgEnum,
   pgTable,
   primaryKey,
   serial,
-  time,
+  text,
+  timestamp,
+  uuid,
   varchar,
 } from "drizzle-orm/pg-core";
 
@@ -70,24 +75,44 @@ export const journalEntriesTable = pgTable("journalEntries", {
   userId: integer()
     .notNull()
     .references(() => usersTable.id),
-  date: date().defaultNow(),
+  createdAt: timestamp().defaultNow(),
   title: varchar({ length: 140 }).notNull(),
   entry: varchar({ length: 2000 }).notNull(),
 });
 
-export const conversationsTable = pgTable("conversations", {
-  id: serial().primaryKey(),
-  userId: integer()
-    .notNull()
-    .references(() => usersTable.id),
-  time: time().defaultNow(),
-});
+export const chatsTable = pgTable(
+  "chats",
+  {
+    id: uuid().primaryKey(),
+    title: varchar({ length: 140 }).notNull(),
+    createdAt: timestamp().defaultNow(),
+    updatedAt: timestamp().defaultNow(),
+  },
+  (table) => ({
+    createdAtIndex: index("idx_created_at").on(table.createdAt),
+  }),
+);
 
-export const messagesTable = pgTable("messages", {
-  id: serial().primaryKey(),
-  conversationId: integer()
-    .notNull()
-    .references(() => conversationsTable.id),
-  content: varchar({ length: 250 }).notNull(),
-  time: time().defaultNow(),
-});
+export const messageRoleEnum = pgEnum("role", [
+  "user",
+  "system",
+  "assistant",
+  "tool",
+]);
+
+export const messagesTable = pgTable(
+  "messages",
+  {
+    id: uuid().primaryKey(),
+    chatId: uuid()
+      .notNull()
+      .references(() => chatsTable.id, { onDelete: "cascade" }),
+    role: messageRoleEnum().notNull(),
+    content: text().notNull(),
+    createdAt: timestamp().defaultNow(),
+    metadata: json(),
+  },
+  (table) => ({
+    chatIdIndex: index("idx_chat_id").on(table.chatId),
+  }),
+);

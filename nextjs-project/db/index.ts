@@ -4,9 +4,27 @@ import pkg from "pg";
 
 const { Client } = pkg;
 
-const client = new Client({
-  connectionString: process.env.POSTGRES_URL,
-});
+class Database {
+  private static instance: Database;
+  public db: ReturnType<typeof drizzle>;
 
-client.connect();
-export const db = drizzle(client);
+  private constructor() {
+    const client = new Client({
+      connectionString: process.env.POSTGRES_URL,
+    });
+
+    client.connect().catch((err) => {
+      console.log(err);
+    });
+    this.db = drizzle(client);
+  }
+
+  public static getInstance(): Database {
+    if (!Database.instance) {
+      Database.instance = new Database();
+    }
+    return Database.instance;
+  }
+}
+
+export const db = Database.getInstance().db;
