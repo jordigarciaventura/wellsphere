@@ -1,0 +1,51 @@
+.markdown {
+  ul {
+    @apply my-3 list-disc pl-4;
+  }
+
+  ol {
+    @apply my-3 list-decimal pl-4;
+  }
+
+  a {
+    @apply text-blue-500;
+  }
+
+  pre {
+    @apply m-0 border-0 bg-background p-0;
+  }
+
+  p {
+    @apply mb-3;
+  }
+
+  h1 {
+    @apply mb-8 text-xl leading-tight;
+  }
+
+  h2 {
+    @apply mb-6 text-lg leading-tight;
+  }
+
+  h3 {
+    @apply mb-4 text-base font-bold leading-tight;
+  }
+
+  h4 {
+    @apply mb-4 text-base leading-tight;
+  }
+
+  h5 {
+    @apply mb-2 text-sm leading-tight;
+  }
+
+  h6 {
+    @apply mb-2 text-xs leading-tight;
+  }
+
+  // code {
+  // }
+
+  // blockquote {
+  // }
+}

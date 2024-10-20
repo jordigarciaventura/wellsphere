@@ -43,7 +43,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={themeMode}>
-      <body className={`antialiased`}>
+      <body className={`antialiased`} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <StyledEngineProvider injectFirst>
             <AppRouterCacheProvider options={{ enableCssLayer: true }}>
