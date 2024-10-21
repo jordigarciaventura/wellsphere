@@ -1,6 +1,6 @@
 "use client";
 
-import Logo from "@/public/favicon.svg";
+import Logo from "@/public/wellspherelogov3.svg";
 import { Box, Button, Container, Paper, Typography } from "@mui/material";
 import Image from "next/image";
 

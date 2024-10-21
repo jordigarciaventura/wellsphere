@@ -37,6 +37,8 @@ export default function LoginPage() {
   const handleGitHubLogin = () => {
     signIn("github", {
       redirectTo: "/",
+    }).catch((error) => {
+      console.error(error);
     });
   };
 
