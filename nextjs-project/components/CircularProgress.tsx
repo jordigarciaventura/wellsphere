@@ -6,15 +6,19 @@ interface CircularProgressProps {
   total: number; // Valor total
 }
 
-export default function CircularProgress({ label, progress, total }: CircularProgressProps) {
+export default function CircularProgress({
+  label,
+  progress,
+  total,
+}: CircularProgressProps) {
   // Cálculo da porcentagem
   const percentage = (progress / total) * 100;
 
   return (
     <div className="text-center">
       {/* Container do círculo com a barra de progresso */}
-      <div className="relative inline-block w-20 h-20">
-        <svg className="w-full h-full" viewBox="0 0 36 36">
+      <div className="relative inline-block h-20 w-20">
+        <svg className="h-full w-full" viewBox="0 0 36 36">
           <path
             className="text-gray-300"
             d="M18 2.0845

@@ -1,8 +1,8 @@
+import { users as usersTable } from "@/db/authSchema";
 import { db } from "@/db/index";
-import { usersTable } from "@/db/schema";
 import { eq } from "drizzle-orm/sql";
 
-export async function insertUser(userData: { username: string }) {
+export async function insertUser(userData: { name: string }) {
   await db.insert(usersTable).values(userData).execute();
 }
 
@@ -11,16 +11,19 @@ export async function getUsers() {
 }
 
 export async function getUserById(id: number) {
-  return await db.select().from(usersTable).where(eq(usersTable.id, id));
+  return await db
+    .select()
+    .from(usersTable)
+    .where(eq(usersTable.id, id.toString()));
 }
 
 export async function updateUser(userId: number, username: string) {
   await db
     .update(usersTable)
-    .set({ username: username })
-    .where(eq(usersTable.id, userId));
+    .set({ name: username })
+    .where(eq(usersTable.id, userId.toString()));
 }
 
 export async function deleteUserById(id: number) {
-  await db.delete(usersTable).where(eq(usersTable.id, id));
+  await db.delete(usersTable).where(eq(usersTable.id, id.toString()));
 }

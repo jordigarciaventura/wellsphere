@@ -3,6 +3,7 @@
 import {
   CategoryScale,
   Chart as ChartJS,
+  type ChartOptions,
   Legend,
   LinearScale,
   LineElement,
@@ -41,14 +42,14 @@ const moodData = {
 };
 
 // Chart options
-const moodOptions: any = {
+const moodOptions: ChartOptions<"line"> = {
   scales: {
     y: {
       beginAtZero: true,
       max: 3, // Maximum index of the emotion array
       ticks: {
-        callback: function (value: number) {
-          return emojis[value]; // Shows emojis on the Y axis
+        callback: function (value: string | number) {
+          return emojis[Number(value)]; // Shows emojis on the Y axis
         },
         stepSize: 1, // Step to alternate between emotions
       },

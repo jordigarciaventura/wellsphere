@@ -1,10 +1,11 @@
 "use client";
 
-import { Avatar, Box, IconButton } from "@mui/material";
+import { Avatar, Box, Button, IconButton } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Menu } from "lucide-react";
+import { signOut, useSession } from "next-auth/react";
 import dynamic from "next/dynamic";
 
 const ColorDot = dynamic(
@@ -23,6 +24,8 @@ const ColorDot = dynamic(
 );
 
 export default function TopAppBar() {
+  const { data: session } = useSession();
+
   return (
     <AppBar position="static" color="transparent" elevation={0}>
       <Toolbar className="mx-auto flex w-full justify-between">
@@ -42,7 +45,19 @@ export default function TopAppBar() {
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <ColorDot />
-          <Avatar sx={{ width: 32, height: 32 }} />
+          <div className="flex items-center gap-4">
+            <Typography variant="body2">{session?.user?.name}</Typography>
+            <Avatar src={session?.user?.image ?? ""}>WS</Avatar>
+            {session ? (
+              <Button color="inherit" onClick={() => signOut()}>
+                Log Out
+              </Button>
+            ) : (
+              <Button color="inherit" href="/login">
+                Log In
+              </Button>
+            )}
+          </div>
         </Box>
       </Toolbar>
     </AppBar>

@@ -3,11 +3,6 @@
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
 
-const AppBar = dynamic(() => import("@mui/material/AppBar"), { ssr: false });
-const Toolbar = dynamic(() => import("@mui/material/Toolbar"), { ssr: false });
-const IconButton = dynamic(() => import("@mui/material/IconButton"), {
-  ssr: false,
-});
 const Typography = dynamic(() => import("@mui/material/Typography"), {
   ssr: false,
 });
@@ -24,7 +19,7 @@ const CardContent = dynamic(() => import("@mui/material/CardContent"), {
 const StyledTab = dynamic(
   () =>
     import("@mui/material/styles").then((mod) =>
-      mod.styled(Tab)(({ theme }) => ({
+      mod.styled(Tab)(() => ({
         "&.Mui-selected": {
           color: "#00796b",
         },

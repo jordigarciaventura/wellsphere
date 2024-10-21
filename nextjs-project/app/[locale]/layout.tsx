@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
+import SessionWrapper from "components/SessionWrapper";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import React from "react";
@@ -47,12 +48,14 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <StyledEngineProvider injectFirst>
             <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-              <InitColorSchemeScript attribute="class" />
-              <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <ThemeCookieSetter />
-                {children}
-              </ThemeProvider>
+              <SessionWrapper>
+                <InitColorSchemeScript attribute="class" />
+                <ThemeProvider theme={theme}>
+                  <CssBaseline />
+                  <ThemeCookieSetter />
+                  {children}
+                </ThemeProvider>
+              </SessionWrapper>
             </AppRouterCacheProvider>
           </StyledEngineProvider>
         </NextIntlClientProvider>

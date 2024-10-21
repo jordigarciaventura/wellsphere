@@ -1,5 +1,5 @@
+import { users as usersTable } from "@/db/authSchema.ts";
 import {
-  date,
   index,
   integer,
   json,
@@ -13,11 +13,6 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 
-export const usersTable = pgTable("users", {
-  id: serial().primaryKey(),
-  username: varchar({ length: 20 }).notNull(),
-});
-
 export const dimensionsTable = pgTable("dimensions", {
   id: serial().primaryKey(),
   name: varchar({ length: 20 }).notNull(),
@@ -26,7 +21,7 @@ export const dimensionsTable = pgTable("dimensions", {
 export const scoresTable = pgTable(
   "scores",
   {
-    userId: integer()
+    userId: text()
       .notNull()
       .references(() => usersTable.id),
     dimensionId: integer()
@@ -49,10 +44,10 @@ export const moodsTable = pgTable("moods", {
 export const moodEntriesTable = pgTable(
   "moodEntries",
   {
-    userId: integer()
+    userId: text()
       .notNull()
       .references(() => usersTable.id),
-    date: date().defaultNow(),
+    date: varchar({ length: 8 }).notNull(),
     mood: integer().notNull(),
   },
   (t) => {
@@ -66,13 +61,13 @@ export const tasksTable = pgTable("tasks", {
   taskId: serial().primaryKey(),
   title: varchar({ length: 140 }).notNull(),
   desc: varchar({ length: 200 }),
-  userId: integer()
+  userId: text()
     .notNull()
     .references(() => usersTable.id),
 });
 
 export const journalEntriesTable = pgTable("journalEntries", {
-  userId: integer()
+  userId: text()
     .notNull()
     .references(() => usersTable.id),
   createdAt: timestamp().defaultNow(),
