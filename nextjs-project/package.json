@@ -27,6 +27,8 @@
     ]
   },
   "dependencies": {
+    "@auth/core": "^0.37.2",
+    "@auth/drizzle-adapter": "^1.7.2",
     "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
@@ -37,8 +39,10 @@
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.34.1",
     "next": "14.2.14",
+    "next-auth": "^5.0.0-beta.25",
     "next-intl": "^3.21.1",
     "pg": "^8.13.0",
+    "postgres": "^3.4.4",
     "react": "^18",
     "react-dom": "^18",
     "zustand": "^5.0.0-rc.2"

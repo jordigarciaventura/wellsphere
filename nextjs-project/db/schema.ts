@@ -7,11 +7,7 @@ import {
   time,
   varchar,
 } from "drizzle-orm/pg-core";
-
-export const usersTable = pgTable("users", {
-  id: serial().primaryKey(),
-  username: varchar({ length: 20 }).notNull(),
-});
+import { users as usersTable } from "@/db/authSchema.ts";
 
 export const dimensionsTable = pgTable("dimensions", {
   id: serial().primaryKey(),

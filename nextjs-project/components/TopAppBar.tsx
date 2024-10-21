@@ -6,7 +6,12 @@ import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
-export default function TopAppBar() {
+import { auth } from "@/auth"
+
+export default async function TopAppBar() {
+  
+  const session = await auth();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -23,7 +28,7 @@ export default function TopAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             WellSphere
           </Typography>
-          <Avatar>WS</Avatar>
+          <Avatar src={session?.user?.image || ''}>WS</Avatar>
         </Toolbar>
       </AppBar>
     </Box>
