@@ -1,13 +1,13 @@
+import { users as usersTable } from "@/db/authSchema.ts";
 import {
-  date,
   integer,
   pgTable,
   primaryKey,
   serial,
+  text,
   time,
   varchar,
 } from "drizzle-orm/pg-core";
-import { users as usersTable } from "@/db/authSchema.ts";
 
 export const dimensionsTable = pgTable("dimensions", {
   id: serial().primaryKey(),
@@ -17,7 +17,7 @@ export const dimensionsTable = pgTable("dimensions", {
 export const scoresTable = pgTable(
   "scores",
   {
-    userId: integer()
+    userId: text()
       .notNull()
       .references(() => usersTable.id),
     dimensionId: integer()
@@ -40,10 +40,10 @@ export const moodsTable = pgTable("moods", {
 export const moodEntriesTable = pgTable(
   "moodEntries",
   {
-    userId: integer()
+    userId: text()
       .notNull()
       .references(() => usersTable.id),
-    date: date().defaultNow(),
+    date: varchar({ length: 8 }).notNull(),
     mood: integer().notNull(),
   },
   (t) => {
@@ -57,23 +57,31 @@ export const tasksTable = pgTable("tasks", {
   taskId: serial().primaryKey(),
   title: varchar({ length: 140 }).notNull(),
   desc: varchar({ length: 200 }),
-  userId: integer()
+  userId: text()
     .notNull()
     .references(() => usersTable.id),
 });
 
-export const journalEntriesTable = pgTable("journalEntries", {
-  userId: integer()
-    .notNull()
-    .references(() => usersTable.id),
-  date: date().defaultNow(),
-  title: varchar({ length: 140 }).notNull(),
-  entry: varchar({ length: 2000 }).notNull(),
-});
+export const journalEntriesTable = pgTable(
+  "journalEntries",
+  {
+    userId: text()
+      .notNull()
+      .references(() => usersTable.id),
+    date: varchar({ length: 8 }).notNull(),
+    title: varchar({ length: 140 }).notNull(),
+    entry: varchar({ length: 2000 }).notNull(),
+  },
+  (t) => {
+    return {
+      pk: primaryKey({ columns: [t.userId, t.date] }),
+    };
+  },
+);
 
 export const conversationsTable = pgTable("conversations", {
   id: serial().primaryKey(),
-  userId: integer()
+  userId: text()
     .notNull()
     .references(() => usersTable.id),
   time: time().defaultNow(),

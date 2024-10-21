@@ -13,8 +13,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { signIn } from "next-auth/react" 
-import { redirect, useSearchParams } from "next/navigation";
+import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 export default function LoginPage() {
@@ -35,8 +35,9 @@ export default function LoginPage() {
   };
 
   const handleGitHubLogin = () => {
-    signIn("github");
-    redirect("/"); // CHANGE THIS
+    signIn("github", {
+      redirectTo: "/",
+    });
   };
 
   return (

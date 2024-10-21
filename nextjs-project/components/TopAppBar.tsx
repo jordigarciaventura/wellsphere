@@ -1,16 +1,16 @@
+"use client";
+
 import { ArrowBack } from "@mui/icons-material";
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import { signOut, useSession } from "next-auth/react";
 
-import { auth } from "@/auth"
-
-export default async function TopAppBar() {
-  
-  const session = await auth();
+export default function TopAppBar() {
+  const { data: session } = useSession();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -28,7 +28,19 @@ export default async function TopAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             WellSphere
           </Typography>
-          <Avatar src={session?.user?.image || ''}>WS</Avatar>
+          <div className="flex items-center gap-4">
+            <Typography variant="body2">{session?.user?.name}</Typography>
+            <Avatar src={session?.user?.image || ""}>WS</Avatar>
+            {session ? (
+              <Button color="inherit" onClick={() => signOut()}>
+                Log Out
+              </Button>
+            ) : (
+              <Button color="inherit" href="/login">
+                Log In
+              </Button>
+            )}
+          </div>
         </Toolbar>
       </AppBar>
     </Box>
