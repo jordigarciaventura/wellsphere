@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
+import SessionWrapper from "components/SessionWrapper";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import React from "react";
@@ -30,7 +31,7 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("description"),
-    icons: [{ rel: "icon", url: "/favicon.ico" }],
+    icons: [{ rel: "icon", url: "/wellspherelogov3.svg" }],
   };
 }
 
@@ -43,16 +44,18 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={themeMode}>
-      <body className={`antialiased`}>
+      <body className={`antialiased`} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <StyledEngineProvider injectFirst>
             <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-              <InitColorSchemeScript attribute="class" />
-              <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <ThemeCookieSetter />
-                {children}
-              </ThemeProvider>
+              <SessionWrapper>
+                <InitColorSchemeScript attribute="class" />
+                <ThemeProvider theme={theme}>
+                  <CssBaseline />
+                  <ThemeCookieSetter />
+                  {children}
+                </ThemeProvider>
+              </SessionWrapper>
             </AppRouterCacheProvider>
           </StyledEngineProvider>
         </NextIntlClientProvider>

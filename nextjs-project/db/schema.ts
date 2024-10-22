@@ -1,17 +1,17 @@
+import { users as usersTable } from "@/db/authSchema.ts";
 import {
-  date,
+  index,
   integer,
+  json,
+  pgEnum,
   pgTable,
   primaryKey,
   serial,
-  time,
+  text,
+  timestamp,
+  uuid,
   varchar,
 } from "drizzle-orm/pg-core";
-
-export const usersTable = pgTable("users", {
-  id: serial().primaryKey(),
-  username: varchar({ length: 20 }).notNull(),
-});
 
 export const dimensionsTable = pgTable("dimensions", {
   id: serial().primaryKey(),
@@ -21,7 +21,7 @@ export const dimensionsTable = pgTable("dimensions", {
 export const scoresTable = pgTable(
   "scores",
   {
-    userId: integer()
+    userId: text()
       .notNull()
       .references(() => usersTable.id),
     dimensionId: integer()
@@ -44,10 +44,10 @@ export const moodsTable = pgTable("moods", {
 export const moodEntriesTable = pgTable(
   "moodEntries",
   {
-    userId: integer()
+    userId: text()
       .notNull()
       .references(() => usersTable.id),
-    date: date().defaultNow(),
+    date: varchar({ length: 8 }).notNull(),
     mood: integer().notNull(),
   },
   (t) => {
@@ -61,33 +61,53 @@ export const tasksTable = pgTable("tasks", {
   taskId: serial().primaryKey(),
   title: varchar({ length: 140 }).notNull(),
   desc: varchar({ length: 200 }),
-  userId: integer()
+  userId: text()
     .notNull()
     .references(() => usersTable.id),
 });
 
 export const journalEntriesTable = pgTable("journalEntries", {
-  userId: integer()
+  userId: text()
     .notNull()
     .references(() => usersTable.id),
-  date: date().defaultNow(),
+  createdAt: timestamp().defaultNow(),
   title: varchar({ length: 140 }).notNull(),
   entry: varchar({ length: 2000 }).notNull(),
 });
 
-export const conversationsTable = pgTable("conversations", {
-  id: serial().primaryKey(),
-  userId: integer()
-    .notNull()
-    .references(() => usersTable.id),
-  time: time().defaultNow(),
-});
+export const chatsTable = pgTable(
+  "chats",
+  {
+    id: uuid().primaryKey(),
+    title: varchar({ length: 140 }).notNull(),
+    createdAt: timestamp().defaultNow(),
+    updatedAt: timestamp().defaultNow(),
+  },
+  (table) => ({
+    createdAtIndex: index("idx_created_at").on(table.createdAt),
+  }),
+);
 
-export const messagesTable = pgTable("messages", {
-  id: serial().primaryKey(),
-  conversationId: integer()
-    .notNull()
-    .references(() => conversationsTable.id),
-  content: varchar({ length: 250 }).notNull(),
-  time: time().defaultNow(),
-});
+export const messageRoleEnum = pgEnum("role", [
+  "user",
+  "system",
+  "assistant",
+  "tool",
+]);
+
+export const messagesTable = pgTable(
+  "messages",
+  {
+    id: uuid().primaryKey(),
+    chatId: uuid()
+      .notNull()
+      .references(() => chatsTable.id, { onDelete: "cascade" }),
+    role: messageRoleEnum().notNull(),
+    content: text().notNull(),
+    createdAt: timestamp().defaultNow(),
+    metadata: json(),
+  },
+  (table) => ({
+    chatIdIndex: index("idx_chat_id").on(table.chatId),
+  }),
+);
