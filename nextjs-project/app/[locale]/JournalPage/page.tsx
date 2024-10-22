@@ -1,3 +1,4 @@
+import Journal from "components/JournalPage";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 interface Props {
@@ -5,8 +6,13 @@ interface Props {
 }
 
 export default function JournalPage({ params: { locale } }: Props) {
-  // Enable static rendering
+  "use client";
+
   unstable_setRequestLocale(locale);
 
-  return <div>JournalPage</div>;
+  return (
+    <>
+      <Journal />
+    </>
+  );
 }

@@ -26,9 +26,9 @@
     ]
   },
   "dependencies": {
+    "@ai-sdk/azure": "^0.0.45",
     "@auth/core": "^0.37.2",
     "@auth/drizzle-adapter": "^1.7.2",
-    "@ai-sdk/azure": "^0.0.45",
     "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
