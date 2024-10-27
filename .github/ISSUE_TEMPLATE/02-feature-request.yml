@@ -2,35 +2,38 @@ name: Feature Request
 description: Suggest or request a new feature
 labels: ["enhancement"]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Please fill out the sections below to properly describe the new feature you are suggesting.
-  - type: textarea
-    id: description
-    attributes:
-      label: Describe the feature
-      placeholder: A button in the screen X that allows to do Y
-    validations:
-      required: true
-  - type: textarea
-    id: rationale
-    attributes:
-      label: It should be implemented because
-      placeholder: It will allow to do Y that is needed for Z
-  - type: textarea
-    id: context
-    attributes:
-      label: Additional context
-      placeholder: |
-        Add any other context or screenshots about the feature request here.
-  - type: dropdown
-    id: assign
-    attributes:
-      label: "Would you like to work on this issue?"
-      options:
-        - "Yes"
-  - type: markdown
-    attributes:
-      value: |
-        Thanks for your suggestion! Let's see together if it can be implemented.
+- type: markdown
+  attributes:
+    value: |
+      Please fill out the sections below to properly describe the new feature you are suggesting.
+- type: textarea
+  id: description
+  attributes:
+    label: Description
+    placeholder: A button in the screen X that allows to do Y
+  validations:
+    required: true
+- type: textarea
+  id: tasks
+  attributes:
+    label: Tasks
+    placeholder: |
+      - [ ] Task 1
+      - [ ] Task 2
+- type: textarea
+  id: acceptance-criteria
+  attributes:
+    label: Acceptance Criteria
+    placeholder: |
+      - Criteria 1
+      - Criteria 2
+- type: textarea
+  id: additional-information
+  attributes:
+    label: Additional Information
+    placeholder: |
+      Any additional information that you think is relevant for this feature request.
+- type: markdown
+  attributes:
+    value: |
+      Thanks for your suggestion! Let's see together if it can be implemented.
