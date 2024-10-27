@@ -1,7 +1,7 @@
 name: Feature Request
 description: Suggest or request a new feature
 labels: ["enhancement"]
-projects: ["wellspehre - Scrum"]
+projects: ["wellsphere - Scrum"]
 body:
 - type: markdown
   attributes:
