@@ -16,7 +16,7 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url,
     display: "standalone",
     description:
-      "WellSphere is a wellness app designed to improve your overall wellbeing by focusing on six key areas: emotional, social, physical, academic, financial, and spiritual. Achieve balance in life with personalized tools that help you grow in each dimension. Start your wellness journey with WellSphere!",
+      "WellSphere is a wellness app designed to improve your overall health. Achieve balance in life in your journey together with WellSphere!",
     lang: "English",
     dir: "auto",
     theme_color: "#693cf7",
