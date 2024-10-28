@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
@@ -17,9 +19,47 @@ export default function manifest(): MetadataRoute.Manifest {
       "WellSphere is a wellness app designed to improve your overall wellbeing by focusing on six key areas: emotional, social, physical, academic, financial, and spiritual. Achieve balance in life with personalized tools that help you grow in each dimension. Start your wellness journey with WellSphere!",
     lang: "English",
     dir: "auto",
-    theme_color: "#000000",
+    theme_color: "#693cf7",
     background_color: "#000000",
     orientation: "any",
+    screenshots: [
+      {
+        src: "wellspheress1.png",
+        type: "image/png",
+        sizes: "540x720",
+        form_factor: "narrow",
+      },
+      {
+        src: "wellspheress1.png",
+        type: "image/png",
+        sizes: "540x720",
+        form_factor: "narrow",
+      },
+      {
+        src: "wellspheress1.png",
+        type: "image/png",
+        sizes: "540x720",
+        form_factor: "narrow",
+      },
+      { 
+        src: "wellspheress2.png",
+        type: "image/png",
+        sizes: "1024x593",
+        form_factor: "wide",
+      },
+      {
+        src: "wellspheress2.png",
+        type: "image/png",
+        sizes: "1024x593",
+        form_factor: "wide",
+      },
+      {
+        src: "wellspheress2.png",
+        type: "image/png",
+        sizes: "1024x593",
+        form_factor: "wide",
+      },
+    ],
     icons: [
       {
         src: "wellspherelogo512.png",
@@ -37,7 +77,7 @@ export default function manifest(): MetadataRoute.Manifest {
     related_applications: [
       {
         platform: "windows",
-        url: " The URL to your app in that app store",
+        url: "The URL to your app in that app store",
       },
     ],
     prefer_related_applications: false,
