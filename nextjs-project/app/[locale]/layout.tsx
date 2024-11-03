@@ -1,17 +1,12 @@
+import AuthProvider from "@/auth/AuthProvider";
+import { Toaster } from "@/components/ui/sonner";
 import { locales } from "@/config/i18n";
-import { getThemeFromCookies } from "@/lib/theme";
-import theme from "@/theme/theme";
-import ThemeCookieSetter from "@/theme/ThemeCookieSetter";
-import {
-  CssBaseline,
-  StyledEngineProvider,
-  ThemeProvider,
-} from "@mui/material";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
-import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
-import SessionWrapper from "components/SessionWrapper";
+import { cn } from "@/lib/utils";
+import ThemeProvider from "@/theme/ThemeProvider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
+import { Poppins } from "next/font/google";
+import { cookies } from "next/headers";
 import React from "react";
 
 interface Props {
@@ -35,30 +30,35 @@ export async function generateMetadata({
   };
 }
 
+const poppins = Poppins({
+  display: "swap",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export default async function RootLayout({
   children,
   params: { locale },
 }: Readonly<Props>) {
   const messages = await getMessages();
-  const themeMode = getThemeFromCookies();
+  const theme = cookies().get("__theme__")?.value ?? "light";
 
   return (
-    <html lang={locale} className={themeMode}>
-      <body className={`antialiased`} suppressHydrationWarning>
-        <NextIntlClientProvider messages={messages}>
-          <StyledEngineProvider injectFirst>
-            <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-              <SessionWrapper>
-                <InitColorSchemeScript attribute="class" />
-                <ThemeProvider theme={theme}>
-                  <CssBaseline />
-                  <ThemeCookieSetter />
-                  {children}
-                </ThemeProvider>
-              </SessionWrapper>
-            </AppRouterCacheProvider>
-          </StyledEngineProvider>
-        </NextIntlClientProvider>
+    <html
+      lang={locale}
+      className={cn(theme, poppins.className)}
+      style={{ colorScheme: theme }}
+      suppressHydrationWarning
+    >
+      <body className={`antialiased`}>
+        <AuthProvider>
+          <NextIntlClientProvider messages={messages} locale={locale}>
+            <ThemeProvider defaultTheme={theme}>
+              {children}
+              <Toaster richColors />
+            </ThemeProvider>
+          </NextIntlClientProvider>
+        </AuthProvider>
       </body>
     </html>
   );

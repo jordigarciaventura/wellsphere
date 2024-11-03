@@ -39,10 +39,6 @@ export async function submitUserMessageAction({
     apiKey: env.AZURE_API_KEY,
   });
 
-  console.log("Azure API key:", env.AZURE_API_KEY);
-  console.log("Azure resource name:", env.AZURE_RESOURCE_NAME);
-  console.log("Azure deployment name:", env.AZURE_DEPLOYMENT_NAME);
-
   const model = azure(env.AZURE_DEPLOYMENT_NAME!);
 
   const result = await streamUI({

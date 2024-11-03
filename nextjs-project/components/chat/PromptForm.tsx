@@ -1,13 +1,14 @@
 "use client";
 
 import UserMessage from "@/components/chat/UserMessage";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import type { AI } from "@/providers/AI";
 import type { UIState, UIStateElement } from "@/types/ai";
 import { zodResolver } from "@hookform/resolvers/zod";
-import SendIcon from "@mui/icons-material/Send";
-import { IconButton, TextField } from "@mui/material";
 import { useActions, useUIState } from "ai/rsc";
+import { Send } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
@@ -36,8 +37,6 @@ export default function PromptForm({ className }: Props) {
     form.setValue("prompt", "");
 
     const userMessageId = uuidv4();
-
-    console.log("PromptForm handleSubmit", { prompt, userMessageId });
 
     // Optimistically add user message UI
     setUIState((currentUIState: UIState) => [
@@ -68,16 +67,10 @@ export default function PromptForm({ className }: Props) {
         className,
       )}
     >
-      <TextField
-        label="Ask anything"
-        multiline
-        rows={1}
-        {...form.register("prompt")}
-        className="w-full"
-      />
-      <IconButton aria-label="Send" type="submit" className="size-14">
-        <SendIcon />
-      </IconButton>
+      <Textarea placeholder="Ask anything" {...form.register("prompt")} />
+      <Button variant="outline" size="icon" type="submit">
+        <Send />
+      </Button>
     </form>
   );
 }
