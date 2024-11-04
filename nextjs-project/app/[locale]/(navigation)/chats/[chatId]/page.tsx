@@ -3,7 +3,7 @@ import { Chat } from "@/features/chats/components/Chat";
 import { getChatUseCase } from "@/features/chats/use-cases/chats";
 import { AI } from "@/features/chats/utils/provider";
 import { redirect } from "@/i18n/routing";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 
 interface Props {
   params: { locale: string; chatId: string };
@@ -11,12 +11,15 @@ interface Props {
 
 export default async function ChatPage({ params: { locale, chatId } }: Props) {
   // Enable static rendering
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   const chat = await getChatUseCase(chatId);
 
   if (!chat) {
-    redirect(route.chats);
+    redirect({
+      href: route.chats,
+      locale,
+    });
   }
 
   return (

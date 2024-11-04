@@ -4,14 +4,14 @@ import { route } from "@/config/site";
 import LanguageSelect from "@/features/language/components/LanguageSelect";
 import ThemeToggleButton from "@/features/theme/components/ThemeToggleButton";
 import { Link } from "@/i18n/routing";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 interface Props {
   params: { locale: string };
 }
 
 export default async function Example({ params: { locale } }: Props) {
   // Enable static rendering
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   const t = await getTranslations("Main");
 
