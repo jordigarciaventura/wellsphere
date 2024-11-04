@@ -1,4 +1,4 @@
-import ClientHome from "@/components/ClientHome";
+import ClientHome from "@/features/home/components/ClientHome";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 interface Props {

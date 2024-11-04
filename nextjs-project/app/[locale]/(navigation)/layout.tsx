@@ -1,5 +1,5 @@
-import BottomAppBar from "@/components/BottomAppBar";
-import TopAppBar from "@/components/TopAppBar";
+import BottomAppBar from "@/components/navigation/BottomAppBar";
+import TopAppBar from "@/components/navigation/TopAppBar";
 import React from "react";
 
 interface Props {

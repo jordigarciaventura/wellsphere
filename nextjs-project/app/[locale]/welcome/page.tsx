@@ -1,4 +1,4 @@
-import ClientWelcomePage from "@/components/ClientWelcomePage";
+import ClientWelcomePage from "@/features/welcome/components/ClientWelcomePage";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 interface Props {

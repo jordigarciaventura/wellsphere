@@ -1,4 +1,4 @@
-import SignUpPage from "components/signup";
+import { SignUpForm } from "@/features/auth/components/SignUpForm";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 interface Props {
@@ -11,8 +11,8 @@ export default function RegisterPage({ params: { locale } }: Props) {
   unstable_setRequestLocale(locale);
 
   return (
-    <>
-      <SignUpPage />
-    </>
+    <div className="mt-12 flex">
+      <SignUpForm />;
+    </div>
   );
 }

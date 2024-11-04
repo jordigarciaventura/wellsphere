@@ -1,8 +1,8 @@
-import { Chat } from "@/components/chat/Chat";
 import { route } from "@/config/site";
+import { Chat } from "@/features/chats/components/Chat";
+import { getChatUseCase } from "@/features/chats/use-cases/chats";
+import { AI } from "@/features/chats/utils/provider";
 import { redirect } from "@/i18n/routing";
-import { AI } from "@/providers/AI";
-import { getChatUseCase } from "@/use-cases/chats";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 interface Props {

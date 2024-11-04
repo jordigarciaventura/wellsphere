@@ -1,4 +1,4 @@
-import TutorialCarousel from "components/tutorial";
+import TutorialCarousel from "@/features/tutorial/components/TutorialCarousel";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 interface Props {

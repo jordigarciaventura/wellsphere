@@ -1,4 +1,4 @@
-import ClientTaskPage from "@/components/ClientTaskPage";
+import ClientTaskPage from "@/features/tasks/components/ClientTaskPage";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 interface Props {
