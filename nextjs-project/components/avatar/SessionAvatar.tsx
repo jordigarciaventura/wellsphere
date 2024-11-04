@@ -1,5 +1,5 @@
-import { getServerAuthSession } from "@/auth/lib";
 import UserAvatar from "@/components/avatar/UserAvatar";
+import { getServerAuthSession } from "@/features/auth/utils/lib";
 
 interface Props {
   className?: string;

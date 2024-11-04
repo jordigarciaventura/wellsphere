@@ -1,8 +1,8 @@
-import AuthProvider from "@/auth/AuthProvider";
 import { Toaster } from "@/components/ui/sonner";
-import { locales } from "@/config/i18n";
-import { cn } from "@/lib/utils";
-import ThemeProvider from "@/theme/ThemeProvider";
+import AuthProvider from "@/features/auth/components/AuthProvider";
+import { locales } from "@/features/language/utils/i18n";
+import ThemeProvider from "@/features/theme/components/ThemeProvider";
+import { cn } from "@/utils/style";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { Poppins } from "next/font/google";

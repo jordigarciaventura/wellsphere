@@ -1,4 +1,4 @@
-import { LoginForm } from "@/components/LoginForm";
+import { LoginForm } from "@/features/auth/components/LoginForm";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 interface Props {

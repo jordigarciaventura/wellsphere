@@ -1,4 +1,4 @@
-import ClientJournalPage from "@/components/ClientJournalPage";
+import ClientJournalPage from "@/features/journal/components/ClientJournalPage";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 interface Props {

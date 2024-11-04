@@ -1,8 +1,8 @@
-import LanguageSelect from "@/components/language/language-select";
-import ThemeToggleButton from "@/components/theme/ThemeToggleButton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { route } from "@/config/site";
+import LanguageSelect from "@/features/language/components/LanguageSelect";
+import ThemeToggleButton from "@/features/theme/components/ThemeToggleButton";
 import { Link } from "@/i18n/routing";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 interface Props {

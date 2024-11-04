@@ -1,6 +1,13 @@
 import { Avatar } from "@/components/ui/avatar";
-import { cn, getInitials } from "@/lib/utils";
+import { cn } from "@/utils/style";
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+
+function getInitials(name: string) {
+  const words = name.trim().split(/\s+/).slice(0, 2);
+  const initials = words.reduce((acc, word) => acc + word[0], "");
+
+  return initials.toUpperCase();
+}
 
 interface Props {
   className?: string;

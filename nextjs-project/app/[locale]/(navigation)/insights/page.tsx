@@ -1,4 +1,4 @@
-import InsightsClient from "@/components/InsightsClient";
+import InsightsClient from "@/features/insights/components/InsightsClient";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 interface Props {

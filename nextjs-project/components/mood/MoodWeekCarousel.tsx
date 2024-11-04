@@ -6,9 +6,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { formatMonthAndYear, getDayAbbreviations } from "@/lib/date";
-import { cn } from "@/lib/utils";
-import { MoodEntry } from "@/types/mood";
+import {
+  formatMonthAndYear,
+  getDayAbbreviations,
+} from "@/features/home/utils/date";
+import type { MoodEntry } from "@/types/mood";
+import { cn } from "@/utils/style";
 import {
   Angry,
   CalendarIcon,
@@ -18,7 +21,7 @@ import {
   Meh,
   Smile,
 } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 interface Props {
   year: number;
@@ -52,7 +55,10 @@ const MoodDay = React.forwardRef<
     mood: number | null;
     selected?: boolean;
   }
->(({ day, dayNumber, mood, selected = false, ...props }, ref) => {
+>(function MoodDayElement(
+  { day, dayNumber, mood, selected = false, ...props },
+  ref,
+) {
   const MoodIcon = getMoodIcon(mood);
 
   return (
@@ -118,34 +124,34 @@ export default function MoodWeekCarousel({
     setTimeout(() => setIsLoaded(true), 0);
   };
 
-  const updateMonthTitle = () => {
-    const scrollContainer = containerRef.current as HTMLDivElement;
+  const updateMonthTitle = useCallback(() => {
+    const scrollContainer = containerRef.current!;
     const daysNodes = Array.from(scrollContainer.children);
 
-    for (let node of daysNodes) {
+    for (const node of daysNodes) {
       const rect = node.getBoundingClientRect();
       if (rect.left >= 0 && rect.right <= window.innerWidth) {
         const month = JSON.parse(
           node.getAttribute("data-month") ?? selectedDate.getMonth().toString(),
-        );
+        ) as number;
         const year = JSON.parse(
           node.getAttribute("data-year") ??
             selectedDate.getFullYear().toString(),
-        );
+        ) as number;
         setTitle(formatMonthAndYear(month, year));
         break;
       }
     }
-  };
+  }, [selectedDate]);
 
   useEffect(() => {
-    const scrollContainer = containerRef.current as HTMLDivElement;
+    const scrollContainer = containerRef.current!;
     scrollContainer.addEventListener("scroll", updateMonthTitle);
 
     return () => {
       scrollContainer.removeEventListener("scroll", updateMonthTitle);
     };
-  }, [containerRef]);
+  }, [containerRef, updateMonthTitle]);
 
   useEffect(() => {
     requestAnimationFrame(() => centerSelectedElement());

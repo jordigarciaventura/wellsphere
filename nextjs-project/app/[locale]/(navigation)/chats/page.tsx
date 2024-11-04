@@ -1,5 +1,5 @@
-import { Chat } from "@/components/chat/Chat";
-import { AI } from "@/providers/AI";
+import { Chat } from "@/features/chats/components/Chat";
+import { AI } from "@/features/chats/utils/provider";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { v4 as uuidv4 } from "uuid";
 
