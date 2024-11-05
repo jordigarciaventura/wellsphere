@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/sonner";
 import AuthProvider from "@/features/auth/components/AuthProvider";
 import { locales } from "@/features/language/utils/i18n";
 import ThemeProvider from "@/features/theme/components/ThemeProvider";
-import { cn } from "@/utils/style";
+import { cn } from "@/lib/utils";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { Poppins } from "next/font/google";

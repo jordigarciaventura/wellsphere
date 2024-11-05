@@ -1,4 +1,4 @@
-import { cn } from "@/utils/style";
+import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import styles from "./markdown.module.scss";
@@ -14,7 +14,7 @@ export default function Markdown({ children, className }: Props) {
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[]}
       className={cn(
-        "prose dark:prose-invert w-full max-w-[calc(100%-3rem)]",
+        "prose w-full max-w-[calc(100%-3rem)] dark:prose-invert",
         styles.markdown,
         className,
       )}

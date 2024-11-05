@@ -2,7 +2,7 @@
 
 import Markdown from "@/features/chats/components/markdown/markdown";
 import { useStreamableText } from "@/features/chats/hooks/useStreamableText";
-import { cn } from "@/utils/style";
+import { cn } from "@/lib/utils";
 import { type StreamableValue } from "ai/rsc";
 import { Bot } from "lucide-react";
 

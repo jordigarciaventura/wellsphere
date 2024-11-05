@@ -84,3 +84,11 @@
   --start-color: #9c2cf3; /* Blue */
   --end-color: #3a49f9; /* Green */
 }
+
+.tiptap p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}

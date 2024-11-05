@@ -1,5 +1,5 @@
 import { Avatar } from "@/components/ui/avatar";
-import { cn } from "@/utils/style";
+import { cn } from "@/lib/utils";
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 
 function getInitials(name: string) {
