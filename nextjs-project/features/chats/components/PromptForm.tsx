@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import UserMessage from "@/features/chats/components/UserMessage";
 import type { UIState, UIStateElement } from "@/features/chats/types/ai";
 import type { AI } from "@/features/chats/utils/provider";
-import { cn } from "@/utils/style";
+import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useActions, useUIState } from "ai/rsc";
 import { Send } from "lucide-react";

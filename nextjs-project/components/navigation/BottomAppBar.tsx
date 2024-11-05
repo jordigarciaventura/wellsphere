@@ -7,7 +7,7 @@ import JournalIcon from "@/components/navigation/JournalIcon";
 import TasksIcon from "@/components/navigation/TasksIcon";
 import { route } from "@/config/site";
 import { Link } from "@/i18n/routing";
-import { cn } from "@/utils/style";
+import { cn } from "@/lib/utils";
 import { getNthRouteSegment } from "@/utils/url";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";

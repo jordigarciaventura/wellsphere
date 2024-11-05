@@ -1,5 +1,5 @@
 import ClientUserAvatar from "@/components/avatar/ClientSessionAvatar";
-import { cn } from "@/utils/style";
+import { cn } from "@/lib/utils";
 
 interface Props {
   content: string;

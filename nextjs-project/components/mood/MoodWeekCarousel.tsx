@@ -10,8 +10,8 @@ import {
   formatMonthAndYear,
   getDayAbbreviations,
 } from "@/features/home/utils/date";
+import { cn } from "@/lib/utils";
 import type { MoodEntry } from "@/types/mood";
-import { cn } from "@/utils/style";
 import {
   Angry,
   CalendarIcon,
