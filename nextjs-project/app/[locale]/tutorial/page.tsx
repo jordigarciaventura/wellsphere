@@ -1,5 +1,5 @@
-import TutorialCarousel from "components/tutorial";
-import { unstable_setRequestLocale } from "next-intl/server";
+import TutorialCarousel from "@/features/tutorial/components/TutorialCarousel";
+import { setRequestLocale } from "next-intl/server";
 
 interface Props {
   params: { locale: string };
@@ -7,7 +7,7 @@ interface Props {
 
 export default function TutorialPageWrapper({ params: { locale } }: Props) {
   "use client";
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   return (
     <>

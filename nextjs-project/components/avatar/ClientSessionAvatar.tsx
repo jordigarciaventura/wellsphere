@@ -1,28 +1,27 @@
 "use client";
 
 import UserAvatar from "@/components/avatar/UserAvatar";
-// import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 interface Props {
   className?: string;
 }
 
 export default function ClientUserAvatar({ className }: Props) {
-  return <UserAvatar className={className} username="Well Sphere" />;
-  // const { data: session } = useSession();
+  const { data: session } = useSession();
 
-  // if (!session) return null;
+  if (!session) return null;
 
-  // const src = session?.user?.image;
-  // const userfullname = session?.user?.name;
-  // const username = session?.user?.id ?? "";
+  const src = session?.user?.image;
+  const userfullname = session?.user?.name;
+  const username = session?.user?.id ?? "";
 
-  // return (
-  //   <UserAvatar
-  //     className={className}
-  //     src={src}
-  //     userfullname={userfullname}
-  //     username={username}
-  //   />
-  // );
+  return (
+    <UserAvatar
+      className={className}
+      src={src}
+      userfullname={userfullname}
+      username={username}
+    />
+  );
 }

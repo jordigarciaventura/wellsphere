@@ -1,6 +1,6 @@
-import { Chat } from "@/components/chat/Chat";
-import { AI } from "@/providers/AI";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { Chat } from "@/features/chats/components/Chat";
+import { AI } from "@/features/chats/utils/provider";
+import { setRequestLocale } from "next-intl/server";
 import { v4 as uuidv4 } from "uuid";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 export default function ChatsPage({ params: { locale } }: Props) {
   // Enable static rendering
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   const chatId = uuidv4();
 

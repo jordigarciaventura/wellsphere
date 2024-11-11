@@ -1,4 +1,4 @@
-import { unstable_setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 
 interface Props {
   params: { locale: string };
@@ -6,7 +6,7 @@ interface Props {
 
 export default function SettingsPage({ params: { locale } }: Props) {
   // Enable static rendering
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   return <div>Test</div>;
 }

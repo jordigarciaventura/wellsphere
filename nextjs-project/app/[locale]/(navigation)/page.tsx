@@ -1,5 +1,5 @@
-import ClientHome from "@/components/ClientHome";
-import { unstable_setRequestLocale } from "next-intl/server";
+import ClientHome from "@/features/home/components/ClientHome";
+import { setRequestLocale } from "next-intl/server";
 
 interface Props {
   params: { locale: string };
@@ -7,7 +7,7 @@ interface Props {
 
 export default async function HomePage({ params: { locale } }: Props) {
   // Enable static rendering
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   return <ClientHome />;
 }

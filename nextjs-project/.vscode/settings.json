@@ -11,5 +11,22 @@
     "activityBar.background": "#26310C",
     "titleBar.activeBackground": "#354510",
     "titleBar.activeForeground": "#F9FCF1"
-  }
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.husky": true,
+    "**/.next": true,
+    "**/.vscode": true,
+    "**/next-env.d.ts": true,
+    "**/node_modules": true
+    // "**/package-lock.json": true,
+    // "**/.eslintrc.cjs": true,
+    // "**/.gitignore": true,
+    // "**/.prettierrc": true,
+    // "**/postcss.config.mjs": true,
+    // "**/.*": true,
+  },
+  "tailwindCSS.experimental.classRegex": [
+  "class:\\s*?[\"'`]([^\"'`]*).*?,"
+]
 }
