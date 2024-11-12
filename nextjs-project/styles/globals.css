@@ -29,6 +29,12 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --physical: 122 39% 49%;
+    --emotional: 4 90% 58%;
+    --intellectual: 207 90% 54%;
+    --spiritual: 291 64% 42%;
+    --occupational: 36 100% 50%;
+    --social: 54 100% 62%;
   }
 
   .dark {
@@ -83,6 +89,12 @@
 :root {
   --start-color: #9c2cf3; /* Blue */
   --end-color: #3a49f9; /* Green */
+  --color-physical: hsl(122 39% 49%);
+  --color-emotional: hsl(4 90% 58%);
+  --color-intellectual: hsl(207 90% 54%);
+  --color-spiritual: hsl(291 64% 42%);
+  --color-occupational: hsl(36 100% 50%);
+  --color-social: hsl(54 100% 62%);
 }
 
 .tiptap p.is-editor-empty:first-child::before {

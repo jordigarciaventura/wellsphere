@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { drizzle } from "drizzle-orm/node-postgres";
 import pkg from "pg";
+import * as schema from "./schema";
 
 const { Client } = pkg;
 
@@ -16,7 +17,7 @@ class Database {
     client.connect().catch((err) => {
       console.log(err);
     });
-    this.db = drizzle(client);
+    this.db = drizzle(client, { schema });
   }
 
   public static getInstance(): Database {

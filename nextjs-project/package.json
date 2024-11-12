@@ -18,7 +18,8 @@
     "db:pull": "npx drizzle-kit pull",
     "db:check": "npx drizzle-kit check",
     "db:up": "npx drizzle-kit up",
-    "db:studio": "npx drizzle-kit studio"
+    "db:studio": "npx drizzle-kit studio",
+    "db:seed": "tsx ./db/seed.ts"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -58,12 +59,14 @@
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.34.1",
     "embla-carousel-react": "^8.3.0",
+    "loadash": "^1.0.0",
+    "lodash": "^4.17.21",
     "lucide-react": "^0.453.0",
     "next": "14.2.14",
     "next-auth": "^4.24.7",
     "next-intl": "^3.21.1",
     "next-themes": "^0.3.0",
-    "pg": "^8.13.0",
+    "pg": "^8.13.1",
     "postgres": "^3.4.4",
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
@@ -82,9 +85,11 @@
     "zustand": "^5.0.0-rc.2"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.2.0",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/typography": "^0.5.15",
     "@types/eslint": "^9.6.1",
+    "@types/lodash": "^4.17.13",
     "@types/node": "^20",
     "@types/pg": "^8.11.10",
     "@types/react": "^18",

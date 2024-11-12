@@ -1,0 +1,25 @@
+import "server-only";
+
+import { db } from "@/db";
+import { moodEntriesTable } from "@/db/schema";
+import { formatDate } from "date-fns";
+import { and, eq, gte, lte } from "drizzle-orm";
+
+export async function getMoods(userId: string, startDate: Date, endDate: Date) {
+  const startDateStr = formatDate(startDate, "yyyy-MM-dd");
+  const endDateStr = formatDate(endDate, "yyyy-MM-dd");
+
+  return await db
+    .select({
+      date: moodEntriesTable.date,
+      mood: moodEntriesTable.mood,
+    })
+    .from(moodEntriesTable)
+    .where(
+      and(
+        eq(moodEntriesTable.userId, userId),
+        gte(moodEntriesTable.date, startDateStr),
+        lte(moodEntriesTable.date, endDateStr),
+      ),
+    );
+}
