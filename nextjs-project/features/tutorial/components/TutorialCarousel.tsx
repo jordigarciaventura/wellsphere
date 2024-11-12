@@ -12,78 +12,48 @@ interface TutorialStep {
 
 const tutorialSteps: TutorialStep[] = [
   {
-<<<<<<< HEAD
     image: "/placeholder.svg?height=400&width=400",
-=======
-    image: "/assets/app.svg",
->>>>>>> #96
     title: "Purpose and dimensions",
     text: "Take care of your well-being across 6 dimensions. Challenge yourself with daily tasks, keep a journal, and let WellSphere help you track your progress!",
     color: "#7C3AED",
   },
   {
-<<<<<<< HEAD
     image: "/placeholder.svg?height=400&width=400",
-=======
-    image: "/assets/physical.svg",
->>>>>>> #96
     title: "Physical",
     text: "Stay active! Set physical goals, like running or exercising, to keep your body healthy.",
     color: "#4CAF50",
   },
   {
-<<<<<<< HEAD
     image: "/placeholder.svg?height=400&width=400",
-=======
-    image: "/assets/emotional.svg",
->>>>>>> #96
     title: "Emotional",
     text: "Balance your emotions. Set a goal to talk about your feelings and reflect daily.",
     color: "#F44336",
   },
   {
-<<<<<<< HEAD
     image: "/placeholder.svg?height=400&width=400",
-=======
-    image: "/assets/intellectual.svg",
->>>>>>> #96
     title: "Intellectual",
     text: "Challenge your mind! Set a goal, like reading a book or learning something new.",
     color: "#2196F3",
   },
   {
-<<<<<<< HEAD
     image: "/placeholder.svg?height=400&width=400",
-=======
-    image: "/assets/social.svg",
->>>>>>> #96
     title: "Social",
     text: "Build better connections! Set goals to improve your relationships each day.",
     color: "#FFEB3B",
   },
   {
-<<<<<<< HEAD
     image: "/placeholder.svg?height=400&width=400",
-=======
-    image: "/assets/spiritual.svg",
->>>>>>> #96
     title: "Spiritual",
     text: "Find inner peace. Add a meditation practice to your daily routine.",
     color: "#9C27B0",
   },
   {
-<<<<<<< HEAD
     image: "/placeholder.svg?height=400&width=400",
-=======
-    image: "/assets/occupational.svg",
->>>>>>> #96
     title: "Occupational",
     text: "Stay ahead in your career! Set goals to keep up with market trends and improve professionally.",
     color: "#FF9800",
   },
 ]
-<<<<<<< HEAD
-=======
 
 export default function TutorialCarousel() {
   const [currentStep, setCurrentStep] = useState(0)
@@ -276,4 +246,3 @@ export default function TutorialCarousel() {
     </div>
   )
 }
->>>>>>> #96
