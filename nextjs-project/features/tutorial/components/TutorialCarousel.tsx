@@ -77,7 +77,6 @@ export default function TutorialCarousel() {
   }
 
   const handleSkip = () => {
-    // Handle skip functionality - you can add your navigation logic here
     console.log('Tutorial skipped')
   }
 
