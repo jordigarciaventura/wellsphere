@@ -3,10 +3,11 @@ import type { Config } from "tailwindcss";
 const config = {
   darkMode: "class",
   content: [
-    "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./styles/**/*.css",
+    "./features/**/*.{ts,tsx}",
+    "./lib/**",
   ],
   prefix: "",
   theme: {
@@ -33,6 +34,12 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        physical: "hsl(var(--physical))",
+        emotional: "hsl(var(--emotional))",
+        intellectual: "hsl(var(--intellectual))",
+        spiritual: "hsl(var(--spiritual))",
+        occupational: "hsl(var(--occupational))",
+        social: "hsl(var(--social))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

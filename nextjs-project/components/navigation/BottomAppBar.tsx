@@ -60,7 +60,7 @@ export default function BottomAppBar() {
   }, [pathname]);
 
   return (
-    <nav className="flex h-14 w-full items-center justify-around md:h-16">
+    <nav className="flex w-full items-center justify-around px-2 pb-1 pt-2">
       <div className="mx-auto flex h-full w-full max-w-2xl items-center justify-between gap-4">
         {navigationData.map((nav) => (
           <NavigationButton
