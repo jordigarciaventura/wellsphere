@@ -12,66 +12,51 @@ interface TutorialStep {
 
 const tutorialSteps: TutorialStep[] = [
   {
-    image: "/placeholder.svg?height=400&width=400",
+    image: "/assets/app.svg",
     title: "Purpose and dimensions",
     text: "Take care of your well-being across 6 dimensions. Challenge yourself with daily tasks, keep a journal, and let WellSphere help you track your progress!",
     color: "#7C3AED",
   },
   {
-    image: "/placeholder.svg?height=400&width=400",
+    image: "/assets/physical.svg",
     title: "Physical",
     text: "Stay active! Set physical goals, like running or exercising, to keep your body healthy.",
     color: "#4CAF50",
   },
   {
-    image: "/placeholder.svg?height=400&width=400",
+    image: "/assets/emotional.svg",
     title: "Emotional",
     text: "Balance your emotions. Set a goal to talk about your feelings and reflect daily.",
     color: "#F44336",
   },
   {
-    image: "/placeholder.svg?height=400&width=400",
+    image: "/assets/intellectual.svg",
     title: "Intellectual",
     text: "Challenge your mind! Set a goal, like reading a book or learning something new.",
     color: "#2196F3",
   },
   {
-    image: "/placeholder.svg?height=400&width=400",
+    image: "/assets/social.svg",
     title: "Social",
     text: "Build better connections! Set goals to improve your relationships each day.",
     color: "#FFEB3B",
   },
   {
-    image: "/placeholder.svg?height=400&width=400",
+    image: "/assets/spiritual.svg",
     title: "Spiritual",
     text: "Find inner peace. Add a meditation practice to your daily routine.",
     color: "#9C27B0",
   },
   {
-    image: "/placeholder.svg?height=400&width=400",
+    image: "/assets/occupational.svg",
     title: "Occupational",
     text: "Stay ahead in your career! Set goals to keep up with market trends and improve professionally.",
     color: "#FF9800",
   },
 ]
 
-const DEFAULT_COLOR = "#7C3AED"
-
-const darkenColor = (color: string): string => {
-  const hex = color.replace('#', '')
-  const rgb = parseInt(hex, 16)
-  const r = (rgb >> 16) & 0xff
-  const g = (rgb >> 8) & 0xff
-  const b = (rgb >> 0) & 0xff
-  return `#${((r * 0.8) << 16 | (g * 0.8) << 8 | (b * 0.8)).toString(16).padStart(6, '0')}`
-}
-
 export default function TutorialCarousel() {
-  const [currentStep, setCurrentStep] = useState<number>(0)
-
-  const currentStepData: TutorialStep = tutorialSteps[currentStep] ?? tutorialSteps[0]
-  const currentColor: string = currentStepData?.color ?? DEFAULT_COLOR
-  const darkerColor: string = darkenColor(currentColor)
+  const [currentStep, setCurrentStep] = useState(0)
 
   const handleNext = () => {
     setCurrentStep((prev) => Math.min(prev + 1, tutorialSteps.length - 1))
@@ -85,26 +70,24 @@ export default function TutorialCarousel() {
     console.log('Tutorial skipped')
   }
 
+  const currentColor = tutorialSteps[currentStep].color
+
   return (
     <div className="carousel-container">
-      <style jsx global>{`
-        :root {
-          --step-color: ${currentColor};
-          --step-color-dark: ${darkerColor};
-        }
-      `}</style>
       <div className="carousel-content">
         <div className="carousel-image">
           <Image
-            src={currentStepData.image}
-            alt={currentStepData.title}
+            src={tutorialSteps[currentStep].image}
+            alt={tutorialSteps[currentStep].title}
             width={400}
             height={400}
           />
         </div>
         <div className="carousel-text">
-          <h2>{currentStepData.title}</h2>
-          <p>{currentStepData.text}</p>
+          <h2 style={{ color: currentColor }}>
+            {tutorialSteps[currentStep].title}
+          </h2>
+          <p>{tutorialSteps[currentStep].text}</p>
         </div>
       </div>
       <div className="carousel-navigation">
@@ -112,6 +95,7 @@ export default function TutorialCarousel() {
           onClick={handleBack} 
           className="nav-button"
           disabled={currentStep === 0}
+          style={{ backgroundColor: currentColor }}
         >
           Back
         </button>
@@ -119,11 +103,12 @@ export default function TutorialCarousel() {
           onClick={handleNext} 
           className="nav-button"
           disabled={currentStep === tutorialSteps.length - 1}
+          style={{ backgroundColor: currentColor }}
         >
           Next
         </button>
       </div>
-      <button onClick={handleSkip} className="skip-button">
+      <button onClick={handleSkip} className="skip-button" style={{ backgroundColor: currentColor }}>
         Skip
       </button>
       <div className="carousel-dots">
@@ -132,6 +117,7 @@ export default function TutorialCarousel() {
             key={index}
             className={`dot ${index === currentStep ? 'active' : ''}`}
             onClick={() => setCurrentStep(index)}
+            style={{ backgroundColor: index === currentStep ? currentColor : '#d1d5db' }}
           />
         ))}
       </div>
@@ -172,7 +158,6 @@ export default function TutorialCarousel() {
         .carousel-text h2 {
           font-size: 2.5rem;
           margin-bottom: 1rem;
-          color: var(--step-color);
         }
 
         .carousel-text p {
@@ -191,19 +176,18 @@ export default function TutorialCarousel() {
           padding: 0.75rem 2rem;
           border: none;
           border-radius: 25px;
-          background-color: var(--step-color);
           color: white;
           font-size: 1rem;
           cursor: pointer;
-          transition: background-color 0.3s ease;
+          transition: opacity 0.3s ease;
         }
 
         .nav-button:hover {
-          background-color: var(--step-color-dark);
+          opacity: 0.8;
         }
 
         .nav-button:disabled {
-          background-color: #d1d5db;
+          opacity: 0.5;
           cursor: not-allowed;
         }
 
@@ -214,15 +198,14 @@ export default function TutorialCarousel() {
           padding: 0.75rem 2rem;
           border: none;
           border-radius: 25px;
-          background-color: var(--step-color);
           color: white;
           font-size: 1rem;
           cursor: pointer;
-          transition: background-color 0.3s ease;
+          transition: opacity 0.3s ease;
         }
 
         .skip-button:hover {
-          background-color: var(--step-color-dark);
+          opacity: 0.8;
         }
 
         .carousel-dots {
@@ -235,13 +218,8 @@ export default function TutorialCarousel() {
           width: 10px;
           height: 10px;
           border-radius: 50%;
-          background-color: #d1d5db;
           cursor: pointer;
           transition: background-color 0.3s ease;
-        }
-
-        .dot.active {
-          background-color: var(--step-color);
         }
 
         @media (max-width: 768px) {
