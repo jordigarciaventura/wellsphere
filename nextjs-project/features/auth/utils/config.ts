@@ -4,6 +4,7 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { type DefaultSession, type NextAuthOptions } from "next-auth";
 import { type Adapter } from "next-auth/adapters";
 import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -54,6 +55,15 @@ export const authOptions: NextAuthOptions = {
       authorization: {
         params: {
           scope: "read:user user:email notifications public_repo",
+        },
+      },
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID!,
+      clientSecret: process.env.GOOGLE_SECRET!,
+      authorization: {
+        params: {
+          scope: "openid email profile",
         },
       },
     }),
