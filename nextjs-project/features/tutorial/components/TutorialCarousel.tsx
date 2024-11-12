@@ -12,61 +12,64 @@ interface TutorialStep {
 
 const tutorialSteps: TutorialStep[] = [
   {
-    image: "../assets/app.svg",
+    image: "/placeholder.svg?height=400&width=400",
     title: "Purpose and dimensions",
     text: "Take care of your well-being across 6 dimensions. Challenge yourself with daily tasks, keep a journal, and let WellSphere help you track your progress!",
-    color: "primary.main",
+    color: "#7C3AED",
   },
   {
-    image: "../assets/physical.svg",
+    image: "/placeholder.svg?height=400&width=400",
     title: "Physical",
     text: "Stay active! Set physical goals, like running or exercising, to keep your body healthy.",
     color: "#4CAF50",
   },
   {
-    image: "../assets/emotional.svg",
+    image: "/placeholder.svg?height=400&width=400",
     title: "Emotional",
     text: "Balance your emotions. Set a goal to talk about your feelings and reflect daily.",
     color: "#F44336",
   },
   {
-    image: "../assets/intellectual.svg",
+    image: "/placeholder.svg?height=400&width=400",
     title: "Intellectual",
     text: "Challenge your mind! Set a goal, like reading a book or learning something new.",
     color: "#2196F3",
   },
   {
-    image: "../assets/social.svg",
+    image: "/placeholder.svg?height=400&width=400",
     title: "Social",
     text: "Build better connections! Set goals to improve your relationships each day.",
     color: "#FFEB3B",
   },
   {
-    image: "../assets/spiritual.svg",
+    image: "/placeholder.svg?height=400&width=400",
     title: "Spiritual",
     text: "Find inner peace. Add a meditation practice to your daily routine.",
     color: "#9C27B0",
   },
   {
-    image: "../assets/occupational.svg",
+    image: "/placeholder.svg?height=400&width=400",
     title: "Occupational",
     text: "Stay ahead in your career! Set goals to keep up with market trends and improve professionally.",
     color: "#FF9800",
   },
 ]
 
+const darkenColor = (color: string): string => {
+  const hex = color.replace('#', '')
+  const rgb = parseInt(hex, 16)
+  const r = (rgb >> 16) & 0xff
+  const g = (rgb >> 8) & 0xff
+  const b = (rgb >> 0) & 0xff
+  return `#${((r * 0.8) << 16 | (g * 0.8) << 8 | (b * 0.8)).toString(16).padStart(6, '0')}`
+}
+
 export default function TutorialCarousel() {
   const [currentStep, setCurrentStep] = useState(0)
 
-  const currentColor = tutorialSteps[currentStep].color;
-  const darkerColor = (color: string) => {
-    const hex = color.replace('#', '');
-    const rgb = parseInt(hex, 16);
-    const r = (rgb >> 16) & 0xff;
-    const g = (rgb >>  8) & 0xff;
-    const b = (rgb >>  0) & 0xff;
-    return `#${((r * 0.8) << 16 | (g * 0.8) << 8 | (b * 0.8)).toString(16).padStart(6, '0')}`;
-  };
+  const currentStepData = tutorialSteps[currentStep] || tutorialSteps[0]
+  const currentColor = currentStepData.color
+  const darkerColor = darkenColor(currentColor)
 
   const handleNext = () => {
     setCurrentStep((prev) => Math.min(prev + 1, tutorialSteps.length - 1))
@@ -77,7 +80,6 @@ export default function TutorialCarousel() {
   }
 
   const handleSkip = () => {
-    // Handle skip functionality - you can add your navigation logic here
     console.log('Tutorial skipped')
   }
 
@@ -86,23 +88,21 @@ export default function TutorialCarousel() {
       <style jsx global>{`
         :root {
           --step-color: ${currentColor};
-          --step-color-dark: ${darkerColor(currentColor)};
+          --step-color-dark: ${darkerColor};
         }
       `}</style>
       <div className="carousel-content">
         <div className="carousel-image">
           <Image
-            src={tutorialSteps[currentStep].image}
-            alt={tutorialSteps[currentStep].title}
+            src={currentStepData.image}
+            alt={currentStepData.title}
             width={400}
             height={400}
           />
         </div>
         <div className="carousel-text">
-          <h2 style={{ color: tutorialSteps[currentStep].color }}>
-            {tutorialSteps[currentStep].title}
-          </h2>
-          <p>{tutorialSteps[currentStep].text}</p>
+          <h2>{currentStepData.title}</h2>
+          <p>{currentStepData.text}</p>
         </div>
       </div>
       <div className="carousel-navigation">
@@ -170,6 +170,7 @@ export default function TutorialCarousel() {
         .carousel-text h2 {
           font-size: 2.5rem;
           margin-bottom: 1rem;
+          color: var(--step-color);
         }
 
         .carousel-text p {
@@ -238,7 +239,7 @@ export default function TutorialCarousel() {
         }
 
         .dot.active {
-          background-color: #7c3aed;
+          background-color: var(--step-color);
         }
 
         @media (max-width: 768px) {
