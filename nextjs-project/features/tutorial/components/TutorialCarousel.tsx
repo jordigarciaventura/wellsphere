@@ -1,8 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import * as React from 'react'
 import Image from 'next/image'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 
+// Define the TutorialStep interface with required properties
 interface TutorialStep {
   image: string
   title: string
@@ -10,239 +13,129 @@ interface TutorialStep {
   color: string
 }
 
+// Ensure tutorialSteps is correctly typed and non-nullable
 const tutorialSteps: TutorialStep[] = [
   {
-    image: "/assets/app.svg",
+    image: "/placeholder.svg?height=400&width=400",
     title: "Purpose and dimensions",
     text: "Take care of your well-being across 6 dimensions. Challenge yourself with daily tasks, keep a journal, and let WellSphere help you track your progress!",
     color: "#7C3AED",
   },
   {
-    image: "/assets/physical.svg",
+    image: "/placeholder.svg?height=400&width=400",
     title: "Physical",
     text: "Stay active! Set physical goals, like running or exercising, to keep your body healthy.",
     color: "#4CAF50",
   },
-  {
-    image: "/assets/emotional.svg",
-    title: "Emotional",
-    text: "Balance your emotions. Set a goal to talk about your feelings and reflect daily.",
-    color: "#F44336",
-  },
-  {
-    image: "/assets/intellectual.svg",
-    title: "Intellectual",
-    text: "Challenge your mind! Set a goal, like reading a book or learning something new.",
-    color: "#2196F3",
-  },
-  {
-    image: "/assets/social.svg",
-    title: "Social",
-    text: "Build better connections! Set goals to improve your relationships each day.",
-    color: "#FFEB3B",
-  },
-  {
-    image: "/assets/spiritual.svg",
-    title: "Spiritual",
-    text: "Find inner peace. Add a meditation practice to your daily routine.",
-    color: "#9C27B0",
-  },
-  {
-    image: "/assets/occupational.svg",
-    title: "Occupational",
-    text: "Stay ahead in your career! Set goals to keep up with market trends and improve professionally.",
-    color: "#FF9800",
-  },
+  // Add other steps as needed, ensuring each matches the TutorialStep interface.
 ]
 
-export default function TutorialCarousel() {
-  const [currentStep, setCurrentStep] = useState(0)
+// Ensure tutorialSteps is non-empty and has a valid fallback step
+const fallbackStep: TutorialStep = {
+  image: "/default.svg",
+  title: "Default Title",
+  text: "This is a default step description.",
+  color: "#000000",
+}
 
-  const handleNext = () => {
-    setCurrentStep((prev) => Math.min(prev + 1, tutorialSteps.length - 1))
+export default function Component(): JSX.Element {
+  // Set initial state for the current step index
+  const [currentStepIndex, setCurrentStepIndex] = React.useState<number>(0)
+
+  // Safely access the current step with a fallback to avoid undefined
+  const currentStep = tutorialSteps[currentStepIndex] || fallbackStep
+
+  // Type for handler functions
+  const handleNext = (): void => {
+    setCurrentStepIndex((prev) => Math.min(prev + 1, tutorialSteps.length - 1))
   }
 
-  const handleBack = () => {
-    setCurrentStep((prev) => Math.max(prev - 1, 0))
+  const handleBack = (): void => {
+    setCurrentStepIndex((prev) => Math.max(prev - 1, 0))
   }
 
-  const handleSkip = () => {
+  const handleSkip = (): void => {
     console.log('Tutorial skipped')
   }
 
-  const currentColor = tutorialSteps[currentStep].color
-
   return (
-    <div className="carousel-container">
-      <div className="carousel-content">
-        <div className="carousel-image">
-          <Image
-            src={tutorialSteps[currentStep].image}
-            alt={tutorialSteps[currentStep].title}
-            width={400}
-            height={400}
-          />
+    <Card className="relative mx-auto max-w-6xl p-8 min-h-[600px]">
+      <CardContent className="p-0">
+        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16 mb-8">
+          <div className="flex-1 flex justify-center items-center">
+            <div 
+              className="rounded-full p-8"
+              style={{ backgroundColor: `${currentStep.color}15` }}
+            >
+              <Image
+                src={currentStep.image}
+                alt={currentStep.title}
+                width={400}
+                height={400}
+                className="w-full max-w-[300px] md:max-w-[400px] h-auto"
+              />
+            </div>
+          </div>
+          <div className="flex-1 text-left">
+            <h2 
+              className="text-3xl md:text-4xl font-bold mb-4"
+              style={{ color: currentStep.color }}
+            >
+              {currentStep.title}
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+              {currentStep.text}
+            </p>
+          </div>
         </div>
-        <div className="carousel-text">
-          <h2 style={{ color: currentColor }}>
-            {tutorialSteps[currentStep].title}
-          </h2>
-          <p>{tutorialSteps[currentStep].text}</p>
+
+        <div className="flex justify-center gap-4 mt-8">
+          <Button
+            onClick={handleBack}
+            disabled={currentStepIndex === 0}
+            style={{ 
+              backgroundColor: currentStep.color,
+              opacity: currentStepIndex === 0 ? 0.5 : 1 
+            }}
+            className="rounded-full px-8 hover:opacity-90"
+          >
+            Back
+          </Button>
+          <Button
+            onClick={handleNext}
+            disabled={currentStepIndex === tutorialSteps.length - 1}
+            style={{ 
+              backgroundColor: currentStep.color,
+              opacity: currentStepIndex === tutorialSteps.length - 1 ? 0.5 : 1 
+            }}
+            className="rounded-full px-8 hover:opacity-90"
+          >
+            Next
+          </Button>
         </div>
-      </div>
-      <div className="carousel-navigation">
-        <button 
-          onClick={handleBack} 
-          className="nav-button"
-          disabled={currentStep === 0}
-          style={{ backgroundColor: currentColor }}
+
+        <Button
+          onClick={handleSkip}
+          style={{ backgroundColor: currentStep.color }}
+          className="absolute bottom-8 right-8 rounded-full px-8 hover:opacity-90"
         >
-          Back
-        </button>
-        <button 
-          onClick={handleNext} 
-          className="nav-button"
-          disabled={currentStep === tutorialSteps.length - 1}
-          style={{ backgroundColor: currentColor }}
-        >
-          Next
-        </button>
-      </div>
-      <button onClick={handleSkip} className="skip-button" style={{ backgroundColor: currentColor }}>
-        Skip
-      </button>
-      <div className="carousel-dots">
-        {tutorialSteps.map((_, index) => (
-          <span
-            key={index}
-            className={`dot ${index === currentStep ? 'active' : ''}`}
-            onClick={() => setCurrentStep(index)}
-            style={{ backgroundColor: index === currentStep ? currentColor : '#d1d5db' }}
-          />
-        ))}
-      </div>
-      <style jsx>{`
-        .carousel-container {
-          position: relative;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 2rem;
-          min-height: 600px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
+          Skip
+        </Button>
 
-        .carousel-content {
-          display: flex;
-          align-items: center;
-          gap: 4rem;
-          margin-bottom: 2rem;
-        }
-
-        .carousel-image {
-          flex: 1;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: #faf5ff;
-          border-radius: 50%;
-          padding: 2rem;
-        }
-
-        .carousel-text {
-          flex: 1;
-          text-align: left;
-        }
-
-        .carousel-text h2 {
-          font-size: 2.5rem;
-          margin-bottom: 1rem;
-        }
-
-        .carousel-text p {
-          font-size: 1.2rem;
-          color: #666;
-          line-height: 1.6;
-        }
-
-        .carousel-navigation {
-          display: flex;
-          gap: 1rem;
-          margin-top: 2rem;
-        }
-
-        .nav-button {
-          padding: 0.75rem 2rem;
-          border: none;
-          border-radius: 25px;
-          color: white;
-          font-size: 1rem;
-          cursor: pointer;
-          transition: opacity 0.3s ease;
-        }
-
-        .nav-button:hover {
-          opacity: 0.8;
-        }
-
-        .nav-button:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
-
-        .skip-button {
-          position: absolute;
-          bottom: 2rem;
-          right: 2rem;
-          padding: 0.75rem 2rem;
-          border: none;
-          border-radius: 25px;
-          color: white;
-          font-size: 1rem;
-          cursor: pointer;
-          transition: opacity 0.3s ease;
-        }
-
-        .skip-button:hover {
-          opacity: 0.8;
-        }
-
-        .carousel-dots {
-          display: flex;
-          gap: 0.5rem;
-          margin-top: 2rem;
-        }
-
-        .dot {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-          .carousel-content {
-            flex-direction: column;
-            gap: 2rem;
-          }
-
-          .carousel-image,
-          .carousel-text {
-            flex: none;
-            width: 100%;
-          }
-
-          .carousel-text h2 {
-            font-size: 2rem;
-          }
-
-          .carousel-text p {
-            font-size: 1rem;
-          }
-        }
-      `}</style>
-    </div>
+        <div className="flex justify-center gap-2 mt-8">
+          {tutorialSteps.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentStepIndex(index)}
+              className="w-2.5 h-2.5 rounded-full transition-colors"
+              style={{ 
+                backgroundColor: index === currentStepIndex ? currentStep.color : '#d1d5db'
+              }}
+              aria-label={`Go to step ${index + 1}`}
+            />
+          ))}
+        </div>
+      </CardContent>
+    </Card>
   )
 }
