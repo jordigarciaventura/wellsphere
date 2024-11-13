@@ -19,7 +19,7 @@ async function insertMoodEntries(
   endDate: Date,
 ) {
   for (
-    let date = startDate;
+    let date = new Date(startDate);
     date <= endDate;
     date.setDate(date.getDate() + 1)
   ) {
@@ -36,7 +36,7 @@ async function insertMoodEntries(
 
 async function insertTasks(userId: string, startDate: Date, endDate: Date) {
   for (
-    let date = startDate;
+    let date = new Date(startDate);
     date <= endDate;
     date.setDate(date.getDate() + 1)
   ) {
