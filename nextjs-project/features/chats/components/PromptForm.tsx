@@ -63,14 +63,41 @@ export default function PromptForm({ className }: Props) {
     <form
       onSubmit={form.handleSubmit(handleSubmit)}
       className={cn(
-        "m-2 mx-auto flex w-full max-w-lg items-center justify-center gap-2",
-        className,
+        "flex w-full items-center justify-center gap-2",
+        className
       )}
     >
-      <Textarea placeholder="Ask anything" {...form.register("prompt")} />
-      <Button variant="outline" size="icon" type="submit">
-        <Send />
-      </Button>
+    <div className="p-[1px] bg-gradient-to-r from-[#3A49F9] to-[#9C2CF3] rounded-full w-full">
+      <Textarea
+        {...form.register("prompt")}
+        className="w-full h-[15x] md:h-[20px] lg:h-[25px] px-4 py-0 bg-white border-2 border-transparent rounded-full outline-none focus:border-transparent focus:ring-0 text-sm leading-[1.2rem]"
+      />
+    </div>
+      {/* Botão alterado para usar uma imagem */}
+      <button type="submit" className="p-2 rounded-full">
+        <img 
+          src="/assets/PlayButton_img.svg" 
+          alt="Send Message" 
+          className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12"
+        />
+      </button>
     </form>
   );
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }
