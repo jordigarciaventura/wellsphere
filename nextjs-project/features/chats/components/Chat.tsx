@@ -1,8 +1,8 @@
 "use client"; // Marcar como Client Component
 
+import ChatIntro from "@/features/chats/components/ChatIntro"; // Importa o ChatIntro
 import { MessageList } from "@/features/chats/components/MessageList";
 import PromptForm from "@/features/chats/components/PromptForm";
-import ChatIntro from "@/features/chats/components/ChatIntro"; // Importa o ChatIntro
 import type { AI } from "@/features/chats/utils/provider";
 import { useAIState, useUIState } from "ai/rsc";
 import { usePathname, useRouter } from "next/navigation";
@@ -20,14 +20,15 @@ export function Chat({ id }: Props) {
   const hasMessages = messages && messages.length > 0;
 
   return (
-    <div className="w-full max-w-4xl mx-auto flex h-screen flex-col">
+    <div className="relative mx-auto flex h-screen w-full max-w-4xl flex-col bg-red-200">
       <div className="flex-grow overflow-y-auto">
         {hasMessages ? <MessageList messages={messages} /> : <ChatIntro />}
       </div>
 
-      {hasMessages && <div className="w-full h-[1px] bg-[#BFC8E8] my-2"></div>}
-
-      <PromptForm />
+      {hasMessages && <div className="my-2 h-[1px] w-full bg-[#BFC8E8]"></div>}
+      <div className="absolute bottom-2 left-0 right-0">
+        <PromptForm />
+      </div>
     </div>
   );
 }
