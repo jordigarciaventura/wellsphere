@@ -1,19 +1,26 @@
 import createMiddleware from "next-intl/middleware";
 import { useTranslations } from "next-intl"
-import { routing } from "./i18n/routing";
+import { routing, usePathname } from "./i18n/routing";
 import { NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { requestFormReset } from "react-dom";
 
+
 //export default createMiddleware(routing);
 
 export async function middleware(request: NextRequest) {
-  const token = await getToken({ req: request });
-  console.log()
-  if (!request.cookies.get("next-auth.session-token") && request.nextUrl.pathname !==  ) {
-    return NextResponse.redirect(new URL('', request.url));
+
+  let locale = request.nextUrl.locale;
+  if (locale === "") { locale = "/en"; }
+  
+  if (!request.cookies.get("next-auth.session-token") && request.nextUrl.pathname !==  locale + "/login") {
+    return NextResponse.redirect(new URL(locale + "/login", request.url));
   }
-  console.log(routing)
+
+  if (request.cookies.get("next-auth.session-token") && request.nextUrl.pathname ===  locale + "/login") {
+    return NextResponse.redirect(new URL(locale , request.url));
+  }
+
 
   const intlMiddleware = createMiddleware(routing);
   return intlMiddleware(request);
