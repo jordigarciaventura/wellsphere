@@ -1,5 +1,10 @@
 import { users as usersTable } from "@/db/authSchema.ts";
+import { Weekday } from "@/features/tasks/types/date";
+import { enumToPgEnum } from "@/lib/utils";
+import { Dimension, Mood, Role } from "@/types/mood";
 import {
+  boolean,
+  date,
   index,
   integer,
   json,
@@ -13,20 +18,21 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 
-export const dimensionsTable = pgTable("dimensions", {
-  id: serial().primaryKey(),
-  name: varchar({ length: 20 }).notNull(),
-});
+export const dimensionEnum = pgEnum("dimension", enumToPgEnum(Dimension));
+
+export const weeksdaysEnum = pgEnum("weekdays", enumToPgEnum(Weekday));
+
+export const moodEnum = pgEnum("mood", enumToPgEnum(Mood));
+
+export const messageRoleEnum = pgEnum("role", enumToPgEnum(Role));
 
 export const scoresTable = pgTable(
   "scores",
   {
-    userId: text()
+    userId: varchar({ length: 255 })
       .notNull()
       .references(() => usersTable.id),
-    dimensionId: integer()
-      .notNull()
-      .references(() => dimensionsTable.id),
+    dimensionId: dimensionEnum().notNull(),
     score: integer().notNull(),
   },
   (t) => {
@@ -36,19 +42,14 @@ export const scoresTable = pgTable(
   },
 );
 
-export const moodsTable = pgTable("moods", {
-  id: serial().primaryKey(),
-  name: varchar({ length: 20 }).notNull(),
-});
-
 export const moodEntriesTable = pgTable(
   "moodEntries",
   {
-    userId: text()
+    userId: varchar({ length: 255 })
       .notNull()
       .references(() => usersTable.id),
-    date: varchar({ length: 8 }).notNull(),
-    mood: integer().notNull(),
+    date: date().notNull(), // it is a string
+    mood: moodEnum().notNull(),
   },
   (t) => {
     return {
@@ -58,16 +59,23 @@ export const moodEntriesTable = pgTable(
 );
 
 export const tasksTable = pgTable("tasks", {
-  taskId: serial().primaryKey(),
+  id: serial().primaryKey(),
   title: varchar({ length: 140 }).notNull(),
-  desc: varchar({ length: 200 }),
-  userId: text()
+  description: varchar({ length: 200 }),
+  completed: boolean().notNull().default(false),
+  dimensions: dimensionEnum().array(),
+  createdAt: timestamp().defaultNow(),
+  updatedAt: timestamp().defaultNow(),
+  startDate: timestamp(),
+  endDate: timestamp(),
+  weekdays: weeksdaysEnum().array(),
+  userId: varchar({ length: 255 })
     .notNull()
     .references(() => usersTable.id),
 });
 
 export const journalEntriesTable = pgTable("journalEntries", {
-  userId: text()
+  userId: varchar({ length: 255 })
     .notNull()
     .references(() => usersTable.id),
   createdAt: timestamp().defaultNow(),
@@ -87,13 +95,6 @@ export const chatsTable = pgTable(
     createdAtIndex: index("idx_created_at").on(table.createdAt),
   }),
 );
-
-export const messageRoleEnum = pgEnum("role", [
-  "user",
-  "system",
-  "assistant",
-  "tool",
-]);
 
 export const messagesTable = pgTable(
   "messages",

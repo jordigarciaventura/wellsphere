@@ -29,6 +29,12 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --physical: 142 71% 45%;
+    --emotional: 0 84% 60%;
+    --intellectual: 217 91% 60%;
+    --spiritual: 271 91% 65%;
+    --occupational: 25 95% 53%;
+    --social: 45 93% 47%;
   }
 
   .dark {
@@ -83,6 +89,12 @@
 :root {
   --start-color: #9c2cf3; /* Blue */
   --end-color: #3a49f9; /* Green */
+  --color-physical: hsl(122 39% 49%);
+  --color-emotional: hsl(4 90% 58%);
+  --color-intellectual: hsl(207 90% 54%);
+  --color-spiritual: hsl(291 64% 42%);
+  --color-occupational: hsl(36 100% 50%);
+  --color-social: hsl(54 100% 62%);
 }
 
 .tiptap p.is-editor-empty:first-child::before {
@@ -91,4 +103,8 @@
   float: left;
   height: 0;
   pointer-events: none;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
