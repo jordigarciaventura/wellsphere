@@ -1,6 +1,6 @@
 import EmotionalIcon from "@/lib/icons/EmotionalIcon";
 import IntellectualIcon from "@/lib/icons/IntellectualIcon";
-import OccupationaIcon from "@/lib/icons/OccupationaIcon";
+import OccupationalIcon from "@/lib/icons/OccupationaIcon";
 import PhysicalIcon from "@/lib/icons/PhysicalIcon";
 import SocialIcon from "@/lib/icons/SocialIcon";
 import SpiritualIcon from "@/lib/icons/SpiritualIcon";
@@ -20,7 +20,7 @@ export function getDimensionIcon(dimension: Dimension) {
     case Dimension.Spiritual:
       return SpiritualIcon;
     case Dimension.Occupational:
-      return OccupationaIcon;
+      return OccupationalIcon;
   }
 }
 

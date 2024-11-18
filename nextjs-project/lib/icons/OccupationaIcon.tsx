@@ -1,5 +1,5 @@
 import { IconBriefcase } from "@tabler/icons-react";
 
-const OccupationaIcon = IconBriefcase;
+const OccupationalIcon = IconBriefcase;
 
-export default OccupationaIcon;
+export default OccupationalIcon;

@@ -5,12 +5,6 @@ EXCEPTION
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- CREATE TYPE "public"."frequency" AS ENUM('daily', 'weekly', 'monthly', 'yearly');
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
---> statement-breakpoint
-DO $$ BEGIN
  CREATE TYPE "public"."role" AS ENUM('user', 'system', 'assistant', 'tool');
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -18,6 +12,12 @@ END $$;
 --> statement-breakpoint
 DO $$ BEGIN
  CREATE TYPE "public"."mood" AS ENUM('verySad', 'sad', 'neutral', 'happy', 'veryHappy');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ CREATE TYPE "public"."weekdays" AS ENUM('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -67,8 +67,9 @@ CREATE TABLE IF NOT EXISTS "tasks" (
 	"dimensions" dimension[],
 	"createdAt" timestamp DEFAULT now(),
 	"updatedAt" timestamp DEFAULT now(),
+	"startDate" timestamp,
 	"endDate" timestamp,
-	"frequency" "frequency",
+	"weekdays" weekdays[],
 	"userId" varchar(255) NOT NULL
 );
 --> statement-breakpoint
