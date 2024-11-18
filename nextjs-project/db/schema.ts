@@ -1,6 +1,7 @@
 import { users as usersTable } from "@/db/authSchema.ts";
+import { Weekday } from "@/features/tasks/types/date";
 import { enumToPgEnum } from "@/lib/utils";
-import { Dimension, Frequency, Mood, Role } from "@/types/mood";
+import { Dimension, Mood, Role } from "@/types/mood";
 import {
   boolean,
   date,
@@ -19,7 +20,7 @@ import {
 
 export const dimensionEnum = pgEnum("dimension", enumToPgEnum(Dimension));
 
-export const frequencyEnum = pgEnum("frequency", enumToPgEnum(Frequency));
+export const weeksdaysEnum = pgEnum("weekdays", enumToPgEnum(Weekday));
 
 export const moodEnum = pgEnum("mood", enumToPgEnum(Mood));
 
@@ -65,8 +66,9 @@ export const tasksTable = pgTable("tasks", {
   dimensions: dimensionEnum().array(),
   createdAt: timestamp().defaultNow(),
   updatedAt: timestamp().defaultNow(),
+  startDate: timestamp(),
   endDate: timestamp(),
-  frequency: frequencyEnum(),
+  weekdays: weeksdaysEnum().array(),
   userId: varchar({ length: 255 })
     .notNull()
     .references(() => usersTable.id),

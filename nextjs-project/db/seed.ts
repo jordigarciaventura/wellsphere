@@ -1,4 +1,5 @@
-import { Dimension, Frequency, Mood } from "@/types/mood";
+import { Weekday } from "@/features/tasks/types/date";
+import { Dimension, Mood } from "@/types/mood";
 import { faker } from "@faker-js/faker";
 import { formatDate } from "date-fns";
 import _ from "lodash";
@@ -6,12 +7,13 @@ import { db } from "./index";
 import { moodEntriesTable, tasksTable } from "./schema";
 
 const userId = "1467157f-12ad-4a59-b4b5-1b18f36b3773";
-const startDate = new Date(2024, 9, 1);
-const endDate = new Date(2024, 10, 8);
+const endDate = new Date();
+const startDate = new Date(endDate);
+startDate.setMonth(startDate.getMonth() - 1);
 
 const moods = Object.values(Mood);
 const dimensions = Object.values(Dimension);
-const frequencies = Object.values(Frequency);
+const weekdays = Object.values(Weekday);
 
 async function insertMoodEntries(
   userId: string,
@@ -40,17 +42,20 @@ async function insertTasks(userId: string, startDate: Date, endDate: Date) {
     date <= endDate;
     date.setDate(date.getDate() + 1)
   ) {
-    await db.insert(tasksTable).values({
-      userId,
-      title: faker.lorem.words(),
-      description: faker.lorem.sentence(),
-      completed: _.sample([true, false]),
-      dimensions: _.sampleSize(dimensions, 2),
-      createdAt: date,
-      updatedAt: date,
-      endDate: date,
-      frequency: _.sample(frequencies) as Frequency,
-    });
+    for (let i = 0; i < _.random(3, 10); i++) {
+      await db.insert(tasksTable).values({
+        userId,
+        title: faker.lorem.words(),
+        description: faker.lorem.sentence(),
+        completed: _.sample([true, false]),
+        dimensions: _.sampleSize(dimensions, 2),
+        createdAt: date,
+        updatedAt: date,
+        startDate: date,
+        endDate: date,
+        weekdays: _.sampleSize(weekdays, 2),
+      });
+    }
   }
 }
 

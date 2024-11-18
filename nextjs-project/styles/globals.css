@@ -29,12 +29,12 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --physical: 122 39% 49%;
-    --emotional: 4 90% 58%;
-    --intellectual: 207 90% 54%;
-    --spiritual: 291 64% 42%;
-    --occupational: 36 100% 50%;
-    --social: 54 100% 62%;
+    --physical: 142 71% 45%;
+    --emotional: 0 84% 60%;
+    --intellectual: 217 91% 60%;
+    --spiritual: 271 91% 65%;
+    --occupational: 25 95% 53%;
+    --social: 45 93% 47%;
   }
 
   .dark {
@@ -103,4 +103,8 @@
   float: left;
   height: 0;
   pointer-events: none;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
