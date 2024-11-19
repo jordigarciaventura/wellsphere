@@ -12,7 +12,7 @@ export default function ClientThemeToggleButton({ children }: Props) {
 
   return (
     <Button onClick={toggleTheme} variant="ghost" size="icon">
-      {children}
+      {children} 
     </Button>
   );
 }

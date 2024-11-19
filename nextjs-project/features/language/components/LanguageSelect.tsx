@@ -18,9 +18,11 @@ export default function LanguageSelect() {
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
-          <Globe className="h-5 w-5" />
+        <div className="w-full">
+        <Button variant="ghost" >
+          <Globe className="h-5 w-5" /> Language Select
         </Button>
+        </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>{t("language")}</DropdownMenuLabel>
