@@ -74,14 +74,21 @@ export const tasksTable = pgTable("tasks", {
     .references(() => usersTable.id),
 });
 
-export const journalEntriesTable = pgTable("journalEntries", {
-  userId: varchar({ length: 255 })
-    .notNull()
-    .references(() => usersTable.id),
-  createdAt: timestamp().defaultNow(),
-  title: varchar({ length: 140 }).notNull(),
-  entry: varchar({ length: 2000 }).notNull(),
-});
+export const journalEntriesTable = pgTable(
+  "journalEntries",
+  {
+    userId: varchar({ length: 255 })
+      .notNull()
+      .references(() => usersTable.id),
+    date: date().notNull(), // it is a string
+    content: text().notNull(),
+  },
+  (t) => {
+    return {
+      pk: primaryKey({ columns: [t.userId, t.date] }),
+    };
+  },
+);
 
 export const messagesTable = pgTable(
   "messages",
