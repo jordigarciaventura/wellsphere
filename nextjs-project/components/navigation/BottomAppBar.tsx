@@ -13,7 +13,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const navigationData = [
-  { href: route.chats, icon: ChatIcon, text: "Chat" },
+  { href: route.chat, icon: ChatIcon, text: "Chat" },
   { href: route.tasks, icon: TasksIcon, text: "Tasks" },
   { href: route.home, icon: HomeIcon, text: "Home" },
   { href: route.journal, icon: JournalIcon, text: "Journal" },

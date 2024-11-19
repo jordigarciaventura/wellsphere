@@ -4,7 +4,6 @@ export interface Message {
   id: string;
   role: string;
   content: string;
-  chatId: string;
   metadata: unknown | string | null;
 }
 

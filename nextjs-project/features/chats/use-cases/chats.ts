@@ -1,43 +1,20 @@
-import { route } from "@/config/site";
-import {
-  deleteChat,
-  getChat,
-  getMessages,
-  renameChat,
-  saveChat,
-  saveMessages,
-} from "@/features/chats/data-access/chats";
+import { getMessages, saveMessages } from "@/features/chats/data-access/chats";
 import { AIState } from "@/features/chats/types/ai";
 import { fromAIMessage, toAIMessage } from "@/features/chats/utils/ai";
-import { revalidatePath } from "next/cache";
-
-export async function deleteChatUseCase(chatId: string) {
-  await deleteChat(chatId);
-  revalidatePath(route.chats);
-}
-
-export async function renameChatUseCase(chatId: string, title: string) {
-  await renameChat(chatId, title);
-}
+import { getUserId } from "@/lib/auth";
 
 export async function saveAIStateUseCase(state: AIState) {
-  //   const userId = await getUserId();
-  //   if (!userId) return;
+  const userId = await getUserId();
+  if (!userId) return;
 
-  const { chatId, messages: aiMessages } = state;
-  const firstMessageContent = aiMessages[0]!.content as string;
-  const title = firstMessageContent.substring(0, 20);
-  await saveChat(chatId, title);
-  const messages = aiMessages.map((message) => fromAIMessage(message, chatId));
-  await saveMessages(messages);
+  const { messages: aiMessages } = state;
+  const messages = aiMessages.map((message) => fromAIMessage(message));
+  await saveMessages(userId, messages);
 }
 
-export async function getChatUseCase(chatId: string) {
-  //   const userId = await getUserId();
-  //   if (!userId) return;
+export async function getMessagesUseCase() {
+  const userId = await getUserId();
+  if (!userId) return;
 
-  const chat = await getChat(chatId);
-  if (!chat) return;
-  const messages = await getMessages(chatId);
-  return { ...chat, messages: messages.map(toAIMessage) };
+  return (await getMessages(userId)).map(toAIMessage);
 }

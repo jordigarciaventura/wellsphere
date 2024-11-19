@@ -1,16 +1,16 @@
-'use client'
+"use client";
 
-import * as React from 'react'
-import Image from 'next/image'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
+import * as React from "react";
 
 // Define the TutorialStep interface with required properties
 interface TutorialStep {
-  image: string
-  title: string
-  text: string
-  color: string
+  image: string;
+  title: string;
+  text: string;
+  color: string;
 }
 
 // Ensure tutorialSteps is correctly typed and non-nullable
@@ -57,7 +57,7 @@ const tutorialSteps: TutorialStep[] = [
     text: "Stay ahead in your career! Set goals to keep up with market trends and improve professionally.",
     color: "#FF9800",
   },
-]
+];
 
 // Ensure tutorialSteps is non-empty and has a valid fallback step
 const fallbackStep: TutorialStep = {
@@ -65,34 +65,34 @@ const fallbackStep: TutorialStep = {
   title: "Default Title",
   text: "This is a default step description.",
   color: "#000000",
-}
+};
 
 export default function Component(): JSX.Element {
   // Set initial state for the current step index
-  const [currentStepIndex, setCurrentStepIndex] = React.useState<number>(0)
+  const [currentStepIndex, setCurrentStepIndex] = React.useState<number>(0);
 
   // Safely access the current step with a fallback to avoid undefined
-  const currentStep = tutorialSteps[currentStepIndex] || fallbackStep
+  const currentStep = tutorialSteps[currentStepIndex] || fallbackStep;
 
   // Type for handler functions
   const handleNext = (): void => {
-    setCurrentStepIndex((prev) => Math.min(prev + 1, tutorialSteps.length - 1))
-  }
+    setCurrentStepIndex((prev) => Math.min(prev + 1, tutorialSteps.length - 1));
+  };
 
   const handleBack = (): void => {
-    setCurrentStepIndex((prev) => Math.max(prev - 1, 0))
-  }
+    setCurrentStepIndex((prev) => Math.max(prev - 1, 0));
+  };
 
   const handleSkip = (): void => {
-    console.log('Tutorial skipped')
-  }
+    console.log("Tutorial skipped");
+  };
 
   return (
-    <Card className="relative mx-auto max-w-6xl p-8 min-h-[600px]">
+    <Card className="relative mx-auto min-h-[600px] max-w-6xl p-8">
       <CardContent className="p-0">
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16 mb-8">
-          <div className="flex-1 flex justify-center items-center">
-            <div 
+        <div className="mb-8 flex flex-col items-center gap-8 md:flex-row md:gap-16">
+          <div className="flex flex-1 items-center justify-center">
+            <div
               className="rounded-full p-8"
               style={{ backgroundColor: `${currentStep.color}15` }}
             >
@@ -101,30 +101,30 @@ export default function Component(): JSX.Element {
                 alt={currentStep.title}
                 width={400}
                 height={400}
-                className="w-full max-w-[300px] md:max-w-[400px] h-auto"
+                className="h-auto w-full max-w-[300px] md:max-w-[400px]"
               />
             </div>
           </div>
           <div className="flex-1 text-left">
-            <h2 
-              className="text-3xl md:text-4xl font-bold mb-4"
+            <h2
+              className="mb-4 text-3xl font-bold md:text-4xl"
               style={{ color: currentStep.color }}
             >
               {currentStep.title}
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
               {currentStep.text}
             </p>
           </div>
         </div>
 
-        <div className="flex justify-center gap-4 mt-8">
+        <div className="mt-8 flex justify-center gap-4">
           <Button
             onClick={handleBack}
             disabled={currentStepIndex === 0}
-            style={{ 
+            style={{
               backgroundColor: currentStep.color,
-              opacity: currentStepIndex === 0 ? 0.5 : 1 
+              opacity: currentStepIndex === 0 ? 0.5 : 1,
             }}
             className="rounded-full px-8 hover:opacity-90"
           >
@@ -133,9 +133,9 @@ export default function Component(): JSX.Element {
           <Button
             onClick={handleNext}
             disabled={currentStepIndex === tutorialSteps.length - 1}
-            style={{ 
+            style={{
               backgroundColor: currentStep.color,
-              opacity: currentStepIndex === tutorialSteps.length - 1 ? 0.5 : 1 
+              opacity: currentStepIndex === tutorialSteps.length - 1 ? 0.5 : 1,
             }}
             className="rounded-full px-8 hover:opacity-90"
           >
@@ -151,14 +151,15 @@ export default function Component(): JSX.Element {
           Skip
         </Button>
 
-        <div className="flex justify-center gap-2 mt-8">
+        <div className="mt-8 flex justify-center gap-2">
           {tutorialSteps.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentStepIndex(index)}
-              className="w-2.5 h-2.5 rounded-full transition-colors"
-              style={{ 
-                backgroundColor: index === currentStepIndex ? currentStep.color : '#d1d5db'
+              className="h-2.5 w-2.5 rounded-full transition-colors"
+              style={{
+                backgroundColor:
+                  index === currentStepIndex ? currentStep.color : "#d1d5db",
               }}
               aria-label={`Go to step ${index + 1}`}
             />
@@ -166,5 +167,5 @@ export default function Component(): JSX.Element {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

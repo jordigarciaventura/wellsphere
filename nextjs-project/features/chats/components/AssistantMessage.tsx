@@ -4,7 +4,6 @@ import Markdown from "@/features/chats/components/markdown/markdown";
 import { useStreamableText } from "@/features/chats/hooks/useStreamableText";
 import { cn } from "@/lib/utils";
 import { type StreamableValue } from "ai/rsc";
-import { Bot } from "lucide-react";
 
 interface Props {
   content: string | StreamableValue<string>;
@@ -16,9 +15,7 @@ export default function AssistantMessage({ content, className }: Props) {
 
   return (
     <div className={cn(className, "mr-auto flex w-full gap-4")}>
-      <div className="size-7">
-        <Bot />
-      </div>
+      <img src="/assets/IABot_pngImg.png" alt="Bot Icon" className="size-7" />
       <Markdown>{text}</Markdown>
     </div>
   );

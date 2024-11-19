@@ -1,4 +1,4 @@
-import  Questions  from "@/features/questionnare/Questionnare";
+import Questions from "@/features/questionnare/Questionnare";
 import { setRequestLocale } from "next-intl/server";
 
 interface Props {

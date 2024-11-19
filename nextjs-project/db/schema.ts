@@ -83,32 +83,18 @@ export const journalEntriesTable = pgTable("journalEntries", {
   entry: varchar({ length: 2000 }).notNull(),
 });
 
-export const chatsTable = pgTable(
-  "chats",
-  {
-    id: uuid().primaryKey(),
-    title: varchar({ length: 140 }).notNull(),
-    createdAt: timestamp().defaultNow(),
-    updatedAt: timestamp().defaultNow(),
-  },
-  (table) => ({
-    createdAtIndex: index("idx_created_at").on(table.createdAt),
-  }),
-);
-
 export const messagesTable = pgTable(
   "messages",
   {
     id: uuid().primaryKey(),
-    chatId: uuid()
-      .notNull()
-      .references(() => chatsTable.id, { onDelete: "cascade" }),
+    userId: varchar({ length: 255 }),
     role: messageRoleEnum().notNull(),
     content: text().notNull(),
     createdAt: timestamp().defaultNow(),
     metadata: json(),
   },
   (table) => ({
-    chatIdIndex: index("idx_chat_id").on(table.chatId),
+    userIdIndex: index("user_id_idx").on(table.userId),
+    createdAtIndex: index("created_at_idx").on(table.createdAt),
   }),
 );
