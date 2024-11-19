@@ -3,10 +3,7 @@ export const route = {
   login: "/login",
   register: "/register",
   welcome: "/welcome",
-  chats: "/chats",
-  chat(chatId: string) {
-    return `/chats/${chatId}`;
-  },
+  chat: "/chat",
   journal: "/journal",
   journalDay(date: string) {
     return `/journal/${date}`;

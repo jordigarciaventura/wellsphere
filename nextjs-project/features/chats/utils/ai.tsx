@@ -11,12 +11,11 @@ export function toAIMessage(message: Message): AIMessage {
   };
 }
 
-export function fromAIMessage(message: AIMessage, chatId: string): Message {
+export function fromAIMessage(message: AIMessage): Message {
   return {
     id: message.id,
     content: message.content as string,
     role: message.role,
-    chatId,
     metadata: null,
   };
 }

@@ -8,14 +8,10 @@ export type AIMessage = CoreMessage & {
 export type AIRole = "user" | "assistant" | "system";
 
 export interface AIChat {
-  id: string;
-  title: string;
-  createdAt: Date;
   messages: AIMessage[];
 }
 
 export type AIState = {
-  chatId: string;
   messages: AIMessage[];
 };
 

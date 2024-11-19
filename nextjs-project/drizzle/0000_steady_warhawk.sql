@@ -22,13 +22,6 @@ EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 --> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "chats" (
-	"id" uuid PRIMARY KEY NOT NULL,
-	"title" varchar(140) NOT NULL,
-	"createdAt" timestamp DEFAULT now(),
-	"updatedAt" timestamp DEFAULT now()
-);
---> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "journalEntries" (
 	"userId" varchar(255) NOT NULL,
 	"createdAt" timestamp DEFAULT now(),
@@ -38,7 +31,7 @@ CREATE TABLE IF NOT EXISTS "journalEntries" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "messages" (
 	"id" uuid PRIMARY KEY NOT NULL,
-	"chatId" uuid NOT NULL,
+	"userId" varchar(255),
 	"role" "role" NOT NULL,
 	"content" text NOT NULL,
 	"createdAt" timestamp DEFAULT now(),
@@ -116,12 +109,6 @@ EXCEPTION
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "messages" ADD CONSTRAINT "messages_chatId_chats_id_fk" FOREIGN KEY ("chatId") REFERENCES "public"."chats"("id") ON DELETE cascade ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
---> statement-breakpoint
-DO $$ BEGIN
  ALTER TABLE "moodEntries" ADD CONSTRAINT "moodEntries_userId_user_id_fk" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE no action ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -151,7 +138,7 @@ EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 --> statement-breakpoint
-CREATE INDEX IF NOT EXISTS "idx_created_at" ON "chats" USING btree ("createdAt");--> statement-breakpoint
-CREATE INDEX IF NOT EXISTS "idx_chat_id" ON "messages" USING btree ("chatId");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "user_id_idx" ON "messages" USING btree ("userId");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "created_at_idx" ON "messages" USING btree ("createdAt");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "account_user_id_idx" ON "account" USING btree ("user_id");--> statement-breakpoint
 CREATE INDEX IF NOT EXISTS "session_user_id_idx" ON "session" USING btree ("user_id");

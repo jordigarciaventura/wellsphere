@@ -1,21 +1,21 @@
 import { Chat } from "@/features/chats/components/Chat";
+import { getMessagesUseCase } from "@/features/chats/use-cases/chats";
 import { AI } from "@/features/chats/utils/provider";
 import { setRequestLocale } from "next-intl/server";
-import { v4 as uuidv4 } from "uuid";
 
 interface Props {
   params: { locale: string };
 }
 
-export default function ChatsPage({ params: { locale } }: Props) {
+export default async function ChatPage({ params: { locale } }: Props) {
   // Enable static rendering
   setRequestLocale(locale);
 
-  const chatId = uuidv4();
+  const messages = (await getMessagesUseCase()) ?? [];
 
   return (
-    <AI initialAIState={{ chatId, messages: [] }}>
-      <Chat id={chatId} />
+    <AI initialAIState={{ messages }}>
+      <Chat />
     </AI>
   );
 }
