@@ -1,10 +1,28 @@
 "use client";
 
 import Editor from "@/components/rich-text/editor";
-import { useState } from "react";
+import { saveJournalEntryUseCase } from "@/features/journal/actions/journal";
+import { debounce } from "lodash";
+import { useEffect, useState } from "react";
 
-export default function ClientJournalPage() {
-  const [value, setValue] = useState("");
+interface Props {
+  date: Date;
+  initialContent?: string | null;
+}
+
+export default function ClientJournalPage({ date, initialContent }: Props) {
+  const [value, setValue] = useState<string>(initialContent ?? "");
+
+  const debouncedSave = debounce(async (content: string) => {
+    await saveJournalEntryUseCase(date, content);
+  }, 500);
+
+  useEffect(() => {
+    debouncedSave(value);
+    return () => {
+      debouncedSave.cancel();
+    };
+  }, [value, debouncedSave]);
 
   return (
     <div className="flex flex-col items-center">

@@ -23,7 +23,7 @@ interface EditorToolbarProps {
 const EditorToolbar = ({ editor }: EditorToolbarProps) => {
   return (
     <Toolbar
-      className="sticky top-0 flex w-full flex-row flex-wrap items-center gap-1 border-b-2"
+      className="sticky top-0 flex w-full flex-row flex-wrap items-center gap-1 border-b-2 bg-card"
       aria-label="Formatting options"
     >
       <ToggleGroup className="flex flex-row items-center" type="multiple">

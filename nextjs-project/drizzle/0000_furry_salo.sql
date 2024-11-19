@@ -24,9 +24,9 @@ END $$;
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "journalEntries" (
 	"userId" varchar(255) NOT NULL,
-	"createdAt" timestamp DEFAULT now(),
-	"title" varchar(140) NOT NULL,
-	"entry" varchar(2000) NOT NULL
+	"date" date NOT NULL,
+	"content" text NOT NULL,
+	CONSTRAINT "journalEntries_userId_date_pk" PRIMARY KEY("userId","date")
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "messages" (
