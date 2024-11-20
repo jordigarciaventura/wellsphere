@@ -57,6 +57,7 @@ export const authOptions: NextAuthOptions = {
           scope: "read:user user:email notifications public_repo",
         },
       },
+      allowDangerousEmailAccountLinking: true,
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_ID as string,
@@ -69,6 +70,7 @@ export const authOptions: NextAuthOptions = {
           response_type: "code",
         },
       },
+      allowDangerousEmailAccountLinking: true,
     }),
   ],
 };

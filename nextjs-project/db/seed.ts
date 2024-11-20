@@ -6,7 +6,7 @@ import _ from "lodash";
 import { db } from "./index";
 import { moodEntriesTable, tasksTable } from "./schema";
 
-const userId = "1467157f-12ad-4a59-b4b5-1b18f36b3773";
+const userId = "1f78ab55-95be-4352-8da9-ecc2cec651e8";
 const endDate = new Date();
 const startDate = new Date(endDate);
 startDate.setMonth(startDate.getMonth() - 1);
