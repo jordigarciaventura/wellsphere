@@ -22,7 +22,7 @@ export async function middleware(request: NextRequest) {
     request.cookies.get(tokenName) &&
     request.nextUrl.pathname === locale + "/login"
   ) {
-    return NextResponse.redirect(new URL(locale, request.url));
+    return NextResponse.redirect(new URL(locale + "/welcome", request.url));
   }
 
   const intlMiddleware = createMiddleware(routing);

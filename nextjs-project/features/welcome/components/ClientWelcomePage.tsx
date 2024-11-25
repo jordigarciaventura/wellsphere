@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import "./style.css";
@@ -30,7 +31,7 @@ export default function WelcomePage() {
                 className="get-started-button"
                 aria-label="Get Started with WellSphere"
               >
-                Get Started
+                <Link href="/tutorial">Get Started</Link>
               </Button>
             </div>
           </div>
