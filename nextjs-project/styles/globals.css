@@ -35,6 +35,11 @@
     --spiritual: 271 91% 65%;
     --occupational: 25 95% 53%;
     --social: 45 93% 47%;
+    --mood-verysad: 0 91% 71%;
+    --mood-sad: 27 96% 61%;
+    --mood-neutral: 38 93% 77%;
+    --mood-happy: 213 94% 68%;
+    --mood-veryhappy: 172 66% 50%;
   }
 
   .dark {
@@ -62,6 +67,11 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --mood-verysad: 0 91% 71%;
+    --mood-sad: 27 96% 61%;
+    --mood-neutral: 38 93% 77%;
+    --mood-happy: 213 94% 68%;
+    --mood-veryhappy: 172 66% 50%;
   }
 }
 
