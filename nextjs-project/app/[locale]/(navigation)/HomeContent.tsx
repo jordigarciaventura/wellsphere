@@ -3,32 +3,34 @@
 import React, { useState } from 'react'
 import MoodWeekCarousel from "@/components/mood/MoodWeekCarousel";
 
+type TabName = 'my-tasks' | 'suggested' | 'challenges';
+
 interface HomeContentProps {
-  moods: any; 
+  moods: any; // Replace 'any' with the correct type for moods
   date: Date;
 }
 
 export default function HomeContent({ moods, date }: HomeContentProps) {
-  const [activeTab, setActiveTab] = useState('my-tasks');
+  const [activeTab, setActiveTab] = useState<TabName>('my-tasks');
 
-  const taskCards = {
+  const taskCards: Record<TabName, Array<{ title: string; date: string; icon: string; color: string; badge?: string }>> = {
     'my-tasks': [
-      { title: "Marathon", date: "October 4, 2020", icon: "💪", color: "green" },
+      { title: "Marathon", date: "October 4, 2020", icon: "🏃", color: "green" },
       { title: "Java test", date: "October 4, 2020", icon: "📚", color: "blue" },
-      { title: "Gym", date: "October 4, 2020", icon: "💪", color: "green", badge: "1" },
-      { title: "new job", date: "October 4, 2020", icon: "📖", color: "orange" },
+      { title: "Gym", date: "October 4, 2020", icon: "💪", color: "light-green", badge: "1" },
+      { title: "Study new job", date: "October 4, 2020", icon: "📖", color: "orange" },
       { title: "Friend's meeting", date: "October 4, 2020", icon: "👥", color: "yellow" },
     ],
     'suggested': [
       { title: "Meditation", date: "October 5, 2020", icon: "🧘", color: "purple" },
-      { title: "Learn a language", date: "October 6, 2020", icon: "📚", color: "blue" },
-      { title: "Cook a new recipe", date: "October 7, 2020", icon: "💪", color: "green" },
-      { title: "Read a book", date: "October 8, 2020", icon: "📚", color: "blue" },
+      { title: "Learn a language", date: "October 6, 2020", icon: "🗣️", color: "pink" },
+      { title: "Cook a new recipe", date: "October 7, 2020", icon: "👨‍🍳", color: "teal" },
+      { title: "Read a book", date: "October 8, 2020", icon: "📘", color: "indigo" },
     ],
     'challenges': [
-      { title: "30-day fitness", date: "Starts Oct 1, 2020", icon: "💪", color: "green" },
-      { title: "Learn to code", date: "Starts Oct 15, 2020", icon: "📚", color: "blue" },
-      { title: "No sugar month", date: "Starts Nov 1, 2020", icon: "💪", color: "green" },
+      { title: "30-day fitness", date: "Starts Oct 1, 2020", icon: "🏋️", color: "red" },
+      { title: "Learn to code", date: "Starts Oct 15, 2020", icon: "💻", color: "cyan" },
+      { title: "No sugar month", date: "Starts Nov 1, 2020", icon: "🍬", color: "brown" },
     ],
   };
 
@@ -79,7 +81,7 @@ export default function HomeContent({ moods, date }: HomeContentProps) {
           padding: 20px 20px 40px 20px;
         }
         .content-wrapper {
-          
+          background-color: #f8f9fa;
           border-radius: 20px;
           padding: 20px;
           margin-top: 20px;
