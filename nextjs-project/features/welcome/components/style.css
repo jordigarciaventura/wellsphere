@@ -37,7 +37,7 @@
 
 .paragraph {
   font-size: 1.125rem;
-  color: #6b7280; 
+  color: #6b7280;
   max-width: 400px;
   margin: 0 auto 1.5rem auto;
 }
@@ -80,7 +80,7 @@
 
   .text-button-wrapper {
     flex: 1;
-    align-items: center; 
+    align-items: center;
     text-align: center;
   }
 
@@ -94,15 +94,14 @@
 }
 @media (max-width: 767px) {
   .image-wrapper {
-    margin-bottom: 1rem; 
+    margin-bottom: 1rem;
   }
 
   .image {
-    width: 80%; 
+    width: 80%;
   }
 
   .button-wrapper {
     margin-top: -0.5rem;
   }
 }
-

@@ -14,7 +14,11 @@
     "noUncheckedIndexedAccess": true,
     "checkJs": true,
     /* Bundled projects */
-    "lib": ["dom", "dom.iterable", "ES2022"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "ES2022"
+    ],
     "noEmit": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
@@ -28,7 +32,9 @@
     /* Path Aliases */
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
   "include": [
@@ -41,7 +47,12 @@
     "**/*.js",
     ".next/types/**/*.ts",
     "@types/**/*.d.ts",
-    "next.config.mjs"
+    "next.config.mjs",
   ],
-  "exclude": ["node_modules", "components/ui/**/*"]
+  "exclude": [
+    "node_modules",
+    "components/ui/**/*",
+    "lib/chartUtils.ts",
+    "app/manifest.ts"
+  ]
 }

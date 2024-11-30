@@ -9,8 +9,8 @@ import { Plus } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 
 interface Props {
-  params: { locale: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Record<string, string>;
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
 export default async function TasksPage({
@@ -18,7 +18,7 @@ export default async function TasksPage({
   searchParams,
 }: Props) {
   // Enable static rendering
-  setRequestLocale(locale);
+  setRequestLocale(locale!);
 
   const queryDate = searchParams.date as string | undefined;
   const date =

@@ -5,7 +5,7 @@ import HomeContent from "./HomeContent.tsx"
 
 interface Props {
   params: { locale: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
 export default async function HomePage({

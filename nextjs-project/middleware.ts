@@ -10,7 +10,10 @@ export async function middleware(request: NextRequest) {
   if (locale === "") {
     locale = "/en";
   }
-  const tokenName = env === "development" ? "next-auth.session-token" : "__Secure-next-auth.session-token"
+  const tokenName =
+    env === "development"
+      ? "next-auth.session-token"
+      : "__Secure-next-auth.session-token";
   if (
     !request.cookies.get(tokenName) &&
     request.nextUrl.pathname !== locale + "/login"

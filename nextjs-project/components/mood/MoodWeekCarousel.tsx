@@ -3,7 +3,7 @@
 import { MoodWeekDay } from "@/components/mood/MoodWeekDay";
 import { dateMonthBoundary } from "@/features/home/utils/date";
 import { cn } from "@/lib/utils";
-import { MoodEntry } from "@/types/mood";
+import type { MoodEntry } from "@/types/mood";
 import { formatDate, isSameDay, isSameMonth } from "date-fns";
 import { debounce } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -57,7 +57,7 @@ export default function MoodWeekCarousel({
         break;
       }
     }
-  }, [selectedDate, monthDate, containerRef, onMonthChange]);
+  }, [containerRef, onMonthChange]);
 
   useEffect(() => {
     const scrollContainer = containerRef.current!;
