@@ -6,7 +6,7 @@ export const locales = ["en", "es"] as const;
 export const localeLabels = {
   en: "English",
   es: "Español",
-};
+} as const;
 
 export const pathnames: Pathnames<typeof locales> = {
   "/": "/",
