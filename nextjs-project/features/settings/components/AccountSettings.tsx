@@ -1,39 +1,27 @@
-import React from "react";
-import { Edit, Bell, ShieldCheck } from "lucide-react";
+import { route } from "@/config/site";
+import { Link } from "@/i18n/routing";
+import { Bell, Edit, ShieldCheck } from "lucide-react";
 
-interface Props {
-  onEditProfile: () => void;
-}
-
-export default function AccountSettings({ onEditProfile }: Props) {
+export default function AccountSettings() {
   return (
     <div className="space-y-4">
-      <div className="flex items-center gap-4">
-        <h2 className="text-lg font-medium mb-0">Account</h2>
-      </div>
+      <h2 className="mb-0 text-lg font-medium">Account</h2>
 
-      <div className="border border-gray-300 p-4 bg-white shadow-sm" style={{ borderRadius: "20px" }}>
-        <div className="flex flex-col gap-1">
-          {/* Botão Edit Profile */}
-          <button
-            className="flex items-center w-full gap-4 py-3 px-4 text-left hover:bg-gray-100 focus:outline-none"
-            onClick={onEditProfile}
-          >
-            <Edit className="w-5 h-5 text-gray-600" />
-            <span className="text-gray-800">Edit Profile</span>
+      <div className="flex flex-col gap-2 rounded-lg border bg-card p-4 shadow-sm">
+        <Link href={route.profile}>
+          <button className="flex w-full items-center gap-4 px-4 py-3 text-left focus:outline-none">
+            <Edit className="h-5 w-5" />
+            <span>Edit Profile</span>
           </button>
-
-          {/* Outros botões */}
-          <button className="flex items-center w-full gap-4 py-3 px-4 text-left hover:bg-gray-100 focus:outline-none">
-            <Bell className="w-5 h-5 text-gray-600" />
-            <span className="text-gray-800">Notifications</span>
-          </button>
-
-          <button className="flex items-center w-full gap-4 py-3 px-4 text-left hover:bg-gray-100 focus:outline-none">
-            <ShieldCheck className="w-5 h-5 text-gray-600" />
-            <span className="text-gray-800">Privacy Policy</span>
-          </button>
-        </div>
+        </Link>
+        <button className="flex w-full items-center gap-4 px-4 py-3 text-left focus:outline-none">
+          <Bell className="h-5 w-5" />
+          <span>Notifications</span>
+        </button>
+        <button className="flex w-full items-center gap-4 px-4 py-3 text-left focus:outline-none">
+          <ShieldCheck className="h-5 w-5" />
+          <span>Privacy Policy</span>
+        </button>
       </div>
     </div>
   );

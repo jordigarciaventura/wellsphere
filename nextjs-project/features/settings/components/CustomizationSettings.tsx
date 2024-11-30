@@ -1,27 +1,21 @@
-import LanguageSelect from "@/features/language/components/LanguageSelect";
+import { LanguageSelect } from "@/features/settings/components/LanguageSelect";
 import ThemeToggleButton from "@/features/theme/components/ThemeToggleButton";
 
-export default function Customization() {
+interface Props {
+  defaultLocale: string;
+}
+
+export default function CustomizationSettings({ defaultLocale }: Props) {
   return (
     <div className="space-y-4">
-      {/* Título alinhado */}
-      <div className="flex items-center gap-4">
-        <h2 className="mb-0 text-lg font-medium">Customization</h2>
-      </div>
+      <h2 className="mb-0 text-lg font-medium">Customization</h2>
 
-      {/* Quadro com borda arredondada */}
-      <div
-        className="border border-gray-300 bg-card p-4 shadow-sm"
-        style={{ borderRadius: "20px" }}
-      >
-        <div className="flex flex-col gap-4">
-          <div className="w-full">
-            <ThemeToggleButton />
-          </div>
-          <div className="w-full">
-            <LanguageSelect />
-          </div>
-        </div>
+      <div className="flex flex-col gap-2 rounded-lg border bg-card p-4 shadow-sm">
+        <ThemeToggleButton />
+        <LanguageSelect
+          defaultLocale={defaultLocale}
+          className="flex h-12 w-full items-center gap-4 bg-card px-4 py-3 text-left"
+        />
       </div>
     </div>
   );

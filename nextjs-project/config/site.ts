@@ -15,6 +15,8 @@ export const route = {
   newTask: "/tasks/new",
   insights: "/insights",
   settings: "/settings",
+  pricing: "/pricing",
+  profile: "/settings/profile",
 };
 
 export const url = {
