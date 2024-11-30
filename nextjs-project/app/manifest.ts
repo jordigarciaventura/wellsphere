@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
@@ -41,7 +39,7 @@ export default function manifest(): MetadataRoute.Manifest {
         sizes: "540x720",
         form_factor: "narrow",
       },
-      { 
+      {
         src: "wellspheress2.png",
         type: "image/png",
         sizes: "1024x593",

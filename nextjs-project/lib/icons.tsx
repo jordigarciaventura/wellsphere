@@ -1,6 +1,6 @@
 import EmotionalIcon from "@/lib/icons/EmotionalIcon";
 import IntellectualIcon from "@/lib/icons/IntellectualIcon";
-import OccupationaIcon from "@/lib/icons/OccupationaIcon";
+import OccupationalIcon from "@/lib/icons/OccupationaIcon";
 import PhysicalIcon from "@/lib/icons/PhysicalIcon";
 import SocialIcon from "@/lib/icons/SocialIcon";
 import SpiritualIcon from "@/lib/icons/SpiritualIcon";
@@ -20,22 +20,22 @@ export function getDimensionIcon(dimension: Dimension) {
     case Dimension.Spiritual:
       return SpiritualIcon;
     case Dimension.Occupational:
-      return OccupationaIcon;
+      return OccupationalIcon;
   }
 }
 
 export const getMoodIcon = (mood: Mood | null) => {
   switch (mood) {
     case Mood.VerySad:
-      return <Angry className="stroke-red-400" />;
+      return <Angry color="hsl(var(--mood-verysad))" />;
     case Mood.Sad:
-      return <Frown className="stroke-orange-400" />;
+      return <Frown color="hsl(var(--mood-sad))" />;
     case Mood.Neutral:
-      return <Meh className="stroke-blue-400" />;
+      return <Meh color="hsl(var(--mood-neutral))" />;
     case Mood.Happy:
-      return <Smile className="stroke-green-400" />;
+      return <Smile color="hsl(var(--mood-happy))" />;
     case Mood.VeryHappy:
-      return <Laugh className="stroke-teal-400" />;
+      return <Laugh color="hsl(var(--mood-veryhappy))" />;
     default:
       return <CircleDashed />;
   }

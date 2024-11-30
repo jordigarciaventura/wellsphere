@@ -1,6 +1,7 @@
 import { users as usersTable } from "@/db/authSchema.ts";
+import { Weekday } from "@/features/tasks/types/date";
 import { enumToPgEnum } from "@/lib/utils";
-import { Dimension, Frequency, Mood, Role } from "@/types/mood";
+import { Dimension, Mood, Role } from "@/types/mood";
 import {
   boolean,
   date,
@@ -19,7 +20,7 @@ import {
 
 export const dimensionEnum = pgEnum("dimension", enumToPgEnum(Dimension));
 
-export const frequencyEnum = pgEnum("frequency", enumToPgEnum(Frequency));
+export const weeksdaysEnum = pgEnum("weekdays", enumToPgEnum(Weekday));
 
 export const moodEnum = pgEnum("mood", enumToPgEnum(Mood));
 
@@ -65,48 +66,42 @@ export const tasksTable = pgTable("tasks", {
   dimensions: dimensionEnum().array(),
   createdAt: timestamp().defaultNow(),
   updatedAt: timestamp().defaultNow(),
+  startDate: timestamp(),
   endDate: timestamp(),
-  frequency: frequencyEnum(),
+  weekdays: weeksdaysEnum().array(),
   userId: varchar({ length: 255 })
     .notNull()
     .references(() => usersTable.id),
 });
 
-export const journalEntriesTable = pgTable("journalEntries", {
-  userId: varchar({ length: 255 })
-    .notNull()
-    .references(() => usersTable.id),
-  createdAt: timestamp().defaultNow(),
-  title: varchar({ length: 140 }).notNull(),
-  entry: varchar({ length: 2000 }).notNull(),
-});
-
-export const chatsTable = pgTable(
-  "chats",
+export const journalEntriesTable = pgTable(
+  "journalEntries",
   {
-    id: uuid().primaryKey(),
-    title: varchar({ length: 140 }).notNull(),
-    createdAt: timestamp().defaultNow(),
-    updatedAt: timestamp().defaultNow(),
+    userId: varchar({ length: 255 })
+      .notNull()
+      .references(() => usersTable.id),
+    date: date().notNull(), // it is a string
+    content: text().notNull(),
   },
-  (table) => ({
-    createdAtIndex: index("idx_created_at").on(table.createdAt),
-  }),
+  (t) => {
+    return {
+      pk: primaryKey({ columns: [t.userId, t.date] }),
+    };
+  },
 );
 
 export const messagesTable = pgTable(
   "messages",
   {
     id: uuid().primaryKey(),
-    chatId: uuid()
-      .notNull()
-      .references(() => chatsTable.id, { onDelete: "cascade" }),
+    userId: varchar({ length: 255 }),
     role: messageRoleEnum().notNull(),
     content: text().notNull(),
     createdAt: timestamp().defaultNow(),
     metadata: json(),
   },
   (table) => ({
-    chatIdIndex: index("idx_chat_id").on(table.chatId),
+    userIdIndex: index("user_id_idx").on(table.userId),
+    createdAtIndex: index("created_at_idx").on(table.createdAt),
   }),
 );

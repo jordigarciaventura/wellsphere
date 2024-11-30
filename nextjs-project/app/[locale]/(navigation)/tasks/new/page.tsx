@@ -1,3 +1,4 @@
+import TaskForm from "@/features/tasks/components/TaskForm";
 import { setRequestLocale } from "next-intl/server";
 
 interface Props {
@@ -8,5 +9,5 @@ export default async function NewTaskPage({ params: { locale } }: Props) {
   // Enable static rendering
   setRequestLocale(locale);
 
-  return <div>NewTaskPage</div>;
+  return <TaskForm />;
 }

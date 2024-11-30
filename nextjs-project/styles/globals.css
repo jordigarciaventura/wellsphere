@@ -14,7 +14,7 @@
     --primary-foreground: 210 20% 98%;
     --secondary: 220 14.3% 95.9%;
     --secondary-foreground: 220.9 39.3% 11%;
-    --muted: 220 14.3% 95.9%;
+    --muted: 227 79% 94%;
     --muted-foreground: 220 8.9% 46.1%;
     --accent: 220 14.3% 95.9%;
     --accent-foreground: 220.9 39.3% 11%;
@@ -29,12 +29,17 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --physical: 122 39% 49%;
-    --emotional: 4 90% 58%;
-    --intellectual: 207 90% 54%;
-    --spiritual: 291 64% 42%;
-    --occupational: 36 100% 50%;
-    --social: 54 100% 62%;
+    --physical: 142 71% 45%;
+    --emotional: 0 84% 60%;
+    --intellectual: 217 91% 60%;
+    --spiritual: 271 91% 65%;
+    --occupational: 25 95% 53%;
+    --social: 45 93% 47%;
+    --mood-verysad: 0 91% 71%;
+    --mood-sad: 27 96% 61%;
+    --mood-neutral: 38 93% 77%;
+    --mood-happy: 213 94% 68%;
+    --mood-veryhappy: 172 66% 50%;
   }
 
   .dark {
@@ -62,6 +67,11 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --mood-verysad: 0 91% 71%;
+    --mood-sad: 27 96% 61%;
+    --mood-neutral: 38 93% 77%;
+    --mood-happy: 213 94% 68%;
+    --mood-veryhappy: 172 66% 50%;
   }
 }
 
@@ -103,4 +113,8 @@
   float: left;
   height: 0;
   pointer-events: none;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }

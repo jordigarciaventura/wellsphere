@@ -26,10 +26,3 @@ export enum Mood {
   Happy = "happy",
   VeryHappy = "veryHappy",
 }
-
-export enum Frequency {
-  Daily = "daily",
-  Weekly = "weekly",
-  Monthly = "monthly",
-  Yearly = "yearly",
-}

@@ -19,7 +19,6 @@ export default function TasksList({ tasks }: Props) {
         key={task.id}
         id={task.id}
         title={task.title}
-        subtitle="Description"
         completed={task.completed}
         dimensions={task.dimensions || []}
         toggleTaskDone={() => toggleTaskDone(task.id)}

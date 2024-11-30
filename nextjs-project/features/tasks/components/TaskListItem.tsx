@@ -7,7 +7,7 @@ import { Dimension } from "@/types/mood";
 interface Props {
   id: number;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   completed: boolean;
   dimensions: string[];
   toggleTaskDone?: () => void;
@@ -37,7 +37,9 @@ export default function TaskListItem({
         />
         <div className="flex flex-col p-1">
           <h3 className="text-lg font-semibold">{title}</h3>
-          <p className="text-xs font-normal text-neutral-400">{subtitle}</p>
+          {subtitle && (
+            <p className="text-xs font-normal text-neutral-400">{subtitle}</p>
+          )}
           <div className="absolute bottom-1 right-2 flex gap-1">
             {dimensions.map((dimension) => {
               const Icon = getDimensionIcon(dimension as Dimension);

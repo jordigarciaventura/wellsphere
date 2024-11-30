@@ -1,61 +1,9 @@
 {
-  "id": "ba4c1fa9-cf25-49a5-a712-308f394e6310",
+  "id": "0de9d937-617f-47ae-914d-1439ca1afae3",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.chats": {
-      "name": "chats",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "uuid",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "title": {
-          "name": "title",
-          "type": "varchar(140)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "createdAt": {
-          "name": "createdAt",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "now()"
-        },
-        "updatedAt": {
-          "name": "updatedAt",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "now()"
-        }
-      },
-      "indexes": {
-        "idx_created_at": {
-          "name": "idx_created_at",
-          "columns": [
-            {
-              "expression": "createdAt",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        }
-      },
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
     "public.journalEntries": {
       "name": "journalEntries",
       "schema": "",
@@ -66,22 +14,15 @@
           "primaryKey": false,
           "notNull": true
         },
-        "createdAt": {
-          "name": "createdAt",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "now()"
-        },
-        "title": {
-          "name": "title",
-          "type": "varchar(140)",
+        "date": {
+          "name": "date",
+          "type": "date",
           "primaryKey": false,
           "notNull": true
         },
-        "entry": {
-          "name": "entry",
-          "type": "varchar(2000)",
+        "content": {
+          "name": "content",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         }
@@ -98,7 +39,12 @@
           "onUpdate": "no action"
         }
       },
-      "compositePrimaryKeys": {},
+      "compositePrimaryKeys": {
+        "journalEntries_userId_date_pk": {
+          "name": "journalEntries_userId_date_pk",
+          "columns": ["userId", "date"]
+        }
+      },
       "uniqueConstraints": {}
     },
     "public.messages": {
@@ -111,11 +57,11 @@
           "primaryKey": true,
           "notNull": true
         },
-        "chatId": {
-          "name": "chatId",
-          "type": "uuid",
+        "userId": {
+          "name": "userId",
+          "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "role": {
           "name": "role",
@@ -145,11 +91,26 @@
         }
       },
       "indexes": {
-        "idx_chat_id": {
-          "name": "idx_chat_id",
+        "user_id_idx": {
+          "name": "user_id_idx",
           "columns": [
             {
-              "expression": "chatId",
+              "expression": "userId",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "created_at_idx": {
+          "name": "created_at_idx",
+          "columns": [
+            {
+              "expression": "createdAt",
               "isExpression": false,
               "asc": true,
               "nulls": "last"
@@ -161,17 +122,7 @@
           "with": {}
         }
       },
-      "foreignKeys": {
-        "messages_chatId_chats_id_fk": {
-          "name": "messages_chatId_chats_id_fk",
-          "tableFrom": "messages",
-          "tableTo": "chats",
-          "columnsFrom": ["chatId"],
-          "columnsTo": ["id"],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
@@ -312,16 +263,21 @@
           "notNull": false,
           "default": "now()"
         },
+        "startDate": {
+          "name": "startDate",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
         "endDate": {
           "name": "endDate",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false
         },
-        "frequency": {
-          "name": "frequency",
-          "type": "frequency",
-          "typeSchema": "public",
+        "weekdays": {
+          "name": "weekdays",
+          "type": "weekdays[]",
           "primaryKey": false,
           "notNull": false
         },
@@ -596,11 +552,6 @@
         "occupational"
       ]
     },
-    "public.frequency": {
-      "name": "frequency",
-      "schema": "public",
-      "values": ["daily", "weekly", "monthly", "yearly"]
-    },
     "public.role": {
       "name": "role",
       "schema": "public",
@@ -610,6 +561,19 @@
       "name": "mood",
       "schema": "public",
       "values": ["verySad", "sad", "neutral", "happy", "veryHappy"]
+    },
+    "public.weekdays": {
+      "name": "weekdays",
+      "schema": "public",
+      "values": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+      ]
     }
   },
   "schemas": {},

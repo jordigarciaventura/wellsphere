@@ -1,32 +1,33 @@
+import fluid, { extract, fontSize, screens } from "fluid-tailwind";
 import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: "class",
-  content: [
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./styles/**/*.css",
-    "./features/**/*.{ts,tsx}",
-    "./lib/**/*.{ts,tsx}",
-  ],
+  content: {
+    files: [
+      "./components/**/*.{ts,tsx}",
+      "./app/**/*.{ts,tsx}",
+      "./styles/**/*.css",
+      "./features/**/*.{ts,tsx}",
+      "./lib/**/*.{ts,tsx}",
+    ],
+    extract,
+  },
   prefix: "",
   theme: {
     container: {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1400pxS",
       },
     },
     screens: {
       "2xs": "320px",
       xs: "480px",
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1280px",
-      "2xl": "1536px",
+      ...screens,
     },
+    fontSize,
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -94,7 +95,12 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/forms"),
+    fluid,
+  ],
 } satisfies Config;
 
 export default config;

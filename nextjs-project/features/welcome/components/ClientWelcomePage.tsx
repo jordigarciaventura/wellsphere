@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import { Button } from "@/components/ui/button";
-import './style.css';
+import Image from "next/image";
+import "./style.css";
 
 export default function WelcomePage() {
   return (
@@ -12,7 +12,7 @@ export default function WelcomePage() {
               src="/assets/welcome.svg"
               alt="Welcome illustration"
               width={450}
-              height={450} 
+              height={450}
               className="image"
               priority
             />
@@ -21,11 +21,15 @@ export default function WelcomePage() {
             <div className="text-content">
               <h1 className="heading">Welcome to WellSphere</h1>
               <p className="paragraph">
-                Discover amazing features and boost your productivity with our innovative application.
+                Discover amazing features and boost your productivity with our
+                innovative application.
               </p>
             </div>
             <div className="button-wrapper">
-              <Button className="get-started-button" aria-label="Get Started with WellSphere">
+              <Button
+                className="get-started-button"
+                aria-label="Get Started with WellSphere"
+              >
                 Get Started
               </Button>
             </div>

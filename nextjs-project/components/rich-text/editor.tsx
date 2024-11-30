@@ -36,7 +36,7 @@ const Editor = ({ content, placeholder, className, onChange }: EditorProps) => {
   return (
     <div
       className={cn(
-        "prose w-full border-b-8 bg-background px-2 dark:prose-invert",
+        "prose w-full border-b-8 border-card bg-background px-2 dark:prose-invert",
         className,
       )}
     >
