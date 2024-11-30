@@ -1,8 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import LocalizedCalendar from "@/features/language/components/LocalizedCalendar";
 import { JournalingEntry } from "@/types/journal";
 import { useState } from "react";
 
@@ -41,7 +41,7 @@ export default function JournalHeatMapChart({ data }: Props) {
         </div>
       </CardHeader>
       <CardContent className="w-full">
-        <Calendar
+        <LocalizedCalendar
           mode="default"
           month={month}
           modifiers={{

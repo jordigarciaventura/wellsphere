@@ -2,7 +2,7 @@ import "server-only";
 
 import { db } from "@/db";
 import { journalEntriesTable } from "@/db/schema";
-import { formatDate } from "date-fns";
+import { formatDate } from "@/utils/date-utils";
 import { and, eq, sql } from "drizzle-orm";
 
 export async function getJournalEntry(userId: string, date: Date) {

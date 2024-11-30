@@ -1,5 +1,6 @@
 import { Toaster } from "@/components/ui/sonner";
 import AuthProvider from "@/features/auth/components/AuthProvider";
+import LocalizedDate from "@/features/language/components/LocalizedDate";
 import { locales } from "@/features/language/utils/i18n";
 import ThemeProvider from "@/features/theme/components/ThemeProvider";
 import { cn } from "@/lib/utils";
@@ -56,6 +57,7 @@ export default async function RootLayout({
             <ThemeProvider defaultTheme={theme}>
               {children}
               <Toaster richColors />
+              <LocalizedDate />
             </ThemeProvider>
           </NextIntlClientProvider>
         </AuthProvider>

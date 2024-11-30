@@ -1,7 +1,7 @@
 import { Weekday } from "@/features/tasks/types/date";
 import { Dimension, Mood } from "@/types/mood";
+import { formatDate } from "@/utils/date-utils";
 import { faker } from "@faker-js/faker";
-import { formatDate } from "date-fns";
 import _ from "lodash";
 import { db } from "./index";
 import { moodEntriesTable, tasksTable } from "./schema";

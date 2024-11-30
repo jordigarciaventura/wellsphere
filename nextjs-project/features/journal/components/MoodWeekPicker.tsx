@@ -1,6 +1,5 @@
 "use client";
 
-import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
@@ -8,9 +7,10 @@ import {
 } from "@/components/ui/popover";
 import { route } from "@/config/site";
 import MoodWeekCarousel from "@/features/journal/components/MoodWeekCarousel";
+import LocalizedCalendar from "@/features/language/components/LocalizedCalendar";
 import { useRouter } from "@/i18n/routing";
 import { MoodEntry } from "@/types/mood";
-import { formatDate } from "date-fns";
+import { formatDate } from "@/utils/date-utils";
 import { CalendarIcon } from "lucide-react";
 import { useCallback, useState } from "react";
 
@@ -60,7 +60,7 @@ export default function MoodWeekPicker({
             <CalendarIcon className="size-6" />
           </PopoverTrigger>
           <PopoverContent>
-            <Calendar
+            <LocalizedCalendar
               mode="single"
               selected={selectedDate}
               defaultMonth={currentDate}
