@@ -2,7 +2,7 @@ import { route } from "@/config/site";
 import { Link } from "@/i18n/routing";
 import { getMoodIcon } from "@/lib/icons";
 import { cn } from "@/lib/utils";
-import { Mood } from "@/types/mood";
+import type { Mood } from "@/types/mood";
 import { formatDate } from "date-fns";
 import React from "react";
 

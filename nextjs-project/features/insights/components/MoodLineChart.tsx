@@ -1,6 +1,6 @@
 "use client";
 
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, Cell, XAxis, YAxis } from "recharts";
 
 import {
   Card,
@@ -10,18 +10,33 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
+import { getMoodColor } from "@/lib/colors";
+import { getMoodIcon } from "@/lib/icons";
+import { Mood, MoodEntry } from "@/types/mood";
+import { getRandomMood } from "@/utils/mockData";
+import { addDays } from "date-fns";
 
-const chartData = [
-  { date: "2024-04-01", mood: 0, fill: "var(--color-verysad)" },
-  { date: "2024-04-02", mood: 1, fill: "var(--color-sad)" },
-  { date: "2024-04-03", mood: 3, fill: "var(--color-happy)" },
-  { date: "2024-04-04", mood: 2, fill: "var(--color-neutral)" },
-  { date: "2024-04-05", mood: 4, fill: "var(--color-veryhappy)" },
-  { date: "2024-04-06", mood: 1, fill: "var(--color-sad)" },
-  { date: "2024-04-07", mood: 2, fill: "var(--color-neutral)" },
-  { date: "2024-04-08", mood: 3, fill: "var(--color-happy)" },
-  { date: "2024-04-09", mood: 2, fill: "var(--color-neutral)" },
-];
+const generateMockData = (startDate: Date, endDate: Date) => {
+  const dates = [];
+  for (let date = startDate; date <= endDate; date = addDays(date, 1)) {
+    if (Math.random() < 0.1) {
+      continue;
+    }
+    dates.push({
+      date: date.toISOString().slice(0, 10),
+      mood: getRandomMood(),
+    });
+  }
+  return dates;
+};
+
+const incrementMood = (moodEntry: MoodEntry) =>
+  ({
+    ...moodEntry,
+    mood: moodEntry.mood + 1,
+  }) as MoodEntry;
+
+const mockData = generateMockData(new Date("2024-01-01"), new Date());
 
 const chartConfig = {
   mood: {
@@ -49,26 +64,49 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
+const CustomYAxisTick = ({
+  x,
+  y,
+  payload,
+}: {
+  x: number;
+  y: number;
+  payload: { value: number };
+}) => {
+  const moodIcons = {
+    1: getMoodIcon(Mood.VerySad),
+    2: getMoodIcon(Mood.Sad),
+    3: getMoodIcon(Mood.Neutral),
+    4: getMoodIcon(Mood.Happy),
+    5: getMoodIcon(Mood.VeryHappy),
+  };
+
+  const icon = moodIcons[payload.value as keyof typeof moodIcons];
+
+  return (
+    <g transform={`translate(${x},${y})`}>
+      {icon ? (
+        <foreignObject x={-36} y={-12} width={32} height={32}>
+          {icon}
+        </foreignObject>
+      ) : null}
+    </g>
+  );
+};
+
 export function MoodLineChart() {
   return (
     <Card>
       <CardHeader>
         <CardTitle>Mood evolution</CardTitle>
-        <CardDescription>30 days ago</CardDescription>
+        <CardDescription>Last 10 days</CardDescription>
       </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig}>
-          <BarChart
-            accessibilityLayer
-            data={chartData.map((data) => ({
-              ...data,
-              mood: data.mood + 1,
-            }))}
-            margin={{
-              left: 12,
-              right: 12,
-            }}
-          >
+      <CardContent className="h-80 p-0">
+        <ChartContainer
+          config={chartConfig}
+          className="h-full w-full overflow-hidden"
+        >
+          <BarChart accessibilityLayer data={mockData.map(incrementMood)}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="date"
@@ -88,24 +126,13 @@ export function MoodLineChart() {
               dataKey="mood"
               ticks={[1, 2, 3, 4, 5]}
               domain={[0, 6]}
-              tickFormatter={(value) => {
-                switch (value) {
-                  case 1:
-                    return "Very Sad";
-                  case 2:
-                    return "Sad";
-                  case 3:
-                    return "Neutral";
-                  case 4:
-                    return "Happy";
-                  case 5:
-                    return "Very Happy";
-                  default:
-                    return "";
-                }
-              }}
+              tick={(props) => <CustomYAxisTick {...props} />}
             />
-            <Bar dataKey="mood" layout="vertical" radius={5} />
+            <Bar dataKey="mood" layout="vertical" radius={4}>
+              {mockData.map(incrementMood).map((entry, index) => {
+                return <Cell fill={getMoodColor(entry.mood)} />;
+              })}
+            </Bar>
           </BarChart>
         </ChartContainer>
       </CardContent>

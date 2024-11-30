@@ -5,7 +5,7 @@ import { setRequestLocale } from "next-intl/server";
 
 interface Props {
   params: { locale: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
 export default async function HomePage({

@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/popover";
 import { route } from "@/config/site";
 import { useRouter } from "@/i18n/routing";
-import { MoodEntry } from "@/types/mood";
+import { type MoodEntry } from "@/types/mood";
 import { formatDate } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useCallback, useState } from "react";

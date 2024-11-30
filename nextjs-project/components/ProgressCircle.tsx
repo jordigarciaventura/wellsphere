@@ -1,7 +1,7 @@
 // Tremor ProgressCircle [v0.0.3]
 
 import React from "react";
-import { tv, VariantProps } from "tailwind-variants";
+import { tv, type VariantProps } from "tailwind-variants";
 
 import { cx } from "@/lib/utils";
 
