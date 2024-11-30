@@ -2,7 +2,7 @@ import "server-only";
 
 import { db } from "@/db";
 import { moodEntriesTable } from "@/db/schema";
-import { formatDate } from "date-fns";
+import { formatDate } from "@/utils/date-utils";
 import { and, eq, gte, lte } from "drizzle-orm";
 
 export async function getMoods(userId: string, startDate: Date, endDate: Date) {

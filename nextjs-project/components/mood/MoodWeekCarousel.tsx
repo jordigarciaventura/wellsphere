@@ -4,7 +4,8 @@ import { MoodWeekDay } from "@/components/mood/MoodWeekDay";
 import { dateMonthBoundary } from "@/features/home/utils/date";
 import { cn } from "@/lib/utils";
 import type { MoodEntry } from "@/types/mood";
-import { formatDate, isSameDay, isSameMonth } from "date-fns";
+import { formatDate } from "@/utils/date-utils";
+import { isSameDay, isSameMonth } from "date-fns";
 import { debounce } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
 

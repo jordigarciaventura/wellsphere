@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -9,8 +8,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import LocalizedCalendar from "@/features/language/components/LocalizedCalendar";
 import { cn } from "@/lib/utils";
-import { formatDate } from "date-fns";
+import { formatDate } from "@/utils/date-utils";
 import { CalendarIcon } from "lucide-react";
 
 interface Props {
@@ -49,7 +49,7 @@ export default function DateFormField({
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-0">
-            <Calendar
+            <LocalizedCalendar
               mode="single"
               selected={date}
               onSelect={setDate}
