@@ -1,7 +1,7 @@
-import MoodWeekCarousel from "@/components/mood/MoodWeekCarousel";
 import TopAppBar from "@/components/navigation/TopAppBar";
 import { getMoodsUseCase } from "@/features/tasks/use-cases/moods";
 import { setRequestLocale } from "next-intl/server";
+import HomeContent from "./HomeContent.tsx"
 
 interface Props {
   params: { locale: string };
@@ -26,9 +26,9 @@ export default async function HomePage({
   return (
     <>
       <TopAppBar />
-      <div className="mx-auto flex h-full w-full max-w-4xl flex-col">
-        <MoodWeekCarousel moods={moods} date={date} readonly />
-      </div>
+      <HomeContent moods={moods} date={date} />
+     
     </>
   );
 }
+
