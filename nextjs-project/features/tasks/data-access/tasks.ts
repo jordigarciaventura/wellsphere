@@ -6,6 +6,44 @@ import { Weekday } from "@/features/tasks/types/date";
 import { Dimension } from "@/types/mood";
 import { and, eq, sql } from "drizzle-orm";
 
+export async function getTaskSummaries(
+  userId: string,
+  startDate: Date,
+  endDate: Date,
+) {
+  const startDateStr = startDate.toISOString().slice(0, 10);
+  const endDateStr = endDate.toISOString().slice(0, 10);
+
+  const result = await db
+    .select({
+      date: sql`DATE(${tasksTable.endDate})`.as("date"),
+      completedCount:
+        sql`SUM(CASE WHEN ${tasksTable.completed} THEN 1 ELSE 0 END)`.as(
+          "completed",
+        ),
+      pendingCount:
+        sql`SUM(CASE WHEN NOT ${tasksTable.completed} THEN 1 ELSE 0 END)`.as(
+          "pending",
+        ),
+    })
+    .from(tasksTable)
+    .where(
+      and(
+        eq(tasksTable.userId, userId),
+        sql`DATE(${tasksTable.endDate}) >= ${startDateStr}`,
+        sql`DATE(${tasksTable.endDate}) <= ${endDateStr}`,
+      ),
+    )
+    .groupBy(sql`DATE(${tasksTable.endDate})`)
+    .orderBy(sql`DATE(${tasksTable.endDate})`);
+
+  return result.map((row) => ({
+    date: new Date(row.date as string),
+    completedCount: parseInt(row.completedCount as string),
+    pendingCount: parseInt(row.pendingCount as string),
+  }));
+}
+
 export async function getTasks(userId: string, endDate: Date) {
   const endDateStr = endDate.toISOString().slice(0, 10);
 

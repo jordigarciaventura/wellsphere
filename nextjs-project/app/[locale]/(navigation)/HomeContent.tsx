@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import React, { useState } from 'react'
 import MoodWeekCarousel from "@/components/mood/MoodWeekCarousel";
+import { useState } from "react";
 
-type TabName = 'my-tasks' | 'suggested' | 'challenges';
+type TabName = "my-tasks" | "suggested" | "challenges";
 
 interface HomeContentProps {
   moods: any; // Replace 'any' with the correct type for moods
@@ -11,26 +11,96 @@ interface HomeContentProps {
 }
 
 export default function HomeContent({ moods, date }: HomeContentProps) {
-  const [activeTab, setActiveTab] = useState<TabName>('my-tasks');
+  const [activeTab, setActiveTab] = useState<TabName>("my-tasks");
 
-  const taskCards: Record<TabName, Array<{ title: string; date: string; icon: string; color: string; badge?: string }>> = {
-    'my-tasks': [
-      { title: "Marathon", date: "October 4, 2020", icon: "🏃", color: "green" },
-      { title: "Java test", date: "October 4, 2020", icon: "📚", color: "blue" },
-      { title: "Gym", date: "October 4, 2020", icon: "💪", color: "light-green", badge: "1" },
-      { title: "Study new job", date: "October 4, 2020", icon: "📖", color: "orange" },
-      { title: "Friend's meeting", date: "October 4, 2020", icon: "👥", color: "yellow" },
+  const taskCards: Record<
+    TabName,
+    Array<{
+      title: string;
+      date: string;
+      icon: string;
+      color: string;
+      badge?: string;
+    }>
+  > = {
+    "my-tasks": [
+      {
+        title: "Marathon",
+        date: "October 4, 2020",
+        icon: "🏃",
+        color: "green",
+      },
+      {
+        title: "Java test",
+        date: "October 4, 2020",
+        icon: "📚",
+        color: "blue",
+      },
+      {
+        title: "Gym",
+        date: "October 4, 2020",
+        icon: "💪",
+        color: "light-green",
+        badge: "1",
+      },
+      {
+        title: "Study new job",
+        date: "October 4, 2020",
+        icon: "📖",
+        color: "orange",
+      },
+      {
+        title: "Friend's meeting",
+        date: "October 4, 2020",
+        icon: "👥",
+        color: "yellow",
+      },
     ],
-    'suggested': [
-      { title: "Meditation", date: "October 5, 2020", icon: "🧘", color: "purple" },
-      { title: "Learn a language", date: "October 6, 2020", icon: "🗣️", color: "pink" },
-      { title: "Cook a new recipe", date: "October 7, 2020", icon: "👨‍🍳", color: "teal" },
-      { title: "Read a book", date: "October 8, 2020", icon: "📘", color: "indigo" },
+    suggested: [
+      {
+        title: "Meditation",
+        date: "October 5, 2020",
+        icon: "🧘",
+        color: "purple",
+      },
+      {
+        title: "Learn a language",
+        date: "October 6, 2020",
+        icon: "🗣️",
+        color: "pink",
+      },
+      {
+        title: "Cook a new recipe",
+        date: "October 7, 2020",
+        icon: "👨‍🍳",
+        color: "teal",
+      },
+      {
+        title: "Read a book",
+        date: "October 8, 2020",
+        icon: "📘",
+        color: "indigo",
+      },
     ],
-    'challenges': [
-      { title: "30-day fitness", date: "Starts Oct 1, 2020", icon: "🏋️", color: "red" },
-      { title: "Learn to code", date: "Starts Oct 15, 2020", icon: "💻", color: "cyan" },
-      { title: "No sugar month", date: "Starts Nov 1, 2020", icon: "🍬", color: "brown" },
+    challenges: [
+      {
+        title: "30-day fitness",
+        date: "Starts Oct 1, 2020",
+        icon: "🏋️",
+        color: "red",
+      },
+      {
+        title: "Learn to code",
+        date: "Starts Oct 15, 2020",
+        icon: "💻",
+        color: "cyan",
+      },
+      {
+        title: "No sugar month",
+        date: "Starts Nov 1, 2020",
+        icon: "🍬",
+        color: "brown",
+      },
     ],
   };
 
@@ -39,21 +109,21 @@ export default function HomeContent({ moods, date }: HomeContentProps) {
       <MoodWeekCarousel moods={moods} date={date} readonly />
       <div className="content-wrapper">
         <div className="tabs">
-          <button 
-            className={`tab ${activeTab === 'my-tasks' ? 'active' : ''}`}
-            onClick={() => setActiveTab('my-tasks')}
+          <button
+            className={`tab ${activeTab === "my-tasks" ? "active" : ""}`}
+            onClick={() => setActiveTab("my-tasks")}
           >
             My Tasks
           </button>
-          <button 
-            className={`tab ${activeTab === 'suggested' ? 'active' : ''}`}
-            onClick={() => setActiveTab('suggested')}
+          <button
+            className={`tab ${activeTab === "suggested" ? "active" : ""}`}
+            onClick={() => setActiveTab("suggested")}
           >
             Suggested
           </button>
-          <button 
-            className={`tab ${activeTab === 'challenges' ? 'active' : ''}`}
-            onClick={() => setActiveTab('challenges')}
+          <button
+            className={`tab ${activeTab === "challenges" ? "active" : ""}`}
+            onClick={() => setActiveTab("challenges")}
           >
             Challenges
           </button>
@@ -71,7 +141,11 @@ export default function HomeContent({ moods, date }: HomeContentProps) {
         <div className="keep-moving">
           <h2>Keep Moving</h2>
           <p className="subtitle">Today's mood</p>
-          <p>Lorem ipsum dolor sit amet, er adipiscing elit, sed dianummy nibh euismod dolor sit amet, er adipiscing elit, sed dianummy nibh euismod.</p>
+          <p>
+            Lorem ipsum dolor sit amet, er adipiscing elit, sed dianummy nibh
+            euismod dolor sit amet, er adipiscing elit, sed dianummy nibh
+            euismod.
+          </p>
         </div>
       </div>
       <style jsx>{`
@@ -98,11 +172,13 @@ export default function HomeContent({ moods, date }: HomeContentProps) {
           background-color: transparent;
           border-radius: 20px;
           cursor: pointer;
-          transition: background-color 0.3s ease, box-shadow 0.3s ease;
+          transition:
+            background-color 0.3s ease,
+            box-shadow 0.3s ease;
         }
         .tab.active {
           background-color: white;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .task-carousel {
           display: flex;
@@ -152,18 +228,42 @@ export default function HomeContent({ moods, date }: HomeContentProps) {
           font-size: 14px;
           opacity: 0.8;
         }
-        .green { background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%); }
-        .blue { background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%); }
-        .light-green { background: linear-gradient(135deg, #66BB6A 0%, #43A047 100%); }
-        .orange { background: linear-gradient(135deg, #FFA726 0%, #F57C00 100%); }
-        .yellow { background: linear-gradient(135deg, #FFD54F 0%, #FFA000 100%); }
-        .purple { background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); }
-        .pink { background: linear-gradient(135deg, #E91E63 0%, #C2185B 100%); }
-        .teal { background: linear-gradient(135deg, #009688 0%, #00796B 100%); }
-        .indigo { background: linear-gradient(135deg, #3F51B5 0%, #303F9F 100%); }
-        .red { background: linear-gradient(135deg, #F44336 0%, #D32F2F 100%); }
-        .cyan { background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%); }
-        .brown { background: linear-gradient(135deg, #795548 0%, #5D4037 100%); }
+        .green {
+          background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+        }
+        .blue {
+          background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+        }
+        .light-green {
+          background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+        }
+        .orange {
+          background: linear-gradient(135deg, #ffa726 0%, #f57c00 100%);
+        }
+        .yellow {
+          background: linear-gradient(135deg, #ffd54f 0%, #ffa000 100%);
+        }
+        .purple {
+          background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+        }
+        .pink {
+          background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
+        }
+        .teal {
+          background: linear-gradient(135deg, #009688 0%, #00796b 100%);
+        }
+        .indigo {
+          background: linear-gradient(135deg, #3f51b5 0%, #303f9f 100%);
+        }
+        .red {
+          background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+        }
+        .cyan {
+          background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+        }
+        .brown {
+          background: linear-gradient(135deg, #795548 0%, #5d4037 100%);
+        }
         .keep-moving {
           margin-top: 30px;
         }
@@ -193,6 +293,5 @@ export default function HomeContent({ moods, date }: HomeContentProps) {
         }
       `}</style>
     </div>
-  )
+  );
 }
-
