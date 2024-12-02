@@ -13,5 +13,31 @@
   },
   "Footer": {
     "copyright": "2024 DayCraft. Todos los derechos reservados."
+  },
+  "BottomAppBar": {
+    "chat": "Chat",
+    "tasks": "Tareas",
+    "home": "Inicio",
+    "journal": "Diario",
+    "insights": "Perspectivas"
+  },
+  "Tasks": {
+    "header": "Tareas",
+    "subheader": "No se encontraron tareas",
+    "addtask": "Agregar tarea"
+  },
+  "ChatIntro": {
+    "letschat": "Hablemos",
+    "answerallquestions": "Responderé todas tus preguntas.",
+    "askanything": "Solo pregúntame lo que quieras",
+    "AI": "IA conversacional",
+    "text": "Puedo hablar contigo como un ser humano"
+  },
+  "TaskForm": {
+    "create": "Crear una tarea",
+    "recurrency": "Recurrencia",
+    "desc": "Descripción",
+    "dimensions": "Dimensiones",
+    "createtask": "Crear tarea"
   }
 }

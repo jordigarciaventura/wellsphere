@@ -3,6 +3,7 @@
 import { toggleTaskDoneUseCase } from "@/features/tasks/actions/tasks";
 import TaskListItem from "@/features/tasks/components/TaskListItem";
 import { Task } from "@/types/tasks";
+import {useTranslations} from 'next-intl';
 
 interface Props {
   tasks: Task[];
@@ -12,6 +13,8 @@ export default function TasksList({ tasks }: Props) {
   const toggleTaskDone = async (id: number) => {
     await toggleTaskDoneUseCase(id);
   };
+
+    const t = useTranslations("Tasks");
 
   return tasks.length ? (
     tasks.map((task) => (
@@ -25,6 +28,6 @@ export default function TasksList({ tasks }: Props) {
       />
     ))
   ) : (
-    <p>No tasks found</p>
+    <p>{t("subheader")}</p>
   );
 }

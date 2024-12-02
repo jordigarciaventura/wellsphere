@@ -17,6 +17,7 @@ import RecurrencyFormField from "@/features/tasks/components/RecurrencyFormField
 import TaskOptions from "@/features/tasks/components/TaskOptions";
 import { Weekday } from "@/features/tasks/types/date";
 import { Dimension } from "@/types/mood";
+import { useTranslations } from 'next-intl';
 import { useState } from "react";
 
 export default function TaskForm() {
@@ -27,6 +28,7 @@ export default function TaskForm() {
   const [weekdays, setWeekdays] = useState<Weekday[]>([]);
   const [description, setDescription] = useState<string>("");
   const [dimensions, setDimensions] = useState<Dimension[]>([]);
+  const t = useTranslations("TaskForm");
 
   const handleCreateTask = async () => {
     await createTaskUseCase({
@@ -48,7 +50,7 @@ export default function TaskForm() {
           <Link href={route.tasks} className="flex items-center gap-2">
             <ArrowLeft />
           </Link>
-          <h2>Create a task</h2>
+          <h2>{t("create")}</h2>
           <TaskOptions />
         </div>
         <div className="flex flex-col gap-4 px-6">
@@ -65,7 +67,7 @@ export default function TaskForm() {
       </div>
       <div className="-mt-4 flex flex-col gap-4 rounded-t-lg bg-background px-6 py-4">
         <div className="grid w-full gap-4">
-          <Label htmlFor="recurrency">Recurrency</Label>
+          <Label htmlFor="recurrency">{t("recurrency")}</Label>
           <RecurrencyFormField
             selectedDays={weekdays}
             setSelectedDays={setWeekdays}
@@ -73,7 +75,7 @@ export default function TaskForm() {
         </div>
         <Separator />
         <div className="grid w-full gap-4">
-          <Label htmlFor="description">Description</Label>
+          <Label htmlFor="description">{t("desc")}</Label>
           <Textarea
             placeholder="Type the task description here"
             id="description"
@@ -84,7 +86,7 @@ export default function TaskForm() {
         </div>
         <Separator />
         <div className="grid w-full gap-4">
-          <Label htmlFor="category">Dimensions</Label>
+          <Label htmlFor="category">{t("dimensions")}</Label>
           <DimensionsFormField
             selectedDimensions={dimensions}
             setSelectedDimensions={setDimensions}
@@ -95,7 +97,7 @@ export default function TaskForm() {
             className="mx-4 h-14 w-full rounded-full bg-gradient-linear"
             onClick={handleCreateTask}
           >
-            Create Task
+            {t("createtask")}
           </Button>
         </div>
       </div>

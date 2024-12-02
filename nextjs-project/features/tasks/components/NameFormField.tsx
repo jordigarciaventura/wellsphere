@@ -2,6 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useTranslations } from 'next-intl';
 
 interface Props {
   name: string;
@@ -9,10 +10,11 @@ interface Props {
 }
 
 export default function NameFormField({ name, setName }: Props) {
+  const t = useTranslations("NameFormField");
   return (
     <div className="grid w-full max-w-sm items-center gap-1.5">
       <Label htmlFor="name" className="text-muted">
-        Name
+        {t("name")}
       </Label>
       <Input
         id="name"

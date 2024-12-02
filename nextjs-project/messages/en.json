@@ -4,7 +4,9 @@
     "description": "Our awesome app"
   },
   "Main": {
-    "welcome": "Welcome to DayCraft"
+    "welcome": "Welcome to DayCraft",
+    "button": "Button",
+    "home": "Home"
   },
   "Components": {
     "language-select": {
@@ -13,5 +15,105 @@
   },
   "Footer": {
     "copyright": "2024 DayCraft. All rights reserved."
+  },
+
+  "BottomAppBar": {
+    "chat": "Chat",
+    "tasks": "Tasks",
+    "home": "Home",
+    "journal": "Journal",
+    "insights": "Insights"
+  },
+
+  "Tasks": {
+    "header": "Tasks",
+    "subheader": "No tasks found",
+    "addtask": "Add task"
+  },
+
+  "ChatIntro": {
+    "letschat": "Let's chat",
+    "answerallquestions": "Answer all your questions.",
+    "askanything": "Just ask me anything you like",
+    "AI": "Conversational AI",
+    "text": "I can talk to you like a human being"
+  },
+
+  "TaskForm": {
+    "create": "Create a task",
+    "recurrency": "Recurrency",
+    "desc": "Description",
+    "dimensions": "Dimensions",
+    "createtask": "Create Task"
+  },
+
+  "TaskF2": {
+    "header": "TaskPage for task: "
+  },
+
+  "LoginForm": {
+    "signin": "Sign in",
+    "carddescription": "Enter your email below to login to your account",
+    "email": "Email",
+    "password": "Password",
+    "forgot": "Forgot your password?",
+    "login": "Login",
+    "google": "Login with Google",
+    "github": "Login with GitHub",
+    "donthave": "Don't have an account?",
+    "signup": "Sign up"
+  },
+
+  "DimensionsFormField": {
+    "emotional": "Emotional",
+    "spiritual": "Spiritual",
+    "physical": "Physical",
+    "occupational": "Occupational",
+    "intellectual": "Intellectual",
+    "social": "Social"
+  },
+
+  "DateFormField": {
+    "date": "Date",
+    "pickdate": "Pick a date",
+    "starttime": "Start Time",
+    "endtime": "End Time"
+  },
+
+  "NameFormField": {
+    "name": "Name"
+  },
+
+  "TaskOptions": {
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+
+  "Tutorial": {
+    "title1": "Purpose and dimensions",
+    "desc1": "Take care of your well-being across 6 dimensions. Challenge yourself with daily tasks, keep a journal, and let WellSphere help you track your progress!",
+    "title2": "Physical",
+    "desc2": "Stay active! Set physical goals, like running or exercising, to keep your body healthy.",
+    "title3": "Emotional",
+    "desc3": "Balance your emotions. Set a goal to talk about your feelings and reflect daily.",
+    "title4": "Intellectual",
+    "desc4": "Challenge your mind! Set a goal, like reading a book or learning something new.",
+    "title5": "Social",
+    "desc5": "Build better connections! Set goals to improve your relationships each day.",
+    "title6": "Spiritual",
+    "desc6": "Find inner peace. Add a meditation practice to your daily routine.",
+    "title7": "Occupational",
+    "desc7": "Stay ahead in your career! Set goals to keep up with market trends and improve professionally.",
+    "back": "Back",
+    "next": "Next",
+    "skip": "Skip",
+    "title": "Default Title",
+    "text": "This is a default step description"
+  },
+
+  "WelcomePage": {
+    "welcome": "Welcome to WellSphere",
+    "paragraph": "Discover amazing features and boost your productivity with our innovative application.",
+    "getstarted": "Get Started"
   }
 }

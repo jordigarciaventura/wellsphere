@@ -12,8 +12,11 @@ import {
 import { cn } from "@/lib/utils";
 import { formatDate } from "date-fns";
 import { CalendarIcon } from "lucide-react";
+import { useTranslations } from 'next-intl';
 
 interface Props {
+
+  
   date: Date | undefined;
   setDate: (date: Date | undefined) => void;
   startTime: string | undefined;
@@ -30,11 +33,12 @@ export default function DateFormField({
   endTime,
   setEndTime,
 }: Props) {
+  const t = useTranslations("DateFormField");
   return (
     <div className="flex flex-col gap-4">
       <div className="grid w-full max-w-sm items-center gap-1.5">
         <Label htmlFor="endDate" className="text-muted">
-          Date
+          {t("date")}
         </Label>
         <Popover>
           <PopoverTrigger asChild>
@@ -45,7 +49,7 @@ export default function DateFormField({
               )}
             >
               <CalendarIcon />
-              {date ? formatDate(date, "PPP") : <span>Pick a date</span>}
+              {date ? formatDate(date, "PPP") : <span>{t("pickdate")}</span>}
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-0">
@@ -61,7 +65,7 @@ export default function DateFormField({
       <div className="flex gap-4">
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="startTime" className="text-muted">
-            Start Time
+            {t("starttime")}
           </Label>
           <Input
             type="time"
@@ -74,7 +78,7 @@ export default function DateFormField({
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="endTime" className="text-muted">
-            End Time
+            {t("endtime")}
           </Label>
           <Input
             type="time"

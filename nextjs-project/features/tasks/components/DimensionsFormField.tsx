@@ -9,42 +9,7 @@ import SocialIcon from "@/lib/icons/SocialIcon";
 import SpiritualIcon from "@/lib/icons/SpiritualIcon";
 import { cn } from "@/lib/utils";
 import { Dimension } from "@/types/mood";
-
-const dimensionsConfig: Record<
-  Dimension,
-  { label: string; icon: JSX.Element; color: string }
-> = {
-  emotional: {
-    label: "Emotional",
-    icon: <EmotionalIcon />,
-    color: "bg-emotional",
-  },
-  spiritual: {
-    label: "Spiritual",
-    icon: <SpiritualIcon />,
-    color: "bg-spiritual",
-  },
-  physical: {
-    label: "Physical",
-    icon: <PhysicalIcon />,
-    color: "bg-physical",
-  },
-  occupational: {
-    label: "Occupational",
-    icon: <OccupationalIcon />,
-    color: "bg-occupational",
-  },
-  intellectual: {
-    label: "Intellectual",
-    icon: <IntellectualIcon />,
-    color: "bg-intellectual",
-  },
-  social: {
-    label: "Social",
-    icon: <SocialIcon />,
-    color: "bg-social",
-  },
-};
+import { useTranslations } from 'next-intl';
 
 interface Props {
   selectedDimensions: Dimension[];
@@ -55,6 +20,45 @@ export default function DimensionsFormField({
   selectedDimensions,
   setSelectedDimensions,
 }: Props) {
+
+const t = useTranslations("DimensionsFormField");
+const dimensionsConfig: Record<
+
+Dimension,
+{ label: string; icon: JSX.Element; color: string }
+> = {
+emotional: { 
+  label: t("emotional"),
+  icon: <EmotionalIcon />,
+  color: "bg-emotional",
+},
+spiritual: {
+  label: t("spiritual"),
+  icon: <SpiritualIcon />,
+  color: "bg-spiritual",
+},
+physical: {
+  label: t("physical"),
+  icon: <PhysicalIcon />,
+  color: "bg-physical",
+},
+occupational: {
+  label: t("occupational"),
+  icon: <OccupationalIcon />,
+  color: "bg-occupational",
+},
+intellectual: {
+  label: t("intellectual"),
+  icon: <IntellectualIcon />,
+  color: "bg-intellectual",
+},
+social: {
+  label: t("social"),
+  icon: <SocialIcon />,
+  color: "bg-social",
+},
+};
+
   const toggleDimension = (dimension: Dimension) => {
     setSelectedDimensions(
       selectedDimensions.includes(dimension)

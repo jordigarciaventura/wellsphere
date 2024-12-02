@@ -20,9 +20,9 @@ export default async function Example({ params: { locale } }: Props) {
       <h1>{t("welcome")}</h1>
       <LanguageSelect />
       <ThemeToggleButton />
-      <Button>Button</Button>
+      <Button>{t("button")}</Button>
       <Input placeholder="Input" />
-      <Link href={route.home}>Home</Link>
+      <Link href={route.home}>{t("home")}</Link>
     </div>
   );
 }

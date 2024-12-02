@@ -6,7 +6,8 @@ import { getMoodsUseCase } from "@/features/tasks/use-cases/moods";
 import { getTasksUseCase } from "@/features/tasks/use-cases/tasks";
 import { Link } from "@/i18n/routing";
 import { Plus } from "lucide-react";
-import { setRequestLocale } from "next-intl/server";
+import { useTranslations } from 'next-intl';
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 interface Props {
   params: { locale: string };
@@ -19,6 +20,8 @@ export default async function TasksPage({
 }: Props) {
   // Enable static rendering
   setRequestLocale(locale);
+
+  const t = await getTranslations("Tasks");
 
   const queryDate = searchParams.date as string | undefined;
   const date =
@@ -45,7 +48,7 @@ export default async function TasksPage({
               <Link href={route.newTask}>
                 <Button className="h-12 rounded-full bg-gradient-linear">
                   <Plus size={16} className="mr-2" />
-                  <p className="mr-2">Add task</p>
+                  <p className="mr-2">{t("addtask")}</p>
                 </Button>
               </Link>
             }
@@ -53,7 +56,7 @@ export default async function TasksPage({
         </div>
       </div>
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 px-4">
-        <h2 className="text-2xl font-semibold">Tasks</h2>
+        <h2 className="text-2xl font-semibold">{t("header")}</h2>
         <div className="flex flex-col gap-4 pb-8 md:grid md:grid-cols-2 lg:grid-cols-3">
           <TasksList tasks={tasks} />
         </div>

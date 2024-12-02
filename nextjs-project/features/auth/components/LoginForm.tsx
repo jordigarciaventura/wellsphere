@@ -14,20 +14,22 @@ import { route } from "@/config/site";
 import { Link } from "@/i18n/routing";
 import { IconBrandGithub, IconBrandGoogleFilled } from "@tabler/icons-react";
 import { signIn } from "next-auth/react";
+import { useTranslations } from 'next-intl';
 
 export function LoginForm() {
+  const t = useTranslations('LoginForm');
   return (
     <Card className="mx-auto w-full max-w-md">
       <CardHeader>
-        <CardTitle className="text-2xl">Sign in</CardTitle>
+        <CardTitle className="text-2xl">{t("signin")}</CardTitle>
         <CardDescription>
-          Enter your email below to login to your account
+          {t("carddescription")}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="grid gap-4">
           <div className="grid gap-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">{t("email")}</Label>
             <Input
               id="email"
               type="email"
@@ -37,15 +39,15 @@ export function LoginForm() {
           </div>
           <div className="grid gap-2">
             <div className="flex items-center">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">{t("password")}</Label>
               <Link href="#" className="ml-auto inline-block text-sm underline">
-                Forgot your password?
+                {t("forgot")}
               </Link>
             </div>
             <Input id="password" type="password" required />
           </div>
           <Button type="submit" className="w-full">
-            Login
+            {t("login")}
           </Button>
           <Button
             variant="outline"
@@ -53,20 +55,20 @@ export function LoginForm() {
             onClick={() => signIn("google")}
           >
             <IconBrandGoogleFilled />
-            Login with Google
+            {t("google")}
           </Button>
           <Button
             variant="outline"
             className="w-full"
             onClick={() => signIn("github")}
           >
-            <IconBrandGithub /> Login with GitHub
+            <IconBrandGithub /> {t("github")}
           </Button>
         </div>
         <div className="mt-4 text-center text-sm">
           Don&apos;t have an account?{" "}
           <Link href={route.register} className="underline">
-            Sign up
+            {t("signup")}
           </Link>
         </div>
       </CardContent>
