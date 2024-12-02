@@ -10,7 +10,7 @@ async function reset() {
   console.log("🗑️  Emptying the entire database");
   const queries = Object.values(tableSchema).map((table: any) => {
     console.log(`🧨 Preparing delete query for table: ${table.dbName}`);
-    return sql.raw(`TRUNCATE TABLE ${table.dbName};`);
+    return sql`TRUNCATE TABLE ${sql.identifier([table.dbName])};`;
   });
 
   console.log("📨 Sending delete queries...");
@@ -26,6 +26,11 @@ async function reset() {
   console.log("✅ Database emptied");
 }
 
-reset().catch((e) => {
-  console.error(e);
-});
+reset()
+  .then(() => {
+    process.exit(0);
+  })
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  });
