@@ -12,6 +12,7 @@ import {
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 import { getMoodColor } from "@/lib/colors";
 import { getMoodIcon } from "@/lib/icons";
+import { getMoodScore } from "@/lib/mood";
 import { Mood, MoodEntry } from "@/types/mood";
 import { getRandomMood } from "@/utils/mockData";
 import { addDays } from "date-fns";
@@ -30,13 +31,14 @@ const generateMockData = (startDate: Date, endDate: Date) => {
   return dates;
 };
 
-const incrementMood = (moodEntry: MoodEntry) =>
-  ({
-    ...moodEntry,
-    mood: moodEntry.mood + 1,
-  }) as MoodEntry;
+const formatMood = (moodEntry: MoodEntry) => ({
+  ...moodEntry,
+  mood: getMoodScore(moodEntry.mood) + 1,
+});
 
-const mockData = generateMockData(new Date("2024-01-01"), new Date());
+const tenDaysAgo = addDays(new Date(), -10);
+
+const mockData = generateMockData(tenDaysAgo, new Date());
 
 const chartConfig = {
   mood: {
@@ -106,7 +108,7 @@ export function MoodLineChart() {
           config={chartConfig}
           className="h-full w-full overflow-hidden"
         >
-          <BarChart accessibilityLayer data={mockData.map(incrementMood)}>
+          <BarChart accessibilityLayer data={mockData.map(formatMood)}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="date"
@@ -129,8 +131,10 @@ export function MoodLineChart() {
               tick={(props) => <CustomYAxisTick {...props} />}
             />
             <Bar dataKey="mood" layout="vertical" radius={4}>
-              {mockData.map(incrementMood).map((entry, index) => {
-                return <Cell fill={getMoodColor(entry.mood)} />;
+              {mockData.map((entry) => {
+                return (
+                  <Cell fill={getMoodColor(entry.mood)} key={entry.date} />
+                );
               })}
             </Bar>
           </BarChart>
