@@ -44,4 +44,3 @@ const PlansPage = () => {
 }
 
 export default PlansPage
-

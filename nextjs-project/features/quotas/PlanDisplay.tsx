@@ -58,4 +58,3 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ currentPlan, availablePlans }
 }
 
 export default PlanDisplay
-
