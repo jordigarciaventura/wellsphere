@@ -23,7 +23,6 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ currentPlan, availablePlans }
   return (
     <div className={styles.container}>
       <div className={styles.currentPlan}>
-        <h2>Your Current Plan</h2>
         <div className={styles.planCard}>
           <h3>{currentPlan.name}</h3>
           <p className={styles.price}>${currentPlan.price}/month</p>
@@ -37,7 +36,6 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ currentPlan, availablePlans }
         </div>
       </div>
       <div className={styles.availablePlans}>
-        <h2>Available Plans</h2>
         <div className={styles.planGrid}>
           {availablePlans.map((plan, index) => (
             <div key={index} className={styles.planCard}>

@@ -2,8 +2,8 @@ import PlanDisplay from '@/features/quotas/PlanDisplay'
 
 const PlansPage = () => {
   const currentPlan = {
-    name: 'Basic Plan',
-    price: 9.99,
+    name: 'Free Plan',
+    price: 0.00,
     features: [
       { name: 'Lorem ipsum dolor sit amet', included: true },
       { name: 'Consectetur adipiscing elit', included: true },
@@ -14,8 +14,8 @@ const PlansPage = () => {
 
   const availablePlans = [
     {
-      name: 'Pro Plan',
-      price: 19.99,
+      name: 'Basic Plan',
+      price: 9.99,
       features: [
         { name: 'Lorem ipsum dolor sit amet', included: true },
         { name: 'Consectetur adipiscing elit', included: true },
@@ -24,8 +24,8 @@ const PlansPage = () => {
       ],
     },
     {
-      name: 'Enterprise Plan',
-      price: 49.99,
+      name: 'Pro Plan',
+      price: 19.99,
       features: [
         { name: 'Lorem ipsum dolor sit amet', included: true },
         { name: 'Consectetur adipiscing elit', included: true },
