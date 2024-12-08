@@ -28,6 +28,7 @@ export const users = pgTable("user", {
     withTimezone: true,
   }).default(sql`CURRENT_TIMESTAMP`),
   image: varchar("image", { length: 255 }),
+  password: varchar("password", { length: 55 }),
 });
 
 export const usersRelations = relations(users, ({ many }) => ({

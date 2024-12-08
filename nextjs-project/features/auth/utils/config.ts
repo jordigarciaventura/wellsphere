@@ -5,6 +5,8 @@ import { type DefaultSession, type NextAuthOptions } from "next-auth";
 import { type Adapter } from "next-auth/adapters";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { getUserByEmail } from "../data-access/users";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -71,6 +73,33 @@ export const authOptions: NextAuthOptions = {
         },
       },
       allowDangerousEmailAccountLinking: true,
+    }),
+
+    CredentialsProvider({
+      credentials: {
+        email: { label: "Email", type: "email", placeholder: "email@email.com" },
+        password: { label: "Password", type: "password" },
+      },
+      // Authorize function to validate credentials
+      // returns a user object if successful of the db
+      // returns null if not then an error will be displayed
+      async authorize(credentials) {
+        // Ensure that there is a credentials object
+        if (!credentials) return null;
+
+        // Verify the email sintaxis
+        const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(credentials.email)) {
+          throw null;
+        }
+
+        const user = await getUserByEmail(credentials.email);
+        if (user && user[0]?.password === credentials.password) {
+          return user[0];
+        } else {
+          return null;
+        }
+      }
     }),
   ],
 };
