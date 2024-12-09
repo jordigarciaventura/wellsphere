@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { routing } from "./i18n/routing";
 
 //export default createMiddleware(routing);
-const accessiblePages = ["/login", "/signup", "/forgot-password"];
+const accessiblePages = ["/login", "/register", "/forgot-password"];
 
 export async function middleware(request: NextRequest) {
   const env = process.env.NODE_ENV;
