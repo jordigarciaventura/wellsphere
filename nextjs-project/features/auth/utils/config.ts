@@ -86,7 +86,7 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         // Ensure that there is a credentials object
         if (!credentials) return null;
-
+        
         // Verify the email sintaxis
         const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(credentials.email)) {
