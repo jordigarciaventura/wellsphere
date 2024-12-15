@@ -85,8 +85,9 @@ export const authOptions: NextAuthOptions = {
       // returns null if not then an error will be displayed
       async authorize(credentials) {
         // Ensure that there is a credentials object
+
         if (!credentials) return null;
-        
+
         const user = await getUserByEmail(credentials.email);
         if (user && user[0]?.password === credentials.password) {
           return user[0];
