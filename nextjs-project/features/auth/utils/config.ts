@@ -87,12 +87,6 @@ export const authOptions: NextAuthOptions = {
         // Ensure that there is a credentials object
         if (!credentials) return null;
         
-        // Verify the email sintaxis
-        const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(credentials.email)) {
-          throw null;
-        }
-
         const user = await getUserByEmail(credentials.email);
         if (user && user[0]?.password === credentials.password) {
           return user[0];

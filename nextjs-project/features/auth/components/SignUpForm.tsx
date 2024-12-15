@@ -15,8 +15,17 @@ import { Link } from "@/i18n/routing";
 import { IconBrandGithub, IconBrandGoogleFilled } from "@tabler/icons-react";
 import { signIn } from "next-auth/react";
 
-export function verify(event: React.FormEvent<HTMLFormElement>) {
+import { signUpSchema } from "../registerSchemas";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { redirect } from "next/dist/server/api-utils";
+
+async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
   event.preventDefault();
+  const username = (event.currentTarget.elements.namedItem(
+    "name",
+  ) as HTMLInputElement).value;
   const password = (event.currentTarget.elements.namedItem(
     "password",
   ) as HTMLInputElement).value;
@@ -24,16 +33,46 @@ export function verify(event: React.FormEvent<HTMLFormElement>) {
     "confirm-password",
   ) as HTMLInputElement).value;
 
+  // Verify password and confirm password match
   if (password !== confirmPassword) {
     alert("Passwords do not match");
     return;
+  }
+
+  const email = (event.currentTarget.elements.namedItem("email") as HTMLInputElement).value;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Verify email structure
+  if (!emailRegex.test(email)) {
+    alert("Invalid email address");
+    return;
+  }
+
+  type SignUpData = z.infer<typeof signUpSchema>;
+
+  const response = await fetch("/api/auth/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+      email,
+      password,
+    }),
+  });
+
+  if (response.ok) {
+    window.location.href = "/";
+  } else {
+    alert("Failed to create account");
   }
 }
 
 export function SignUpForm() {
   return (
     <Card className="mx-auto w-full max-w-md">
-      <form onSubmit={verify}>
+      <form onSubmit={handleSubmit}>
         <CardHeader>
           <CardTitle className="text-2xl">Sign up</CardTitle>
           <CardDescription>Fill the form to create a new account</CardDescription>
