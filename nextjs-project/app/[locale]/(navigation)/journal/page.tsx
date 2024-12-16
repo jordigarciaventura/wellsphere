@@ -1,8 +1,13 @@
+import { Button } from "@/components/ui/button";
+import { route } from "@/config/site";
 import ClientJournalPage from "@/features/journal/components/ClientJournalPage";
+import JournalWeekPicker from "@/features/journal/components/JournalWeekPicker";
 import MoodSelector from "@/features/journal/components/MoodSelector";
-import MoodWeekPicker from "@/features/journal/components/MoodWeekPicker";
 import { getJournalEntryUseCase } from "@/features/journal/use-cases/journal";
 import { getMoodsUseCase } from "@/features/tasks/use-cases/moods";
+import { Link } from "@/i18n/routing";
+import { isSameDay } from "date-fns";
+import { Plus } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 
 interface Props {
@@ -30,11 +35,11 @@ export default async function JournalPage({
 
   const journalEntry =
     journalResult.status === "fulfilled" ? journalResult.value : null;
-  const moods = moodsResult.status === "fulfilled" ? moodsResult.value : [];
+  const moodEntries =
+    moodsResult.status === "fulfilled" ? moodsResult.value : [];
 
-  const dateStr = date.toISOString().slice(0, 10);
-  const selectedMood =
-    moods.find((mood) => mood.date === dateStr)?.mood ?? null;
+  const todaysMood =
+    moodEntries.find((mood) => isSameDay(mood.date, date))?.mood ?? null;
 
   const journalContent = journalEntry?.content ?? "";
 
@@ -42,11 +47,22 @@ export default async function JournalPage({
     <div className="flex h-full w-full flex-col gap-8">
       <div className="rounded-b-md bg-card px-2 py-4 shadow-md">
         <div className="mx-auto flex w-full max-w-5xl justify-center">
-          <MoodWeekPicker moods={moods} date={date} />
+          <JournalWeekPicker
+            moodEntries={moodEntries}
+            date={date}
+            rightSlot={
+              <Link href={route.questionnaire}>
+                <Button className="h-12 rounded-full bg-gradient-linear">
+                  <Plus size={16} className="mr-2" />
+                  <p className="mr-2">Answer questionnaire</p>
+                </Button>
+              </Link>
+            }
+          />
         </div>
       </div>
       <div className="mx-auto flex w-full max-w-xl flex-col gap-4">
-        <MoodSelector date={date} selectedMood={selectedMood} />
+        <MoodSelector date={date} selectedMood={todaysMood} />
         <ClientJournalPage date={date} initialContent={journalContent} />
       </div>
     </div>
