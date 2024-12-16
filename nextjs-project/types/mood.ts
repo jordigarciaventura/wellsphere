@@ -1,5 +1,5 @@
 export interface MoodEntry {
-  date: string;
+  date: Date;
   mood: Mood;
 }
 

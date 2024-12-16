@@ -65,7 +65,7 @@ export default function WeeklyCarousel({
         break;
       }
     }
-  }, [selectedDate, monthDate, containerRef, onMonthChange]);
+  }, [containerRef, onMonthChange]);
 
   useEffect(() => {
     const scrollContainer = containerRef.current!;

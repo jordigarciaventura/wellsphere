@@ -13,17 +13,36 @@ async function reset() {
     return sql`TRUNCATE TABLE ${sql.identifier(table.dbName)};`;
   });
 
-  console.log("📨 Sending delete queries...");
+  try {
+    console.log("📨 Sending delete queries...");
+    await db.transaction(async (tx) => {
+      await Promise.all(
+        queries.map(async (query) => {
+          if (query) await tx.execute(query);
+        }),
+      );
+    });
+    console.log("✅ Database emptied");
+  } catch (e) {
+    console.log(e);
+  }
 
-  await db.transaction(async (tx) => {
-    await Promise.all(
-      queries.map(async (query) => {
-        if (query) await tx.execute(query);
-      }),
-    );
-  });
+  // Remove public schemas
+  try {
+    console.log("🗑️  Dropping public schema");
+    await db.execute(sql`DROP SCHEMA public CASCADE;`);
+    console.log("✅ Public schema dropped");
+  } catch (e) {
+    console.log(e);
+  }
 
-  console.log("✅ Database emptied");
+  try {
+    console.log("📨 Creating public schema");
+    await db.execute(sql`CREATE SCHEMA public;`);
+    console.log("✅ Public schema created");
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 reset()

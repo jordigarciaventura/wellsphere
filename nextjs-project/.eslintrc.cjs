@@ -42,6 +42,6 @@ const config = {
       },
     ],
   },
-  ignorePatterns: ["components/ui/*", "lib/chartUtils.ts"],
+  ignorePatterns: ["components/ui/*", "lib/chartUtils.ts", "manifest.ts"],
 };
 module.exports = config;

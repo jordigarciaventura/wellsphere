@@ -1,7 +1,7 @@
 import TopAppBar from "@/components/navigation/TopAppBar";
+import HomeContent from "@/features/home/components/HomeContent";
 import { getMoodsUseCase } from "@/features/tasks/use-cases/moods";
 import { setRequestLocale } from "next-intl/server";
-import HomeContent from "./HomeContent.tsx";
 
 interface Props {
   params: { locale: string };
@@ -21,12 +21,12 @@ export default async function HomePage({
       ? new Date(queryDate)
       : new Date();
 
-  const moods = await getMoodsUseCase(date);
+  const moodEntries = await getMoodsUseCase(date);
 
   return (
     <>
       <TopAppBar />
-      <HomeContent moods={moods} date={date} />
+      <HomeContent moodEntries={moodEntries} date={date} />
     </>
   );
 }

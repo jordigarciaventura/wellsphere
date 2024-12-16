@@ -17,6 +17,7 @@ export const route = {
   settings: "/settings",
   pricing: "/pricing",
   profile: "/settings/profile",
+  questionnaire: "/questionnaire",
 };
 
 export const url = {

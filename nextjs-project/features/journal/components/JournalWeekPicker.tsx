@@ -5,23 +5,24 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import WeeklyCarousel from "@/components/weekly-carousel/WeeklyCarousel";
 import { route } from "@/config/site";
-import MoodWeekCarousel from "@/features/journal/components/MoodWeekCarousel";
 import LocalizedCalendar from "@/features/language/components/LocalizedCalendar";
 import { useRouter } from "@/i18n/routing";
+import { getMoodIcon } from "@/lib/icons";
 import { MoodEntry } from "@/types/mood";
 import { formatDate } from "@/utils/date-utils";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, CircleDashed } from "lucide-react";
 import { useCallback, useState } from "react";
 
 interface Props {
   date: Date;
-  moods: MoodEntry[];
+  moodEntries: MoodEntry[];
   rightSlot?: React.ReactNode;
 }
 
-export default function MoodWeekPicker({
-  moods,
+export default function JournalWeekPicker({
+  moodEntries,
   date: selectedDate,
   rightSlot,
 }: Props) {
@@ -43,6 +44,16 @@ export default function MoodWeekPicker({
       if (!date) return;
       setTitle(formatDate(date, "MMM, yyyy"));
       setCurrentDate(date);
+      router.replace({
+        pathname: route.journal,
+        query: { date: formatDate(date, "yyyy-MM-dd") },
+      });
+    },
+    [router],
+  );
+
+  const handleDayChange = useCallback(
+    (date: Date) => {
       router.replace({
         pathname: route.journal,
         query: { date: formatDate(date, "yyyy-MM-dd") },
@@ -75,10 +86,15 @@ export default function MoodWeekPicker({
         {rightSlot}
       </div>
 
-      <MoodWeekCarousel
-        date={selectedDate}
-        moods={moods}
+      <WeeklyCarousel
+        selectedDate={selectedDate}
         onMonthChange={handleMonthChange}
+        onDayChange={handleDayChange}
+        emptyElement={<CircleDashed />}
+        items={moodEntries.map((moodEntry) => ({
+          date: moodEntry.date,
+          element: getMoodIcon(moodEntry.mood),
+        }))}
       />
     </div>
   );

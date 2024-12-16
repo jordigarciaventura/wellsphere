@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS "journalEntries" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "messages" (
 	"id" uuid PRIMARY KEY NOT NULL,
-	"userId" varchar(255),
+	"userId" varchar(255) NOT NULL,
 	"role" "role" NOT NULL,
 	"content" text NOT NULL,
 	"createdAt" timestamp DEFAULT now(),
@@ -45,11 +45,40 @@ CREATE TABLE IF NOT EXISTS "moodEntries" (
 	CONSTRAINT "moodEntries_userId_date_pk" PRIMARY KEY("userId","date")
 );
 --> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "options" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"questionId" integer NOT NULL,
+	"text" text NOT NULL,
+	"score" integer NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "questions" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"dimension" "dimension" NOT NULL,
+	"text" text NOT NULL,
+	"questionnaireUserId" varchar(50) NOT NULL,
+	"questionnaireDate" date NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "questionnaires" (
+	"userId" varchar(255) NOT NULL,
+	"date" date NOT NULL,
+	"submited" boolean DEFAULT false NOT NULL,
+	CONSTRAINT "questionnaires_userId_date_pk" PRIMARY KEY("userId","date")
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "responses" (
+	"userId" varchar(255) NOT NULL,
+	"questionId" integer NOT NULL,
+	"optionId" integer NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "scores" (
 	"userId" varchar(255) NOT NULL,
+	"date" date NOT NULL,
 	"dimensionId" "dimension" NOT NULL,
 	"score" integer NOT NULL,
-	CONSTRAINT "scores_userId_dimensionId_pk" PRIMARY KEY("userId","dimensionId")
+	CONSTRAINT "scores_userId_dimensionId_date_pk" PRIMARY KEY("userId","dimensionId","date")
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "tasks" (
@@ -109,7 +138,43 @@ EXCEPTION
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
+ ALTER TABLE "messages" ADD CONSTRAINT "messages_userId_user_id_fk" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
  ALTER TABLE "moodEntries" ADD CONSTRAINT "moodEntries_userId_user_id_fk" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "options" ADD CONSTRAINT "options_questionId_questions_id_fk" FOREIGN KEY ("questionId") REFERENCES "public"."questions"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "questions" ADD CONSTRAINT "questions_questionnaireUserId_questionnaireDate_questionnaires_userId_date_fk" FOREIGN KEY ("questionnaireUserId","questionnaireDate") REFERENCES "public"."questionnaires"("userId","date") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "questionnaires" ADD CONSTRAINT "questionnaires_userId_user_id_fk" FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "responses" ADD CONSTRAINT "responses_questionId_questions_id_fk" FOREIGN KEY ("questionId") REFERENCES "public"."questions"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "responses" ADD CONSTRAINT "responses_optionId_options_id_fk" FOREIGN KEY ("optionId") REFERENCES "public"."options"("id") ON DELETE no action ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
