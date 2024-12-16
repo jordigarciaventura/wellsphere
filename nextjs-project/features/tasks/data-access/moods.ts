@@ -9,7 +9,7 @@ export async function getMoods(userId: string, startDate: Date, endDate: Date) {
   const startDateStr = formatDate(startDate, "yyyy-MM-dd");
   const endDateStr = formatDate(endDate, "yyyy-MM-dd");
 
-  return await db
+  const result = await db
     .select({
       date: moodEntriesTable.date,
       mood: moodEntriesTable.mood,
@@ -22,4 +22,9 @@ export async function getMoods(userId: string, startDate: Date, endDate: Date) {
         lte(moodEntriesTable.date, endDateStr),
       ),
     );
+
+  return result.map((row) => ({
+    ...row,
+    date: new Date(row.date as string),
+  }));
 }

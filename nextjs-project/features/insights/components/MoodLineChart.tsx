@@ -31,6 +31,16 @@ const generateMockData = (startDate: Date, endDate: Date) => {
   return dates;
 };
 
+type DbMoodEntry = {
+  date: string;
+  mood: Mood;
+};
+
+const fixedMood = (entry: DbMoodEntry) => ({
+  date: new Date(entry.date),
+  mood: entry.mood,
+});
+
 const formatMood = (moodEntry: MoodEntry) => ({
   ...moodEntry,
   mood: getMoodScore(moodEntry.mood) + 1,
@@ -102,13 +112,17 @@ export function MoodLineChart() {
       <CardHeader>
         <CardTitle>Mood evolution</CardTitle>
         <CardDescription>Last 10 days</CardDescription>
+        <CardDescription>Last 10 days</CardDescription>
       </CardHeader>
       <CardContent className="h-80 p-0">
         <ChartContainer
           config={chartConfig}
           className="h-full w-full overflow-hidden"
         >
-          <BarChart accessibilityLayer data={mockData.map(formatMood)}>
+          <BarChart
+            accessibilityLayer
+            data={mockData.map(fixedMood).map(formatMood)}
+          >
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="date"

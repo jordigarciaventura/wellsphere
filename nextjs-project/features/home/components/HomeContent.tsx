@@ -1,16 +1,19 @@
 "use client";
 
-import MoodWeekCarousel from "@/components/mood/MoodWeekCarousel";
+import WeeklyCarousel from "@/components/weekly-carousel/WeeklyCarousel";
+import { getMoodIcon } from "@/lib/icons";
+import { MoodEntry } from "@/types/mood";
+import { CircleDashed } from "lucide-react";
 import { useState } from "react";
 
 type TabName = "my-tasks" | "suggested" | "challenges";
 
 interface HomeContentProps {
-  moods: any; // Replace 'any' with the correct type for moods
+  moodEntries: MoodEntry[];
   date: Date;
 }
 
-export default function HomeContent({ moods, date }: HomeContentProps) {
+export default function HomeContent({ moodEntries, date }: HomeContentProps) {
   const [activeTab, setActiveTab] = useState<TabName>("my-tasks");
 
   const taskCards: Record<
@@ -106,7 +109,16 @@ export default function HomeContent({ moods, date }: HomeContentProps) {
 
   return (
     <div className="container">
-      <MoodWeekCarousel moods={moods} date={date} readonly />
+      <WeeklyCarousel
+        readonly
+        selectedDate={date}
+        emptyElement={<CircleDashed />}
+        items={moodEntries.map((moodEntry) => ({
+          date: moodEntry.date,
+          element: getMoodIcon(moodEntry.mood),
+        }))}
+      />
+
       <div className="content-wrapper">
         <div className="tabs">
           <button
