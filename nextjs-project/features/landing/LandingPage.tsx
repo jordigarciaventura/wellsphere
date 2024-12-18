@@ -74,9 +74,7 @@ const LandingPage: React.FC = () => {
         </section>
       </main>
 
-      <footer style={styles.footer}>
-        <p>&copy; 2023 WellSphere. All rights reserved.</p>
-      </footer>
+    
     </div>
   );
 };
