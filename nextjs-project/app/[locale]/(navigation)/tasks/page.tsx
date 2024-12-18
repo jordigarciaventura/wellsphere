@@ -1,17 +1,14 @@
-import MoodWeekPicker from "@/components/mood/MoodWeekPicker";
-import { Button } from "@/components/ui/button";
-import { route } from "@/config/site";
 import TasksList from "@/features/tasks/components/TasksList";
-import { getMoodsUseCase } from "@/features/tasks/use-cases/moods";
-import { getTasksUseCase } from "@/features/tasks/use-cases/tasks";
-import { Link } from "@/i18n/routing";
-import { Plus } from "lucide-react";
-import { useTranslations } from 'next-intl';
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import TaskWeekPicker from "@/features/tasks/components/TaskWeekPicker";
+import {
+  getTaskSummariesUseCase,
+  getTasksUseCase,
+} from "@/features/tasks/use-cases/tasks";
+import { setRequestLocale } from "next-intl/server";
 
 interface Props {
-  params: { locale: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Record<string, string>;
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
 export default async function TasksPage({
@@ -19,9 +16,7 @@ export default async function TasksPage({
   searchParams,
 }: Props) {
   // Enable static rendering
-  setRequestLocale(locale);
-
-  const t = await getTranslations("Tasks");
+  setRequestLocale(locale!);
 
   const queryDate = searchParams.date as string | undefined;
   const date =
@@ -29,30 +24,20 @@ export default async function TasksPage({
       ? new Date(queryDate)
       : new Date();
 
-  const [tasksResult, moodsResult] = await Promise.allSettled([
+  const [tasksResult, taskSummariesResult] = await Promise.allSettled([
     getTasksUseCase(date),
-    getMoodsUseCase(date),
+    getTaskSummariesUseCase(date),
   ]);
 
   const tasks = tasksResult.status === "fulfilled" ? tasksResult.value : [];
-  const moods = moodsResult.status === "fulfilled" ? moodsResult.value : [];
+  const taskSummaries =
+    taskSummariesResult.status === "fulfilled" ? taskSummariesResult.value : [];
 
   return (
     <div className="flex h-full w-full flex-col gap-8">
       <div className="rounded-b-md bg-card px-2 py-4 shadow-md">
         <div className="mx-auto flex w-full max-w-5xl justify-center">
-          <MoodWeekPicker
-            moods={moods}
-            date={date}
-            rightSlot={
-              <Link href={route.newTask}>
-                <Button className="h-12 rounded-full bg-gradient-linear">
-                  <Plus size={16} className="mr-2" />
-                  <p className="mr-2">{t("addtask")}</p>
-                </Button>
-              </Link>
-            }
-          />
+          <TaskWeekPicker taskSummaries={taskSummaries} selectedDate={date} />
         </div>
       </div>
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 px-4">

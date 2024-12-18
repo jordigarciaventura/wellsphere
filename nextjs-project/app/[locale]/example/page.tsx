@@ -10,7 +10,6 @@ interface Props {
 }
 
 export default async function Example({ params: { locale } }: Props) {
-  // Enable static rendering
   setRequestLocale(locale);
 
   const t = await getTranslations("Main");

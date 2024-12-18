@@ -1,5 +1,5 @@
 {
-  "id": "0de9d937-617f-47ae-914d-1439ca1afae3",
+  "id": "93ade8e8-f993-4aeb-9dc3-c28f8ad9d3ee",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -68,7 +68,7 @@
           "name": "userId",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "role": {
           "name": "role",
@@ -129,7 +129,21 @@
           "with": {}
         }
       },
-      "foreignKeys": {},
+      "foreignKeys": {
+        "messages_userId_user_id_fk": {
+          "name": "messages_userId_user_id_fk",
+          "tableFrom": "messages",
+          "tableTo": "user",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
@@ -184,6 +198,217 @@
       },
       "uniqueConstraints": {}
     },
+    "public.options": {
+      "name": "options",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "questionId": {
+          "name": "questionId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "text": {
+          "name": "text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "score": {
+          "name": "score",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "options_questionId_questions_id_fk": {
+          "name": "options_questionId_questions_id_fk",
+          "tableFrom": "options",
+          "tableTo": "questions",
+          "columnsFrom": [
+            "questionId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.questions": {
+      "name": "questions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "dimension": {
+          "name": "dimension",
+          "type": "dimension",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "text": {
+          "name": "text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "questionnaireUserId": {
+          "name": "questionnaireUserId",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "questionnaireDate": {
+          "name": "questionnaireDate",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "questions_questionnaireUserId_questionnaireDate_questionnaires_userId_date_fk": {
+          "name": "questions_questionnaireUserId_questionnaireDate_questionnaires_userId_date_fk",
+          "tableFrom": "questions",
+          "tableTo": "questionnaires",
+          "columnsFrom": [
+            "questionnaireUserId",
+            "questionnaireDate"
+          ],
+          "columnsTo": [
+            "userId",
+            "date"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.questionnaires": {
+      "name": "questionnaires",
+      "schema": "",
+      "columns": {
+        "userId": {
+          "name": "userId",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date": {
+          "name": "date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "submited": {
+          "name": "submited",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "questionnaires_userId_user_id_fk": {
+          "name": "questionnaires_userId_user_id_fk",
+          "tableFrom": "questionnaires",
+          "tableTo": "user",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "questionnaires_userId_date_pk": {
+          "name": "questionnaires_userId_date_pk",
+          "columns": [
+            "userId",
+            "date"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "public.responses": {
+      "name": "responses",
+      "schema": "",
+      "columns": {
+        "userId": {
+          "name": "userId",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "questionId": {
+          "name": "questionId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "optionId": {
+          "name": "optionId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "responses_questionId_questions_id_fk": {
+          "name": "responses_questionId_questions_id_fk",
+          "tableFrom": "responses",
+          "tableTo": "questions",
+          "columnsFrom": [
+            "questionId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "responses_optionId_options_id_fk": {
+          "name": "responses_optionId_options_id_fk",
+          "tableFrom": "responses",
+          "tableTo": "options",
+          "columnsFrom": [
+            "optionId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
     "public.scores": {
       "name": "scores",
       "schema": "",
@@ -191,6 +416,12 @@
         "userId": {
           "name": "userId",
           "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "date": {
+          "name": "date",
+          "type": "date",
           "primaryKey": false,
           "notNull": true
         },
@@ -225,11 +456,12 @@
         }
       },
       "compositePrimaryKeys": {
-        "scores_userId_dimensionId_pk": {
-          "name": "scores_userId_dimensionId_pk",
+        "scores_userId_dimensionId_date_pk": {
+          "name": "scores_userId_dimensionId_date_pk",
           "columns": [
             "userId",
-            "dimensionId"
+            "dimensionId",
+            "date"
           ]
         }
       },
@@ -532,6 +764,12 @@
         "image": {
           "name": "image",
           "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "password": {
+          "name": "password",
+          "type": "varchar(55)",
           "primaryKey": false,
           "notNull": false
         }

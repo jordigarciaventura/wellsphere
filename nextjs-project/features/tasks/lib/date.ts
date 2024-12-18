@@ -1,5 +1,5 @@
 import { Weekday } from "@/features/tasks/types/date";
-import { format } from "date-fns";
+import { formatDate } from "@/utils/date-utils";
 
 export function getWeekdaysAbbreviations() {
   const abbreviations = [];
@@ -8,7 +8,7 @@ export function getWeekdaysAbbreviations() {
   for (let i = 0; i < 7; i++) {
     const day = new Date(startDate);
     day.setDate(startDate.getDate() + i);
-    abbreviations.push(format(day, "EEEEE"));
+    abbreviations.push(formatDate(day, "EEEEE"));
   }
 
   return abbreviations;

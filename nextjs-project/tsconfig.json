@@ -43,5 +43,10 @@
     "@types/**/*.d.ts",
     "next.config.mjs"
   ],
-  "exclude": ["node_modules", "components/ui/**/*"]
+  "exclude": [
+    "node_modules",
+    "components/ui/**/*",
+    "lib/chartUtils.ts",
+    "app/manifest.ts"
+  ]
 }

@@ -5,6 +5,7 @@ import { Dimension, Mood, Role } from "@/types/mood";
 import {
   boolean,
   date,
+  foreignKey,
   index,
   integer,
   json,
@@ -32,12 +33,13 @@ export const scoresTable = pgTable(
     userId: varchar({ length: 255 })
       .notNull()
       .references(() => usersTable.id),
+    date: date().notNull(), // it is a string
     dimensionId: dimensionEnum().notNull(),
     score: integer().notNull(),
   },
   (t) => {
     return {
-      pk: primaryKey({ columns: [t.userId, t.dimensionId] }),
+      pk: primaryKey({ columns: [t.userId, t.dimensionId, t.date] }),
     };
   },
 );
@@ -94,7 +96,9 @@ export const messagesTable = pgTable(
   "messages",
   {
     id: uuid().primaryKey(),
-    userId: varchar({ length: 255 }),
+    userId: varchar({ length: 255 })
+      .notNull()
+      .references(() => usersTable.id),
     role: messageRoleEnum().notNull(),
     content: text().notNull(),
     createdAt: timestamp().defaultNow(),
@@ -105,3 +109,55 @@ export const messagesTable = pgTable(
     createdAtIndex: index("created_at_idx").on(table.createdAt),
   }),
 );
+
+export const questionnaireTable = pgTable(
+  "questionnaires",
+  {
+    userId: varchar({ length: 255 })
+      .notNull()
+      .references(() => usersTable.id),
+    date: date().notNull(), // it is a string
+    submited: boolean().notNull().default(false),
+  },
+  (table) => {
+    return {
+      pk: primaryKey({ columns: [table.userId, table.date] }),
+    };
+  },
+);
+
+export const questionTable = pgTable(
+  "questions",
+  {
+    id: serial().primaryKey(),
+    dimension: dimensionEnum().notNull(),
+    text: text().notNull(),
+    questionnaireUserId: varchar({ length: 50 }).notNull(),
+    questionnaireDate: date().notNull(),
+  },
+  (table) => ({
+    questionnaireReference: foreignKey({
+      columns: [table.questionnaireUserId, table.questionnaireDate],
+      foreignColumns: [questionnaireTable.userId, questionnaireTable.date],
+    }),
+  }),
+);
+
+export const optionTable = pgTable("options", {
+  id: serial().primaryKey(),
+  questionId: integer()
+    .notNull()
+    .references(() => questionTable.id),
+  text: text().notNull(),
+  score: integer().notNull(),
+});
+
+export const responseTable = pgTable("responses", {
+  userId: varchar({ length: 255 }).notNull(),
+  questionId: integer()
+    .notNull()
+    .references(() => questionTable.id),
+  optionId: integer()
+    .notNull()
+    .references(() => optionTable.id),
+});

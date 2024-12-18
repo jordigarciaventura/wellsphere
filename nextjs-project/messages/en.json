@@ -16,6 +16,310 @@
   "Footer": {
     "copyright": "2024 DayCraft. All rights reserved."
   },
+  "dimensions": {
+    "physical": "Physical",
+    "emotional": "Emotional",
+    "social": "Social",
+    "intellectual": "Intellectual",
+    "spiritual": "Spiritual",
+    "occupational": "Occupational"
+  },
+  "questionnaire": {
+    "physical": {
+      "questions": {
+        "sleepTime": {
+          "question": "How many hours of sleep do you get per night?",
+          "options": {
+            "a": "4-6 hours",
+            "b": "6-8 hours",
+            "c": "8-10 hours",
+            "d": "10+ hours"
+          }
+        },
+        "exerciseFrequency": {
+          "question": "How many days a week do you exercise?",
+          "options": {
+            "a": "0 days",
+            "b": "1-2 days",
+            "c": "3-4 days",
+            "d": "5+ days"
+          }
+        },
+        "waterIntake": {
+          "question": "How many glasses of water do you drink per day?",
+          "options": {
+            "a": "0-2 glasses",
+            "b": "3-4 glasses",
+            "c": "5-6 glasses",
+            "d": "7+ glasses"
+          }
+        },
+        "fruitVegIntake": {
+          "question": "How many servings of fruits and vegetables do you eat per day?",
+          "options": {
+            "a": "0-2 servings",
+            "b": "3-4 servings",
+            "c": "5-6 servings",
+            "d": "7+ servings"
+          }
+        },
+        "screenTime": {
+          "question": "How many hours of screen time do you have per day?",
+          "options": {
+            "a": "0-2 hours",
+            "b": "3-4 hours",
+            "c": "5-6 hours",
+            "d": "7+ hours"
+          }
+        }
+      }
+    },
+    "emotional": {
+      "questions": {
+        "stressFrequency": {
+          "question": "How often do you feel stressed?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "anxietyFrequency": {
+          "question": "How often do you feel anxious?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "sadnessFrequency": {
+          "question": "How often do you feel sad?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "happinessFrequency": {
+          "question": "How often do you feel happy?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "angerFrequency": {
+          "question": "How often do you feel angry?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        }
+      }
+    },
+    "social": {
+      "questions": {
+        "friendCount": {
+          "question": "How many friends do you have?",
+          "options": {
+            "a": "0-2 friends",
+            "b": "3-4 friends",
+            "c": "5-6 friends",
+            "d": "7+ friends"
+          }
+        },
+        "friendMeetingFrequency": {
+          "question": "How often do you see your friends?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "friendTalkingFrequency": {
+          "question": "How often do you talk to your friends?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "socialEvents": {
+          "question": "How many social events do you attend per month?",
+          "options": {
+            "a": "0-2 events",
+            "b": "3-4 events",
+            "c": "5-6 events",
+            "d": "7+ events"
+          }
+        },
+        "lonelinessFrequency": {
+          "question": "How often do you feel lonely?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        }
+      }
+    },
+    "intellectual": {
+      "questions": {
+        "readingFrequency": {
+          "question": "How often do you read?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "learningFrequency": {
+          "question": "How often do you learn something new?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "problemSolvingFrequency": {
+          "question": "How often do you solve problems?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "criticalThinkingFrequency": {
+          "question": "How often do you think critically?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "creativityFrequency": {
+          "question": "How often do you use your creativity?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        }
+      }
+    },
+    "spiritual": {
+      "questions": {
+        "meditationFrequency": {
+          "question": "How often do you meditate?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "prayerFrequency": {
+          "question": "How often do you pray?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "gratitudeFrequency": {
+          "question": "How often do you practice gratitude?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "forgivenessFrequency": {
+          "question": "How often do you practice forgiveness?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "mindfulnessFrequency": {
+          "question": "How often do you practice mindfulness?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        }
+      }
+    },
+    "occupational": {
+      "questions": {
+        "workHours": {
+          "question": "How many hours do you work per week?",
+          "options": {
+            "a": "0-20 hours",
+            "b": "21-40 hours",
+            "c": "41-60 hours",
+            "d": "61+ hours"
+          }
+        },
+        "breaksFrequency": {
+          "question": "How often do you take breaks at work?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "workStress": {
+          "question": "How often do you feel stressed at work?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "workSatisfaction": {
+          "question": "How often do you feel satisfied with your work?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        },
+        "workFulfillment": {
+          "question": "How often do you feel fulfilled at work?",
+          "options": {
+            "a": "Never",
+            "b": "Rarely",
+            "c": "Sometimes",
+            "d": "Often"
+          }
+        }
+      }
+    }
+  },
 
   "BottomAppBar": {
     "chat": "Chat",

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { useTranslations } from 'next-intl';
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import * as React from "react";
 
@@ -14,66 +14,63 @@ interface TutorialStep {
   color: string;
 }
 
-
-
 export default function Component(): JSX.Element {
   const t = useTranslations("Tutorial");
   // Set initial state for the current step index
 
-// Ensure tutorialSteps is non-empty and has a valid fallback step
-const fallbackStep: TutorialStep = {
-  image: "/default.svg",
-  title: t("title"),
-  text: t("text"),
-  color: "#000000",
-};
+  // Ensure tutorialSteps is non-empty and has a valid fallback step
+  const fallbackStep: TutorialStep = {
+    image: "/default.svg",
+    title: t("title"),
+    text: t("text"),
+    color: "#000000",
+  };
 
-// Ensure tutorialSteps is correctly typed and non-nullable
-const tutorialSteps: TutorialStep[] = [
-  {
-    image: "/placeholder.svg?height=400&width=400",
-    title: t("title1"),
-    text: t("desc1"),
-    color: "#7C3AED",
-  },
-  {
-    image: "/placeholder.svg?height=400&width=400",
-    title: t("title2"),
-    text: t("desc2"),
-    color: "#4CAF50",
-  },
-  {
-    image: "/placeholder.svg?height=400&width=400",
-    title: t("title3"),
-    text: t("desc3"),
-    color: "#F44336",
-  },
-  {
-    image: "/placeholder.svg?height=400&width=400",
-    title: t("title4"),
-    text: t("desc4"),
-    color: "#2196F3",
-  },
-  {
-    image: "/placeholder.svg?height=400&width=400",
-    title: t("title5"),
-    text: t("desc5"),
-    color: "#FFEB3B",
-  },
-  {
-    image: "/placeholder.svg?height=400&width=400",
-    title: t("title6"),
-    text: t("desc6"),
-    color: "#9C27B0",
-  },
-  {
-    image: "/placeholder.svg?height=400&width=400",
-    title: t("title7"),
-    text: t("desc7"),
-    color: "#FF9800",
-  },
-];
-
+  // Ensure tutorialSteps is correctly typed and non-nullable
+  const tutorialSteps: TutorialStep[] = [
+    {
+      image: "/assets/app1.svg",
+      title: t("title1"),
+      text: t("desc1"),
+      color: "#7C3AED",
+    },
+    {
+      image: "/assets/physical.svg",
+      title: t("title2"),
+      text: t("desc2"),
+      color: "#4CAF50",
+    },
+    {
+      image: "/assets/emotional.svg",
+      title: t("title3"),
+      text: t("desc3"),
+      color: "#F44336",
+    },
+    {
+      image: "/assets/intellectual.svg",
+      title: t("title4"),
+      text: t("desc4"),
+      color: "#2196F3",
+    },
+    {
+      image: "/assets/social.svg",
+      title: t("title5"),
+      text: t("desc5"),
+      color: "#FFEB3B",
+    },
+    {
+      image: "/assets/spiritual.svg",
+      title: t("title6"),
+      text: t("desc6"),
+      color: "#9C27B0",
+    },
+    {
+      image: "/assets/occupational.svg",
+      title: t("title7"),
+      text: t("desc7"),
+      color: "#FF9800",
+    },
+  ];
 
   const [currentStepIndex, setCurrentStepIndex] = React.useState<number>(0);
 

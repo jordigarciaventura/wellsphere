@@ -9,7 +9,7 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 import { drizzle } from "drizzle-orm/postgres-js";
-import { AdapterAccount } from "next-auth/adapters";
+import type { AdapterAccount } from "next-auth/adapters";
 import postgres from "postgres";
 
 const connectionString = process.env.POSTGRES_URL ?? "";
@@ -28,6 +28,7 @@ export const users = pgTable("user", {
     withTimezone: true,
   }).default(sql`CURRENT_TIMESTAMP`),
   image: varchar("image", { length: 255 }),
+  password: varchar("password", { length: 55 }),
 });
 
 export const usersRelations = relations(users, ({ many }) => ({

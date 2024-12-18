@@ -11,9 +11,11 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { route } from "@/config/site";
 import LanguageMenuItems from "@/features/language/components/LanguageMenuItems";
 import ClientThemeIcon from "@/features/theme/components/ClientThemeIcon";
 import useThemeToggle from "@/features/theme/components/useThemeToggle";
+import { Link } from "@/i18n/routing";
 import { Globe, Settings } from "lucide-react";
 import { signOut } from "next-auth/react";
 
@@ -29,8 +31,9 @@ export default function SettingsDropdownMenu({ children }: Props) {
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem>
-          <Settings className="mr-2 size-4" />
-          <span>Settings</span>
+          <Link href={route.settings} className="flex h-full w-full gap-4">
+            <Settings className="size-4" /> Settings
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => toggleTheme()}>
           <ClientThemeIcon className="mr-2 size-4" />

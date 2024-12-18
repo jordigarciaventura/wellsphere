@@ -1,5 +1,6 @@
 export const route = {
-  home: "/",
+  landing: "/",
+  home: "/home",
   login: "/login",
   register: "/register",
   welcome: "/welcome",
@@ -15,6 +16,11 @@ export const route = {
   newTask: "/tasks/new",
   insights: "/insights",
   settings: "/settings",
+  pricing: "/pricing",
+  profile: "/settings/profile",
+  questionnaire: "/questionnaire",
+  tutorial: "/tutorial",
+  forgotPassword: "/forgot-password",
 };
 
 export const url = {
