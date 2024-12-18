@@ -33,7 +33,7 @@ const LandingPage: React.FC = () => {
           <div style={styles.imageContainer}>
             <Image src="/placeholder.svg" alt="Wellness 1" width={300} height={200} style={styles.image} />
             <Image src="/placeholder.svg" alt="Wellness 2" width={300} height={200} style={styles.image} />
-            <Image src="/placeholder.svg" alt="Wellness 3" width={300} height={200} style={styles.image} />
+            <Image src="/placeholder.svg" alt="Wellness 3" width={300} height={201} style={styles.image} />
           </div>
         </section>
 
