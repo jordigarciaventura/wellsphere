@@ -3,10 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { route } from "@/config/site";
 import { Link } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import "./style.css";
 
-export default function WelcomePage() {
+export default async function WelcomePage() {
+  const t = await getTranslations("WelcomePage");
   return (
     <section className="welcome-page">
       <div className="container">
@@ -23,11 +25,8 @@ export default function WelcomePage() {
           </div>
           <div className="text-button-wrapper">
             <div className="text-content">
-              <h1 className="heading">Welcome to WellSphere</h1>
-              <p className="paragraph">
-                Discover amazing features and boost your productivity with our
-                innovative application.
-              </p>
+              <h1 className="heading">[{t("welcome")}]</h1>
+              <p className="paragraph">{t("paragraph")}</p>
             </div>
             <div className="button-wrapper">
               <Link href={route.tutorial}>
@@ -35,7 +34,7 @@ export default function WelcomePage() {
                   className="get-started-button"
                   aria-label="Get Started with WellSphere"
                 >
-                  Get Started
+                  {t("getstarted")}
                 </Button>
               </Link>
             </div>

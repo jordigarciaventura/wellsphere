@@ -11,7 +11,7 @@ export default function TutorialPageWrapper({ params: { locale } }: Props) {
 
   return (
     <>
-      <LandingPage/>
+      <LandingPage />
     </>
   );
 }

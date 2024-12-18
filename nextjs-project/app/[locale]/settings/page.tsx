@@ -5,12 +5,16 @@ import CustomizationSettings from "@/features/settings/components/CustomizationS
 import PremiumSettings from "@/features/settings/components/PremiumSettings";
 import { Link } from "@/i18n/routing";
 import { ArrowLeft } from "lucide-react";
+import { setRequestLocale } from "next-intl/server";
 
 interface Props {
   params: { locale: string };
 }
 
 export default function SettingsPage({ params: { locale } }: Props) {
+  // Enable static rendering
+  setRequestLocale(locale);
+
   return (
     <div className="mx-auto w-full max-w-3xl px-4 py-8">
       <div className="mb-6 flex items-center gap-4">

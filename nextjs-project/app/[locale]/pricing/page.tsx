@@ -1,6 +1,14 @@
 import PlanDisplay from "@/features/quotas/PlanDisplay";
+import { setRequestLocale } from "next-intl/server";
 
-const PricingPage = () => {
+interface Props {
+  params: { locale: string };
+}
+
+export default function PricingPage({ params: { locale } }: Props) {
+  // Enable static rendering
+  setRequestLocale(locale);
+
   const currentPlan = {
     name: "Free Plan",
     price: 0.0,
@@ -38,6 +46,4 @@ const PricingPage = () => {
   return (
     <PlanDisplay currentPlan={currentPlan} availablePlans={availablePlans} />
   );
-};
-
-export default PricingPage;
+}

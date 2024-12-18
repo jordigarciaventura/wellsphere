@@ -1,22 +1,23 @@
-import { NextRequest, NextResponse } from "next/server";
 import { createUser, getUserByEmail } from "@/features/auth/data-access/users";
-import { signUpSchema } from "@/features/auth/registerSchemas";
-import { z } from "zod";
-import { ConsoleLogWriter } from "drizzle-orm";
-
+import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const { username, email, password } = await request.json();
-    
+    const { username, email, password } = (await request.json()) as {
+      username: string;
+      email: string;
+      password: string;
+    };
+
     const existingUser = await getUserByEmail(email);
     if (existingUser[0] != null) {
-      return NextResponse.json({ message: "User already exists" }, { status: 400 });
+      return NextResponse.json(
+        { message: "User already exists" },
+        { status: 400 },
+      );
     }
-    
-    
-    createUser(username, email, password);
 
+    await createUser(username, email, password);
   } catch (e) {
     console.log({ e });
   }

@@ -1,4 +1,8 @@
+"use client"
+
+import { useTranslations } from 'next-intl';
 export default function ChatIntro() {
+  const t = useTranslations("ChatIntro");
   return (
     <div className="flex h-full w-full flex-col items-center justify-center px-4 py-8">
       <img
@@ -7,18 +11,18 @@ export default function ChatIntro() {
         className="h-20 w-20 md:h-24 md:w-24 lg:h-28 lg:w-28"
       />
 
-      <h1 className="mt-4 text-xl md:text-2xl lg:text-3xl">Let's chat</h1>
+      <h1 className="mt-4 text-xl md:text-2xl lg:text-3xl">{t("letschat")}</h1>
 
       <div className="mt-6 flex flex-col gap-4 text-center">
         <p className="w-full max-w-md rounded-lg bg-muted p-4 text-sm md:text-base lg:text-lg">
-          Answer all your questions.
+        {t("answerallquestions")}
           <br />
-          (Just ask me anything you like)
+          {t("askanything")}
         </p>
         <p className="w-full max-w-md rounded-lg bg-muted p-4 text-sm md:text-base lg:text-lg">
-          Conversational AI
+          {t("AI")}
           <br />
-          (I can talk to you like a human being)
+          {t("text")}
         </p>
       </div>
     </div>

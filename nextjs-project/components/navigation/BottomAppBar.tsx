@@ -9,16 +9,9 @@ import { route } from "@/config/site";
 import { Link } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { getNthRouteSegment } from "@/utils/url";
+import { useTranslations } from 'next-intl';
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-
-const navigationData = [
-  { href: route.chat, icon: ChatIcon, text: "Chat" },
-  { href: route.tasks, icon: TasksIcon, text: "Tasks" },
-  { href: route.home, icon: HomeIcon, text: "Home" },
-  { href: route.journal, icon: JournalIcon, text: "Journal" },
-  { href: route.insights, icon: InsightsIcon, text: "Insights" },
-];
 
 interface NavigationButtonProps {
   href: string;
@@ -49,6 +42,15 @@ const NavigationButton = ({
 
 export default function BottomAppBar() {
   const pathname = usePathname();
+  const t = useTranslations('BottomAppBar');
+
+  const navigationData = [    
+    { href: route.chat, icon: ChatIcon, text: t("chat") },
+    { href: route.tasks, icon: TasksIcon, text: t("tasks") },
+    { href: route.home, icon: HomeIcon, text: t("home") },
+    { href: route.journal, icon: JournalIcon, text: t("journal") },
+    { href: route.insights, icon: InsightsIcon, text: t("insights") },
+  ];
 
   const [selectedRoute, setSelectedRoute] = useState(
     () => `/${getNthRouteSegment(pathname, 1) ?? ""}`,

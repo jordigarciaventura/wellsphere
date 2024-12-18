@@ -1,7 +1,7 @@
-import Image from 'next/image';
-import { Quicksand } from 'next/font/google';
+import { Quicksand } from "next/font/google";
+import Image from "next/image";
 
-const quicksand = Quicksand({ subsets: ['latin'] });
+const quicksand = Quicksand({ subsets: ["latin"] });
 
 const LandingPage: React.FC = () => {
   return (
@@ -9,10 +9,18 @@ const LandingPage: React.FC = () => {
       <header style={styles.header}>
         <h1 style={styles.logo}>WellSphere</h1>
         <nav style={styles.nav}>
-          <a href="#" style={styles.navLink}>Home</a>
-          <a href="#" style={styles.navLink}>About</a>
-          <a href="#" style={styles.navLink}>Pricing</a>
-          <a href="#" style={styles.navLink}>Contact</a>
+          <a href="#" style={styles.navLink}>
+            Home
+          </a>
+          <a href="#" style={styles.navLink}>
+            About
+          </a>
+          <a href="#" style={styles.navLink}>
+            Pricing
+          </a>
+          <a href="#" style={styles.navLink}>
+            Contact
+          </a>
         </nav>
       </header>
 
@@ -25,15 +33,37 @@ const LandingPage: React.FC = () => {
         <section style={styles.description}>
           <h3 style={styles.sectionTitle}>About WellSphere</h3>
           <p style={styles.text}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in
+            dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed
+            auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in
+            nulla enim. Phasellus molestie magna non est bibendum non venenatis
+            nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.
           </p>
         </section>
 
         <section style={styles.images}>
           <div style={styles.imageContainer}>
-            <Image src="/placeholder.svg" alt="Wellness 1" width={300} height={200} style={styles.image} />
-            <Image src="/placeholder.svg" alt="Wellness 2" width={300} height={200} style={styles.image} />
-            <Image src="/placeholder.svg" alt="Wellness 3" width={300} height={201} style={styles.image} />
+            <Image
+              src="/placeholder.svg"
+              alt="Wellness 1"
+              width={300}
+              height={200}
+              style={styles.image}
+            />
+            <Image
+              src="/placeholder.svg"
+              alt="Wellness 2"
+              width={300}
+              height={200}
+              style={styles.image}
+            />
+            <Image
+              src="/placeholder.svg"
+              alt="Wellness 3"
+              width={300}
+              height={201}
+              style={styles.image}
+            />
           </div>
         </section>
 
@@ -73,135 +103,132 @@ const LandingPage: React.FC = () => {
           </div>
         </section>
       </main>
-
-    
     </div>
   );
 };
 
 const styles = {
   container: {
-    color: '#333',
+    color: "#333",
     lineHeight: 1.6,
   },
   header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '1rem 2rem',
-    backgroundColor: '#fff',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "1rem 2rem",
+    backgroundColor: "#fff",
+    boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
   },
   logo: {
-    fontSize: '2rem',
-    fontWeight: 'bold',
-    color: '#9C2CF3',
+    fontSize: "2rem",
+    fontWeight: "bold",
+    color: "#9C2CF3",
   },
   nav: {
-    display: 'flex',
-    gap: '1rem',
+    display: "flex",
+    gap: "1rem",
   },
   navLink: {
-    textDecoration: 'none',
-    color: '#333',
-    fontWeight: '500',
+    textDecoration: "none",
+    color: "#333",
+    fontWeight: "500",
   },
   hero: {
-    backgroundColor: '#9C2CF3',
-    color: '#fff',
-    textAlign: 'center' as const,
-    padding: '4rem 2rem',
+    backgroundColor: "#9C2CF3",
+    color: "#fff",
+    textAlign: "center" as const,
+    padding: "4rem 2rem",
   },
   heroTitle: {
-    fontSize: '3rem',
-    marginBottom: '1rem',
-    fontWeight: '700',
+    fontSize: "3rem",
+    marginBottom: "1rem",
+    fontWeight: "700",
   },
   heroText: {
-    fontSize: '1.5rem',
-    fontWeight: '300',
+    fontSize: "1.5rem",
+    fontWeight: "300",
   },
   description: {
-    padding: '4rem 2rem',
-    backgroundColor: '#f8f8f8',
+    padding: "4rem 2rem",
+    backgroundColor: "#f8f8f8",
   },
   sectionTitle: {
-    fontSize: '2rem',
-    marginBottom: '1rem',
-    color: '#9C2CF3',
-    fontWeight: '600',
+    fontSize: "2rem",
+    marginBottom: "1rem",
+    color: "#9C2CF3",
+    fontWeight: "600",
   },
   text: {
-    maxWidth: '800px',
-    margin: '0 auto',
-    fontWeight: '400',
+    maxWidth: "800px",
+    margin: "0 auto",
+    fontWeight: "400",
   },
   images: {
-    padding: '4rem 2rem',
+    padding: "4rem 2rem",
   },
   imageContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '2rem',
-    flexWrap: 'wrap' as const,
+    display: "flex",
+    justifyContent: "center",
+    gap: "2rem",
+    flexWrap: "wrap" as const,
   },
   image: {
-    borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+    borderRadius: "8px",
+    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
   },
   pricing: {
-    padding: '4rem 2rem',
-    backgroundColor: '#f8f8f8',
+    padding: "4rem 2rem",
+    backgroundColor: "#f8f8f8",
   },
   pricingContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '2rem',
-    flexWrap: 'wrap' as const,
+    display: "flex",
+    justifyContent: "center",
+    gap: "2rem",
+    flexWrap: "wrap" as const,
   },
   pricingCard: {
-    backgroundColor: '#fff',
-    borderRadius: '8px',
-    padding: '2rem',
-    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-    textAlign: 'center' as const,
-    width: '300px',
+    backgroundColor: "#fff",
+    borderRadius: "8px",
+    padding: "2rem",
+    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+    textAlign: "center" as const,
+    width: "300px",
   },
   pricingTitle: {
-    fontSize: '1.5rem',
-    marginBottom: '1rem',
-    color: '#9C2CF3',
-    fontWeight: '600',
+    fontSize: "1.5rem",
+    marginBottom: "1rem",
+    color: "#9C2CF3",
+    fontWeight: "600",
   },
   price: {
-    fontSize: '2rem',
-    fontWeight: '700',
-    marginBottom: '1rem',
+    fontSize: "2rem",
+    fontWeight: "700",
+    marginBottom: "1rem",
   },
   featureList: {
-    listStyleType: 'none',
+    listStyleType: "none",
     padding: 0,
-    marginBottom: '1rem',
-    fontWeight: '400',
+    marginBottom: "1rem",
+    fontWeight: "400",
   },
   button: {
-    backgroundColor: '#9C2CF3',
-    color: '#fff',
-    border: 'none',
-    padding: '0.5rem 1rem',
-    borderRadius: '4px',
-    fontSize: '1rem',
-    cursor: 'pointer',
-    fontWeight: '500',
+    backgroundColor: "#9C2CF3",
+    color: "#fff",
+    border: "none",
+    padding: "0.5rem 1rem",
+    borderRadius: "4px",
+    fontSize: "1rem",
+    cursor: "pointer",
+    fontWeight: "500",
   },
   footer: {
-    backgroundColor: '#333',
-    color: '#fff',
-    textAlign: 'center' as const,
-    padding: '1rem',
-    fontWeight: '300',
+    backgroundColor: "#333",
+    color: "#fff",
+    textAlign: "center" as const,
+    padding: "1rem",
+    fontWeight: "300",
   },
 };
 
 export default LandingPage;
-

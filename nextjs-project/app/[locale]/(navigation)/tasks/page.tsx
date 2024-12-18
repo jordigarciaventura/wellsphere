@@ -4,7 +4,7 @@ import {
   getTaskSummariesUseCase,
   getTasksUseCase,
 } from "@/features/tasks/use-cases/tasks";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 interface Props {
   params: Record<string, string>;
@@ -17,6 +17,8 @@ export default async function TasksPage({
 }: Props) {
   // Enable static rendering
   setRequestLocale(locale!);
+
+  const t = await getTranslations("Tasks");
 
   const queryDate = searchParams.date as string | undefined;
   const date =
@@ -41,7 +43,7 @@ export default async function TasksPage({
         </div>
       </div>
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 px-4">
-        <h2 className="text-2xl font-semibold">Tasks</h2>
+        <h2 className="text-2xl font-semibold">{t("header")}</h2>
         <div className="flex flex-col gap-4 pb-8 md:grid md:grid-cols-2 lg:grid-cols-3">
           <TasksList tasks={tasks} />
         </div>
