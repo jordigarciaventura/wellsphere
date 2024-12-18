@@ -15,23 +15,23 @@ import { Link } from "@/i18n/routing";
 import { IconBrandGithub, IconBrandGoogleFilled } from "@tabler/icons-react";
 import { signIn } from "next-auth/react";
 
-import { signUpSchema } from "../registerSchemas";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useSearchParams } from "next/navigation";
 import { z } from "zod";
-import { redirect } from "next/dist/server/api-utils";
+import { signUpSchema } from "../registerSchemas";
 
 async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
   event.preventDefault();
-  const username = (event.currentTarget.elements.namedItem(
-    "name",
-  ) as HTMLInputElement).value;
-  const password = (event.currentTarget.elements.namedItem(
-    "password",
-  ) as HTMLInputElement).value;
-  const confirmPassword = (event.currentTarget.elements.namedItem(
-    "confirm-password",
-  ) as HTMLInputElement).value;
+  const username = (
+    event.currentTarget.elements.namedItem("name") as HTMLInputElement
+  ).value;
+  const password = (
+    event.currentTarget.elements.namedItem("password") as HTMLInputElement
+  ).value;
+  const confirmPassword = (
+    event.currentTarget.elements.namedItem(
+      "confirm-password",
+    ) as HTMLInputElement
+  ).value;
 
   // Verify password and confirm password match
   if (password !== confirmPassword) {
@@ -39,7 +39,9 @@ async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     return;
   }
 
-  const email = (event.currentTarget.elements.namedItem("email") as HTMLInputElement).value;
+  const email = (
+    event.currentTarget.elements.namedItem("email") as HTMLInputElement
+  ).value;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   // Verify email structure
@@ -70,12 +72,17 @@ async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 }
 
 export function SignUpForm() {
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") ?? "/";
+
   return (
     <Card className="mx-auto w-full max-w-md">
       <form onSubmit={handleSubmit}>
         <CardHeader>
           <CardTitle className="text-2xl">Sign up</CardTitle>
-          <CardDescription>Fill the form to create a new account</CardDescription>
+          <CardDescription>
+            Fill the form to create a new account
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4">
@@ -106,7 +113,7 @@ export function SignUpForm() {
             <Button
               variant="outline"
               className="w-full"
-              onClick={() => signIn("google")}
+              onClick={() => signIn("google", { callbackUrl })}
             >
               <IconBrandGoogleFilled />
               Sign up with Google
@@ -114,7 +121,7 @@ export function SignUpForm() {
             <Button
               variant="outline"
               className="w-full"
-              onClick={() => signIn("github")}
+              onClick={() => signIn("github", { callbackUrl })}
             >
               <IconBrandGithub /> Sign up with GitHub
             </Button>

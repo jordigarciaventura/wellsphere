@@ -9,7 +9,7 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 import { drizzle } from "drizzle-orm/postgres-js";
-import { AdapterAccount } from "next-auth/adapters";
+import type { AdapterAccount } from "next-auth/adapters";
 import postgres from "postgres";
 
 const connectionString = process.env.POSTGRES_URL ?? "";

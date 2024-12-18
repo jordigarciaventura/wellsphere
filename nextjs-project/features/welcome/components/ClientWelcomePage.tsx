@@ -1,4 +1,8 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
+import { route } from "@/config/site";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import "./style.css";
 
@@ -26,12 +30,14 @@ export default function WelcomePage() {
               </p>
             </div>
             <div className="button-wrapper">
-              <Button
-                className="get-started-button"
-                aria-label="Get Started with WellSphere"
-              >
-                Get Started
-              </Button>
+              <Link href={route.tutorial}>
+                <Button
+                  className="get-started-button"
+                  aria-label="Get Started with WellSphere"
+                >
+                  Get Started
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
