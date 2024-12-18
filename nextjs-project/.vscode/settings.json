@@ -26,5 +26,11 @@
     // "**/postcss.config.mjs": true,
     // "**/.*": true,
   },
-  "tailwindCSS.experimental.classRegex": ["class:\\s*?[\"'`]([^\"'`]*).*?,"]
+  "tailwindCSS.experimental.classRegex": [
+    "class:\\s*?[\"'`]([^\"'`]*).*?,"
+  ],
+  "sonarlint.connectedMode.project": {
+    "connectionId": "jordigarciaventura",
+    "projectKey": "jordigarciaventura_wellsphere"
+  }
 }
