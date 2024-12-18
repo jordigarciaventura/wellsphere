@@ -1,25 +1,28 @@
-'use client'
+"use client";
 
-import React from 'react'
-import styles from './PlanDisplay.module.css'
+import React from "react";
+import styles from "./PlanDisplay.module.css";
 
 type Feature = {
-  name: string
-  included: boolean
-}
+  name: string;
+  included: boolean;
+};
 
 type Plan = {
-  name: string
-  price: number
-  features: Feature[]
-}
+  name: string;
+  price: number;
+  features: Feature[];
+};
 
 type PlanDisplayProps = {
-  currentPlan: Plan
-  availablePlans: Plan[]
-}
+  currentPlan: Plan;
+  availablePlans: Plan[];
+};
 
-const PlanDisplay: React.FC<PlanDisplayProps> = ({ currentPlan, availablePlans }) => {
+const PlanDisplay: React.FC<PlanDisplayProps> = ({
+  currentPlan,
+  availablePlans,
+}) => {
   return (
     <div className={styles.container}>
       <div className={styles.currentPlan}>
@@ -28,7 +31,12 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ currentPlan, availablePlans }
           <p className={styles.price}>${currentPlan.price}/month</p>
           <ul className={styles.featureList}>
             {currentPlan.features.map((feature, index) => (
-              <li key={index} className={feature.included ? styles.included : styles.notIncluded}>
+              <li
+                key={index}
+                className={
+                  feature.included ? styles.included : styles.notIncluded
+                }
+              >
                 {feature.name}
               </li>
             ))}
@@ -43,7 +51,12 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ currentPlan, availablePlans }
               <p className={styles.price}>${plan.price}/month</p>
               <ul className={styles.featureList}>
                 {plan.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className={feature.included ? styles.included : styles.notIncluded}>
+                  <li
+                    key={featureIndex}
+                    className={
+                      feature.included ? styles.included : styles.notIncluded
+                    }
+                  >
                     {feature.name}
                   </li>
                 ))}
@@ -54,7 +67,7 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ currentPlan, availablePlans }
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PlanDisplay
+export default PlanDisplay;
