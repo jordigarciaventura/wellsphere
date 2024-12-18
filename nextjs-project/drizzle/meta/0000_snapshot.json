@@ -1,5 +1,5 @@
 {
-  "id": "095e0a88-acf6-498d-a130-01db578c96a6",
+  "id": "93ade8e8-f993-4aeb-9dc3-c28f8ad9d3ee",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -33,8 +33,12 @@
           "name": "journalEntries_userId_user_id_fk",
           "tableFrom": "journalEntries",
           "tableTo": "user",
-          "columnsFrom": ["userId"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -42,7 +46,10 @@
       "compositePrimaryKeys": {
         "journalEntries_userId_date_pk": {
           "name": "journalEntries_userId_date_pk",
-          "columns": ["userId", "date"]
+          "columns": [
+            "userId",
+            "date"
+          ]
         }
       },
       "uniqueConstraints": {}
@@ -127,8 +134,12 @@
           "name": "messages_userId_user_id_fk",
           "tableFrom": "messages",
           "tableTo": "user",
-          "columnsFrom": ["userId"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -166,8 +177,12 @@
           "name": "moodEntries_userId_user_id_fk",
           "tableFrom": "moodEntries",
           "tableTo": "user",
-          "columnsFrom": ["userId"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -175,7 +190,10 @@
       "compositePrimaryKeys": {
         "moodEntries_userId_date_pk": {
           "name": "moodEntries_userId_date_pk",
-          "columns": ["userId", "date"]
+          "columns": [
+            "userId",
+            "date"
+          ]
         }
       },
       "uniqueConstraints": {}
@@ -215,8 +233,12 @@
           "name": "options_questionId_questions_id_fk",
           "tableFrom": "options",
           "tableTo": "questions",
-          "columnsFrom": ["questionId"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "questionId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -266,8 +288,14 @@
           "name": "questions_questionnaireUserId_questionnaireDate_questionnaires_userId_date_fk",
           "tableFrom": "questions",
           "tableTo": "questionnaires",
-          "columnsFrom": ["questionnaireUserId", "questionnaireDate"],
-          "columnsTo": ["userId", "date"],
+          "columnsFrom": [
+            "questionnaireUserId",
+            "questionnaireDate"
+          ],
+          "columnsTo": [
+            "userId",
+            "date"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -305,8 +333,12 @@
           "name": "questionnaires_userId_user_id_fk",
           "tableFrom": "questionnaires",
           "tableTo": "user",
-          "columnsFrom": ["userId"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -314,7 +346,10 @@
       "compositePrimaryKeys": {
         "questionnaires_userId_date_pk": {
           "name": "questionnaires_userId_date_pk",
-          "columns": ["userId", "date"]
+          "columns": [
+            "userId",
+            "date"
+          ]
         }
       },
       "uniqueConstraints": {}
@@ -348,8 +383,12 @@
           "name": "responses_questionId_questions_id_fk",
           "tableFrom": "responses",
           "tableTo": "questions",
-          "columnsFrom": ["questionId"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "questionId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -357,8 +396,12 @@
           "name": "responses_optionId_options_id_fk",
           "tableFrom": "responses",
           "tableTo": "options",
-          "columnsFrom": ["optionId"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "optionId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -402,8 +445,12 @@
           "name": "scores_userId_user_id_fk",
           "tableFrom": "scores",
           "tableTo": "user",
-          "columnsFrom": ["userId"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -411,7 +458,11 @@
       "compositePrimaryKeys": {
         "scores_userId_dimensionId_date_pk": {
           "name": "scores_userId_dimensionId_date_pk",
-          "columns": ["userId", "dimensionId", "date"]
+          "columns": [
+            "userId",
+            "dimensionId",
+            "date"
+          ]
         }
       },
       "uniqueConstraints": {}
@@ -496,8 +547,12 @@
           "name": "tasks_userId_user_id_fk",
           "tableFrom": "tasks",
           "tableTo": "user",
-          "columnsFrom": ["userId"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -598,8 +653,12 @@
           "name": "account_user_id_user_id_fk",
           "tableFrom": "account",
           "tableTo": "user",
-          "columnsFrom": ["user_id"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -607,7 +666,10 @@
       "compositePrimaryKeys": {
         "account_provider_provider_account_id_pk": {
           "name": "account_provider_provider_account_id_pk",
-          "columns": ["provider", "provider_account_id"]
+          "columns": [
+            "provider",
+            "provider_account_id"
+          ]
         }
       },
       "uniqueConstraints": {}
@@ -657,8 +719,12 @@
           "name": "session_user_id_user_id_fk",
           "tableFrom": "session",
           "tableTo": "user",
-          "columnsFrom": ["user_id"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -700,6 +766,12 @@
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": false
+        },
+        "password": {
+          "name": "password",
+          "type": "varchar(55)",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
@@ -735,7 +807,10 @@
       "compositePrimaryKeys": {
         "verification_token_identifier_token_pk": {
           "name": "verification_token_identifier_token_pk",
-          "columns": ["identifier", "token"]
+          "columns": [
+            "identifier",
+            "token"
+          ]
         }
       },
       "uniqueConstraints": {}
@@ -757,12 +832,23 @@
     "public.role": {
       "name": "role",
       "schema": "public",
-      "values": ["user", "system", "assistant", "tool"]
+      "values": [
+        "user",
+        "system",
+        "assistant",
+        "tool"
+      ]
     },
     "public.mood": {
       "name": "mood",
       "schema": "public",
-      "values": ["verySad", "sad", "neutral", "happy", "veryHappy"]
+      "values": [
+        "verySad",
+        "sad",
+        "neutral",
+        "happy",
+        "veryHappy"
+      ]
     },
     "public.weekdays": {
       "name": "weekdays",

@@ -121,7 +121,8 @@ CREATE TABLE IF NOT EXISTS "user" (
 	"name" varchar(255),
 	"email" varchar(255) NOT NULL,
 	"email_verified" timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
-	"image" varchar(255)
+	"image" varchar(255),
+	"password" varchar(55)
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "verification_token" (
