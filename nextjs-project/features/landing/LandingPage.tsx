@@ -41,8 +41,8 @@ const LandingPage: React.FC = () => {
           <h3 style={styles.sectionTitle}>Pricing Plans</h3>
           <div style={styles.pricingContainer}>
             <div style={styles.pricingCard}>
-              <h4 style={styles.pricingTitle}>Basic</h4>
-              <p style={styles.price}>$9.99/month</p>
+              <h4 style={styles.pricingTitle}>Free</h4>
+              <p style={styles.price}>$0.00/month</p>
               <ul style={styles.featureList}>
                 <li>Feature 1</li>
                 <li>Feature 2</li>
@@ -51,8 +51,8 @@ const LandingPage: React.FC = () => {
               <button style={styles.button}>Choose Plan</button>
             </div>
             <div style={styles.pricingCard}>
-              <h4 style={styles.pricingTitle}>Pro</h4>
-              <p style={styles.price}>$19.99/month</p>
+              <h4 style={styles.pricingTitle}>Basic</h4>
+              <p style={styles.price}>$9.99/month</p>
               <ul style={styles.featureList}>
                 <li>All Basic Features</li>
                 <li>Feature 4</li>
@@ -61,8 +61,8 @@ const LandingPage: React.FC = () => {
               <button style={styles.button}>Choose Plan</button>
             </div>
             <div style={styles.pricingCard}>
-              <h4 style={styles.pricingTitle}>Premium</h4>
-              <p style={styles.price}>$29.99/month</p>
+              <h4 style={styles.pricingTitle}>Pro</h4>
+              <p style={styles.price}>$19.99/month</p>
               <ul style={styles.featureList}>
                 <li>All Pro Features</li>
                 <li>Feature 6</li>
