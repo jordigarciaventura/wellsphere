@@ -320,7 +320,6 @@
       }
     }
   },
-
   "BottomAppBar": {
     "chat": "Chat",
     "tasks": "Tasks",
@@ -328,13 +327,11 @@
     "journal": "Journal",
     "insights": "Insights"
   },
-
   "Tasks": {
     "header": "Tasks",
     "subheader": "No tasks found",
     "addtask": "Add task"
   },
-
   "ChatIntro": {
     "letschat": "Let's chat",
     "answerallquestions": "Answer all your questions.",
@@ -342,7 +339,6 @@
     "AI": "Conversational AI",
     "text": "I can talk to you like a human being"
   },
-
   "TaskForm": {
     "create": "Create a task",
     "recurrency": "Recurrency",
@@ -350,11 +346,9 @@
     "dimensions": "Dimensions",
     "createtask": "Create Task"
   },
-
   "TaskF2": {
     "header": "TaskPage for task: "
   },
-
   "LoginForm": {
     "signin": "Sign in",
     "carddescription": "Enter your email below to login to your account",
@@ -367,7 +361,6 @@
     "donthave": "Don't have an account?",
     "signup": "Sign up"
   },
-
   "DimensionsFormField": {
     "emotional": "Emotional",
     "spiritual": "Spiritual",
@@ -376,23 +369,19 @@
     "intellectual": "Intellectual",
     "social": "Social"
   },
-
   "DateFormField": {
     "date": "Date",
     "pickdate": "Pick a date",
     "starttime": "Start Time",
     "endtime": "End Time"
   },
-
   "NameFormField": {
     "name": "Name"
   },
-
   "TaskOptions": {
     "edit": "Edit",
     "delete": "Delete"
   },
-
   "Tutorial": {
     "title1": "Purpose and dimensions",
     "desc1": "Take care of your well-being across 6 dimensions. Challenge yourself with daily tasks, keep a journal, and let WellSphere help you track your progress!",
@@ -414,7 +403,6 @@
     "title": "Default Title",
     "text": "This is a default step description"
   },
-
   "WelcomePage": {
     "welcome": "Welcome to WellSphere",
     "paragraph": "Discover amazing features and boost your productivity with our innovative application.",

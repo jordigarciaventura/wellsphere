@@ -3,7 +3,11 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const { username, email, password } = await request.json();
+    const { username, email, password } = (await request.json()) as {
+      username: string;
+      email: string;
+      password: string;
+    };
 
     const existingUser = await getUserByEmail(email);
     if (existingUser[0] != null) {
@@ -13,7 +17,7 @@ export async function POST(request: Request) {
       );
     }
 
-    createUser(username, email, password);
+    await createUser(username, email, password);
   } catch (e) {
     console.log({ e });
   }

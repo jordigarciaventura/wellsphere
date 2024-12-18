@@ -4,7 +4,9 @@
     "description": "Nuestra increíble aplicación"
   },
   "Main": {
-    "welcome": "Bienvenido a DayCraft"
+    "welcome": "Bienvenido a DayCraft",
+    "button": "Botón",
+    "home": "Inicio"
   },
   "Components": {
     "language-select": {
@@ -13,6 +15,163 @@
   },
   "Footer": {
     "copyright": "2024 DayCraft. Todos los derechos reservados."
+  },
+  "dimensions": {
+    "physical": "Física",
+    "emotional": "Emocional",
+    "social": "Social",
+    "intellectual": "Intelectual",
+    "spiritual": "Espiritual",
+    "occupational": "Laboral"
+  },
+  "questionnaire": {
+    "physical": {
+      "questions": {
+        "sleepTime": {
+          "question": "¿Cuántas horas duermes por noche?",
+          "options": {
+            "a": "4-6 horas",
+            "b": "6-8 horas",
+            "c": "8-10 horas",
+            "d": "10+ horas"
+          }
+        },
+        "exerciseFrequency": {
+          "question": "¿Cuántos días a la semana haces ejercicio?",
+          "options": {
+            "a": "0 días",
+            "b": "1-2 días",
+            "c": "3-4 días",
+            "d": "5+ días"
+          }
+        },
+        "waterIntake": {
+          "question": "¿Cuántos vasos de agua bebes al día?",
+          "options": {
+            "a": "0-2 vasos",
+            "b": "3-4 vasos",
+            "c": "5-6 vasos",
+            "d": "7+ vasos"
+          }
+        },
+        "fruitVegIntake": {
+          "question": "¿Cuántas porciones de frutas y verduras consumes al día?",
+          "options": {
+            "a": "0-2 porciones",
+            "b": "3-4 porciones",
+            "c": "5-6 porciones",
+            "d": "7+ porciones"
+          }
+        },
+        "screenTime": {
+          "question": "¿Cuántas horas al día usas pantallas?",
+          "options": {
+            "a": "0-2 horas",
+            "b": "3-4 horas",
+            "c": "5-6 horas",
+            "d": "7+ horas"
+          }
+        }
+      }
+    },
+    "emotional": {
+      "questions": {
+        "stressFrequency": {
+          "question": "¿Con qué frecuencia te sientes estresado?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "anxietyFrequency": {
+          "question": "¿Con qué frecuencia te sientes ansioso?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "sadnessFrequency": {
+          "question": "¿Con qué frecuencia te sientes triste?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "happinessFrequency": {
+          "question": "¿Con qué frecuencia te sientes feliz?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "angerFrequency": {
+          "question": "¿Con qué frecuencia te sientes enojado?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        }
+      }
+    },
+    "social": {
+      "questions": {
+        "friendCount": {
+          "question": "¿Cuántos amigos tienes?",
+          "options": {
+            "a": "0-2 amigos",
+            "b": "3-4 amigos",
+            "c": "5-6 amigos",
+            "d": "7+ amigos"
+          }
+        },
+        "friendMeetingFrequency": {
+          "question": "¿Con qué frecuencia ves a tus amigos?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "friendTalkingFrequency": {
+          "question": "¿Con qué frecuencia hablas con tus amigos?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "socialEvents": {
+          "question": "¿A cuántos eventos sociales asistes al mes?",
+          "options": {
+            "a": "0-2 eventos",
+            "b": "3-4 eventos",
+            "c": "5-6 eventos",
+            "d": "7+ eventos"
+          }
+        },
+        "lonelinessFrequency": {
+          "question": "¿Con qué frecuencia te sientes solo?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        }
+      }
+    }
   },
   "BottomAppBar": {
     "chat": "Chat",
@@ -28,7 +187,7 @@
   },
   "ChatIntro": {
     "letschat": "Hablemos",
-    "answerallquestions": "Responderé todas tus preguntas.",
+    "answerallquestions": "Responde todas tus preguntas.",
     "askanything": "Solo pregúntame lo que quieras",
     "AI": "IA conversacional",
     "text": "Puedo hablar contigo como un ser humano"
@@ -39,5 +198,67 @@
     "desc": "Descripción",
     "dimensions": "Dimensiones",
     "createtask": "Crear tarea"
+  },
+  "TaskF2": {
+    "header": "Página de tareas para la tarea: "
+  },
+  "LoginForm": {
+    "signin": "Iniciar sesión",
+    "carddescription": "Introduce tu correo electrónico para acceder a tu cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "forgot": "¿Olvidaste tu contraseña?",
+    "login": "Iniciar sesión",
+    "google": "Iniciar sesión con Google",
+    "github": "Iniciar sesión con GitHub",
+    "donthave": "¿No tienes una cuenta?",
+    "signup": "Regístrate"
+  },
+  "DimensionsFormField": {
+    "emotional": "Emocional",
+    "spiritual": "Espiritual",
+    "physical": "Física",
+    "occupational": "Laboral",
+    "intellectual": "Intelectual",
+    "social": "Social"
+  },
+  "DateFormField": {
+    "date": "Fecha",
+    "pickdate": "Selecciona una fecha",
+    "starttime": "Hora de inicio",
+    "endtime": "Hora de finalización"
+  },
+  "NameFormField": {
+    "name": "Nombre"
+  },
+  "TaskOptions": {
+    "edit": "Editar",
+    "delete": "Eliminar"
+  },
+  "Tutorial": {
+    "title1": "Propósito y dimensiones",
+    "desc1": "Cuida tu bienestar en 6 dimensiones. Rétate con tareas diarias, lleva un diario y deja que WellSphere te ayude a seguir tu progreso.",
+    "title2": "Física",
+    "desc2": "¡Mantente activo! Establece metas físicas, como correr o hacer ejercicio, para mantener tu cuerpo saludable.",
+    "title3": "Emocional",
+    "desc3": "Equilibra tus emociones. Establece una meta para hablar sobre tus sentimientos y reflexionar a diario.",
+    "title4": "Intelectual",
+    "desc4": "¡Reta a tu mente! Establece una meta, como leer un libro o aprender algo nuevo.",
+    "title5": "Social",
+    "desc5": "¡Construye mejores conexiones! Establece metas para mejorar tus relaciones cada día.",
+    "title6": "Espiritual",
+    "desc6": "Encuentra la paz interior. Añade una práctica de meditación a tu rutina diaria.",
+    "title7": "Laboral",
+    "desc7": "Mantente al día en tu carrera. Establece metas para seguir las tendencias del mercado y mejorar profesionalmente.",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "skip": "Omitir",
+    "title": "Título predeterminado",
+    "text": "Esta es una descripción de paso predeterminada"
+  },
+  "WelcomePage": {
+    "welcome": "Bienvenido a WellSphere",
+    "paragraph": "Descubre increíbles funciones y mejora tu productividad con nuestra innovadora aplicación.",
+    "getstarted": "Comenzar"
   }
 }

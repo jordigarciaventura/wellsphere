@@ -4,7 +4,7 @@ import {
   getTaskSummariesUseCase,
   getTasksUseCase,
 } from "@/features/tasks/use-cases/tasks";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 interface Props {
   params: Record<string, string>;
@@ -17,6 +17,8 @@ export default async function TasksPage({
 }: Props) {
   // Enable static rendering
   setRequestLocale(locale!);
+
+  const t = await getTranslations("Tasks");
 
   const queryDate = searchParams.date as string | undefined;
   const date =
