@@ -11,7 +11,7 @@ interface Props {
 export default async function HomePage({
   params: { locale },
   searchParams,
-}: Props) {
+}: Readonly<Props>) {
   // Enable static rendering
   setRequestLocale(locale);
 
