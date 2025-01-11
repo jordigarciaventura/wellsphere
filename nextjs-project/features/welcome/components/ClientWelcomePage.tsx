@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { route } from "@/config/site";
 import { Link } from "@/i18n/routing";
@@ -9,9 +7,10 @@ import "./style.css";
 
 export default async function WelcomePage() {
   const t = await getTranslations("WelcomePage");
+
   return (
-    <section className="welcome-page">
-      <div className="container">
+    <section className="welcome-page items-center justify-center">
+      <div className="container lg:mb-24">
         <div className="content-wrapper">
           <div className="image-wrapper">
             <Image
@@ -25,7 +24,7 @@ export default async function WelcomePage() {
           </div>
           <div className="text-button-wrapper">
             <div className="text-content">
-              <h1 className="heading">[{t("welcome")}]</h1>
+              <h1 className="heading">{t("welcome")}</h1>
               <p className="paragraph">{t("paragraph")}</p>
             </div>
             <div className="button-wrapper">

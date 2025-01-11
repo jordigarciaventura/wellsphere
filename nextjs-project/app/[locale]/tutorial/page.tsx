@@ -10,8 +10,8 @@ export default function TutorialPageWrapper({ params: { locale } }: Props) {
   setRequestLocale(locale);
 
   return (
-    <>
+    <div className="flex h-screen flex-col items-center justify-center">
       <TutorialCarousel />
-    </>
+    </div>
   );
 }

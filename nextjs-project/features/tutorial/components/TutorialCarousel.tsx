@@ -2,11 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { route } from "@/config/site";
+import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import * as React from "react";
 
-// Define the TutorialStep interface with required properties
 interface TutorialStep {
   image: string;
   title: string;
@@ -16,9 +18,8 @@ interface TutorialStep {
 
 export default function Component(): JSX.Element {
   const t = useTranslations("Tutorial");
-  // Set initial state for the current step index
+  const router = useRouter();
 
-  // Ensure tutorialSteps is non-empty and has a valid fallback step
   const fallbackStep: TutorialStep = {
     image: "/default.svg",
     title: t("title"),
@@ -26,7 +27,6 @@ export default function Component(): JSX.Element {
     color: "#000000",
   };
 
-  // Ensure tutorialSteps is correctly typed and non-nullable
   const tutorialSteps: TutorialStep[] = [
     {
       image: "/assets/app1.svg",
@@ -74,37 +74,34 @@ export default function Component(): JSX.Element {
 
   const [currentStepIndex, setCurrentStepIndex] = React.useState<number>(0);
 
-  // Safely access the current step with a fallback to avoid undefined
   const currentStep = tutorialSteps[currentStepIndex] || fallbackStep;
 
-  // Type for handler functions
   const handleNext = (): void => {
     setCurrentStepIndex((prev) => Math.min(prev + 1, tutorialSteps.length - 1));
+
+    if (currentStepIndex === tutorialSteps.length - 1) {
+      router.push(route.questionnaire);
+    }
   };
 
   const handleBack = (): void => {
     setCurrentStepIndex((prev) => Math.max(prev - 1, 0));
   };
 
-  const handleSkip = (): void => {
-    console.log("Tutorial skipped");
-  };
-
   return (
-    <Card className="relative mx-auto min-h-[600px] max-w-6xl p-8">
-      <CardContent className="p-0">
+    <Card className="w-full max-w-6xl">
+      <CardContent className="pt-6">
         <div className="mb-8 flex flex-col items-center gap-8 md:flex-row md:gap-16">
-          <div className="flex flex-1 items-center justify-center">
+          <div className="flex w-full flex-1 items-center justify-center">
             <div
-              className="rounded-full p-8"
+              className="relative aspect-square w-full max-w-96 rounded-full p-8"
               style={{ backgroundColor: `${currentStep.color}15` }}
             >
               <Image
                 src={currentStep.image}
                 alt={currentStep.title}
-                width={400}
-                height={400}
-                className="h-auto w-full max-w-[300px] md:max-w-[400px]"
+                fill={true}
+                className="object-contain"
               />
             </div>
           </div>
@@ -115,13 +112,13 @@ export default function Component(): JSX.Element {
             >
               {currentStep.title}
             </h2>
-            <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
+            <p className="min-h-32 text-lg leading-relaxed text-muted-foreground md:text-xl">
               {currentStep.text}
             </p>
           </div>
         </div>
 
-        <div className="mt-8 flex justify-center gap-4">
+        <div className="mt-8 flex w-full justify-center gap-4">
           <Button
             onClick={handleBack}
             disabled={currentStepIndex === 0}
@@ -131,28 +128,20 @@ export default function Component(): JSX.Element {
             }}
             className="rounded-full px-8 hover:opacity-90"
           >
-            Back
+            {t("back")}
           </Button>
           <Button
             onClick={handleNext}
-            disabled={currentStepIndex === tutorialSteps.length - 1}
             style={{
               backgroundColor: currentStep.color,
-              opacity: currentStepIndex === tutorialSteps.length - 1 ? 0.5 : 1,
             }}
             className="rounded-full px-8 hover:opacity-90"
           >
-            Next
+            {currentStepIndex === tutorialSteps.length - 1
+              ? t("start")
+              : t("next")}
           </Button>
         </div>
-
-        <Button
-          onClick={handleSkip}
-          style={{ backgroundColor: currentStep.color }}
-          className="absolute bottom-8 right-8 rounded-full px-8 hover:opacity-90"
-        >
-          Skip
-        </Button>
 
         <div className="mt-8 flex justify-center gap-2">
           {tutorialSteps.map((_, index) => (
@@ -167,6 +156,15 @@ export default function Component(): JSX.Element {
               aria-label={`Go to step ${index + 1}`}
             />
           ))}
+        </div>
+
+        <div className="flex w-full justify-end">
+          <Link
+            href={route.questionnaire}
+            className="px-4 py-2 text-sm text-muted-foreground"
+          >
+            {t("skip")}
+          </Link>
         </div>
       </CardContent>
     </Card>
