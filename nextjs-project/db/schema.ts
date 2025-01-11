@@ -131,7 +131,8 @@ export const questionTable = pgTable(
   {
     id: serial().primaryKey(),
     dimension: dimensionEnum().notNull(),
-    text: text().notNull(),
+    label: text().notNull(),
+    value: text().notNull(),
     questionnaireUserId: varchar({ length: 50 }).notNull(),
     questionnaireDate: date().notNull(),
   },
@@ -148,7 +149,8 @@ export const optionTable = pgTable("options", {
   questionId: integer()
     .notNull()
     .references(() => questionTable.id),
-  text: text().notNull(),
+  label: text().notNull(),
+  value: text().notNull(),
   score: integer().notNull(),
 });
 
