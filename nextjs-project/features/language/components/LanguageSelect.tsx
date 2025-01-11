@@ -17,9 +17,9 @@ export default function LanguageSelect() {
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
-        <button className="flex w-full items-center gap-4 px-4 py-3 text-left hover:bg-gray-100 focus:outline-none">
-          <Globe className="h-5 w-5 text-gray-600" />
-          <span className="text-gray-800">{t("language")}</span>
+        <button className="flex w-full items-center gap-4 px-4 py-3 text-left focus:outline-none">
+          <Globe className="size-5" />
+          <span className="">{t("language")}</span>
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-full">

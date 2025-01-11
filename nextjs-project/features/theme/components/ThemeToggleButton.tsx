@@ -1,11 +1,14 @@
 import ClientThemeToggleButton from "@/features/theme/components/ClientThemeToggleButton";
 import ThemeIcon from "@/features/theme/components/ThemeIcon";
+import { getTranslations } from "next-intl/server";
 
-export default function ThemeToggleButton() {
+export default async function ThemeToggleButton() {
+  const t = await getTranslations("Components.theme-toggle");
+
   return (
     <ClientThemeToggleButton>
       <ThemeIcon className="size-5" />
-      <span>Theme</span>
+      <span>{t("theme")}</span>
     </ClientThemeToggleButton>
   );
 }

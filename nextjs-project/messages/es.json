@@ -11,6 +11,9 @@
   "Components": {
     "language-select": {
       "language": "Idioma"
+    },
+    "theme-toggle": {
+      "theme": "Tema"
     }
   },
   "Footer": {
