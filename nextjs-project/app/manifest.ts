@@ -60,31 +60,18 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
     icons: [
       {
-        src: "wellspherelogo512.png",
+        src: "android/android-launchericon-512-512.png",
         sizes: "512x512",
         type: "image/png",
         purpose: "maskable",
       },
       {
-        src: "wellspherelogo192.png",
+        src: "android/android-launchericon-192-192.png",
         sizes: "192x192",
         type: "image/png",
         purpose: "any",
       },
     ],
-    related_applications: [
-      {
-        platform: "windows",
-        url: "The URL to your app in that app store",
-      },
-    ],
     prefer_related_applications: false,
-    shortcuts: [
-      {
-        name: "WS",
-        url: "/shortcut",
-        description: "A description of the functionality of this shortcut",
-      },
-    ],
   };
 }
