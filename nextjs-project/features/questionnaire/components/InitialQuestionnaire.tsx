@@ -77,28 +77,28 @@ export default function InitialQuestionnaire() {
   return (
     <Questionnaire
       sections={sections as unknown as Section[]}
-      initialAnswers={[
-        {
-          section: "physical",
-          question: "sleepTime",
-          value: "b",
-        },
-        {
-          section: "physical",
-          question: "exerciseFrequency",
-          value: "c",
-        },
-        {
-          question: "readingFrequency",
-          section: "intellectual",
-          value: "d",
-        },
-        {
-          question: "learningFrequency",
-          section: "intellectual",
-          value: "b",
-        },
-      ]}
+      // initialAnswers={[
+      //   {
+      //     section: "physical",
+      //     question: "sleepTime",
+      //     value: "b",
+      //   },
+      //   {
+      //     section: "physical",
+      //     question: "exerciseFrequency",
+      //     value: "c",
+      //   },
+      //   {
+      //     question: "readingFrequency",
+      //     section: "intellectual",
+      //     value: "d",
+      //   },
+      //   {
+      //     question: "learningFrequency",
+      //     section: "intellectual",
+      //     value: "b",
+      //   },
+      // ]}
       heading={heading}
     />
   );
