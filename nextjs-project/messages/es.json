@@ -1,6 +1,6 @@
 {
   "App": {
-    "title": "WellSphere",
+    "title": "Daisy",
     "description": "Nuestra increíble aplicación"
   },
   "Main": {
@@ -174,6 +174,153 @@
           }
         }
       }
+    },
+    "intellectual": {
+      "questions": {
+        "readingFrequency": {
+          "question": "¿Con qué frecuencia lees?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "learningFrequency": {
+          "question": "¿Con qué frecuencia aprendes algo nuevo?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "problemSolvingFrequency": {
+          "question": "¿Con qué frecuencia resuelves problemas?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "criticalThinkingFrequency": {
+          "question": "¿Con qué frecuencia piensas críticamente?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "creativityFrequency": {
+          "question": "¿Con qué frecuencia usas tu creatividad?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        }
+      }
+    },
+    "spiritual": {
+      "questions": {
+        "meditationFrequency": {
+          "question": "¿Con qué frecuencia meditas?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "prayerFrequency": {
+          "question": "¿Con qué frecuencia rezas?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "gratitudeFrequency": {
+          "question": "¿Con qué frecuencia practicas la gratitud?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "forgivenessFrequency": {
+          "question": "¿Con qué frecuencia practicas el perdón?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "mindfulnessFrequency": {
+          "question": "¿Con qué frecuencia practicas la atención plena?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        }
+      }
+    },
+    "occupational": {
+      "questions": {
+        "workHours": {
+          "question": "¿Cuántas horas trabajas por semana?",
+          "options": {
+            "a": "0-20 horas",
+            "b": "21-40 horas",
+            "c": "41-60 horas",
+            "d": "61+ horas"
+          }
+        },
+        "breaksFrequency": {
+          "question": "¿Con qué frecuencia tomas descansos en el trabajo?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "workStress": {
+          "question": "¿Con qué frecuencia te sientes estresado en el trabajo?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "workSatisfaction": {
+          "question": "¿Con qué frecuencia te sientes satisfecho con tu trabajo?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        },
+        "workFulfillment": {
+          "question": "¿Con qué frecuencia te sientes realizado en el trabajo?",
+          "options": {
+            "a": "Nunca",
+            "b": "Raramente",
+            "c": "A veces",
+            "d": "Frecuentemente"
+          }
+        }
+      }
     }
   },
   "BottomAppBar": {
@@ -240,7 +387,7 @@
   },
   "Tutorial": {
     "title1": "Propósito y dimensiones",
-    "desc1": "Cuida tu bienestar en 6 dimensiones. Rétate con tareas diarias, lleva un diario y deja que WellSphere te ayude a seguir tu progreso.",
+    "desc1": "Cuida tu bienestar en 6 dimensiones. Rétate con tareas diarias, lleva un diario y deja que Daisy te ayude a seguir tu progreso.",
     "title2": "Física",
     "desc2": "¡Mantente activo! Establece metas físicas, como correr o hacer ejercicio, para mantener tu cuerpo saludable.",
     "title3": "Emocional",
@@ -261,7 +408,7 @@
     "text": "Esta es una descripción de paso predeterminada"
   },
   "WelcomePage": {
-    "welcome": "Bienvenido a WellSphere",
+    "welcome": "Bienvenido a Daisy",
     "paragraph": "Descubre increíbles funciones y mejora tu productividad con nuestra innovadora aplicación.",
     "getstarted": "Comenzar"
   }

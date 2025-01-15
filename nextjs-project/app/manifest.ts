@@ -9,12 +9,12 @@ export default function manifest(): MetadataRoute.Manifest {
       : "https://wellsphere.vercel.app";
 
   return {
-    name: "WellSphere",
+    name: "Daisy",
     short_name: "WSphere",
     start_url,
     display: "standalone",
     description:
-      "WellSphere is a wellness app designed to improve your overall health. Achieve balance in life in your journey together with WellSphere!",
+      "Daisy is a wellness app designed to improve your overall health. Achieve balance in life in your journey together with Daisy!",
     lang: "English",
     dir: "auto",
     theme_color: "#693cf7",

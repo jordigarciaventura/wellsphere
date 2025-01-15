@@ -9,7 +9,7 @@ import { route } from "@/config/site";
 import { Link } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { getNthRouteSegment } from "@/utils/url";
-import { useTranslations } from 'next-intl';
+import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -34,7 +34,11 @@ const NavigationButton = ({
         "group flex w-full flex-col items-center justify-center gap-1 text-sm font-medium text-muted-foreground focus:text-primary",
       )}
     >
-      <Icon useSolidColor={!selected} solidColor="#D8DEF3" />
+      <Icon
+        useSolidColor={!selected}
+        solidColor="#ffcb94"
+        gradientColors={["#fe9525", "#fe2525"]}
+      />
       {text}
     </Link>
   );
@@ -42,9 +46,9 @@ const NavigationButton = ({
 
 export default function BottomAppBar() {
   const pathname = usePathname();
-  const t = useTranslations('BottomAppBar');
+  const t = useTranslations("BottomAppBar");
 
-  const navigationData = [    
+  const navigationData = [
     { href: route.chat, icon: ChatIcon, text: t("chat") },
     { href: route.tasks, icon: TasksIcon, text: t("tasks") },
     { href: route.home, icon: HomeIcon, text: t("home") },

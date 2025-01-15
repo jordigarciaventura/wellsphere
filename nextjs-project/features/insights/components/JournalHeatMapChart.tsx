@@ -39,18 +39,6 @@ export default function JournalHeatMapChart({ data }: Props) {
             Today
           </Button>
         </div>
-        <div className="flex w-full items-center gap-4">
-          <CardTitle>Journaling</CardTitle>
-          <Button
-            className="text-xs"
-            size="sm"
-            variant="outline"
-            onClick={() => setMonth(new Date())}
-            disabled={month.toDateString() === new Date().toDateString()}
-          >
-            Today
-          </Button>
-        </div>
       </CardHeader>
       <CardContent className="w-full">
         <LocalizedCalendar

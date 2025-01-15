@@ -1,6 +1,6 @@
 {
   "App": {
-    "title": "WellSphere",
+    "title": "Daisy",
     "description": "Our awesome app"
   },
   "Main": {
@@ -387,7 +387,7 @@
   },
   "Tutorial": {
     "title1": "Purpose and dimensions",
-    "desc1": "Take care of your well-being across 6 dimensions. Challenge yourself with daily tasks, keep a journal, and let WellSphere help you track your progress!",
+    "desc1": "Take care of your well-being across 6 dimensions. Challenge yourself with daily tasks, keep a journal, and let Daisy help you track your progress!",
     "title2": "Physical",
     "desc2": "Stay active! Set physical goals, like running or exercising, to keep your body healthy.",
     "title3": "Emotional",
@@ -408,7 +408,7 @@
     "text": "This is a default step description"
   },
   "WelcomePage": {
-    "welcome": "Welcome to WellSphere",
+    "welcome": "Welcome to Daisy",
     "paragraph": "Discover amazing features and boost your productivity with our innovative application.",
     "getstarted": "Get Started"
   }

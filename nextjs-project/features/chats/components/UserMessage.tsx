@@ -1,3 +1,4 @@
+import { UserIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -7,8 +8,10 @@ interface Props {
 
 export default function UserMessage({ content, className }: Props) {
   return (
-    <div className={cn(className, "mr-auto flex gap-4")}>
-      <img src="/assets/User_Img.svg" alt="User Icon" className="size-7" />
+    <div className={cn(className, "mr-auto flex items-start gap-4")}>
+      <div className="flex size-10 items-center justify-center">
+        <UserIcon />
+      </div>
       <div
         className="prose dark:prose-invert"
         style={{

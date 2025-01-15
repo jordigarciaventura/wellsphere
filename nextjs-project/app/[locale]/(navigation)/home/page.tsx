@@ -1,6 +1,9 @@
 import TopAppBar from "@/components/navigation/TopAppBar";
+import { route } from "@/config/site";
 import HomeContent from "@/features/home/components/HomeContent";
 import { getMoodsUseCase } from "@/features/tasks/use-cases/moods";
+import { isNewUserUseCase } from "@/features/welcome/use-cases/users";
+import { redirect } from "@/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
 
 interface Props {
@@ -14,6 +17,15 @@ export default async function HomePage({
 }: Readonly<Props>) {
   // Enable static rendering
   setRequestLocale(locale);
+
+  const isNewUser = await isNewUserUseCase();
+
+  if (isNewUser) {
+    redirect({
+      href: route.tutorial,
+      locale,
+    });
+  }
 
   const queryDate = searchParams.date as string | undefined;
   const date =

@@ -10,6 +10,7 @@ interface Props {
   className?: string;
   selectedValue?: OptionValue;
   onValueChange: (questionValue: string, answerValue: OptionValue) => void;
+  readonly?: boolean;
 }
 
 export default function Question({
@@ -19,12 +20,13 @@ export default function Question({
   className,
   selectedValue,
   onValueChange,
+  readonly = false,
 }: Props) {
   return (
     <RadioGroup
       className={cn("mb-8 flex flex-col gap-8 px-2", className)}
       onValueChange={(value) =>
-        onValueChange(questionValue, value as OptionValue)
+        !readonly && onValueChange(questionValue, value as OptionValue)
       }
       value={selectedValue}
     >
@@ -36,6 +38,7 @@ export default function Question({
             label={option.label}
             value={option.value}
             questionValue={questionValue}
+            readonly={readonly}
           />
         ))}
       </div>
@@ -47,10 +50,12 @@ function Option({
   label,
   value,
   questionValue,
+  readonly = false,
 }: {
   label: string;
   value: string;
   questionValue: string;
+  readonly?: boolean;
 }) {
   return (
     <div className="relative flex h-32 w-full items-start gap-2 rounded-lg border border-input p-4 shadow-sm shadow-black/5 has-[[data-state=checked]]:border-ring">
@@ -58,6 +63,7 @@ function Option({
         value={value}
         id={`${questionValue}-${value}`}
         className="order-1 after:absolute after:inset-0"
+        disabled={readonly}
       />
       <div className="w-full">
         <Label htmlFor={questionValue}>{label}</Label>

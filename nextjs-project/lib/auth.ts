@@ -15,5 +15,5 @@ export async function getUserId() {
     return null;
   }
 
-  return session.user.id;
+  return session.id;
 }

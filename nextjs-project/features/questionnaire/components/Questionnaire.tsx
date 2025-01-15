@@ -1,28 +1,62 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { submitQuestionnaireAction } from "@/features/questionnaire/actions/questionnaire";
 import Navigation from "@/features/questionnaire/components/Navigation";
 import Question from "@/features/questionnaire/components/Question";
 import Stepper from "@/features/questionnaire/components/Stepper";
 import { Answer } from "@/features/questionnaire/types/answers";
 import { Section } from "@/features/questionnaire/types/questions";
 import { computeScores } from "@/features/questionnaire/utils/score";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 interface Props {
   sections: Section[];
   initialAnswers?: Answer[];
   heading?: React.ReactNode;
+  readonly?: boolean;
 }
 
 export default function Questionnaire({
   sections,
   initialAnswers,
   heading,
+  readonly = false,
 }: Props) {
-  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>(initialAnswers ?? []);
+
+  const getLastState = useCallback(() => {
+    let index = initialAnswers?.length ?? 0;
+
+    for (let i = 0; i < sections.length; i++) {
+      const questionsLength = sections[i]!.questions.length;
+      if (index === 0) {
+        return {
+          sectionIndex: i,
+          questionIndex: 0,
+        };
+      }
+
+      if (index < questionsLength) {
+        return {
+          sectionIndex: i,
+          questionIndex: index,
+        };
+      }
+      index -= questionsLength;
+    }
+
+    return {
+      sectionIndex: 0,
+      questionIndex: 0,
+    };
+  }, [initialAnswers, sections]);
+
+  const { sectionIndex, questionIndex } = getLastState();
+
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(sectionIndex);
+  const [currentQuestionIndex, setCurrentQuestionIndex] =
+    useState(questionIndex);
 
   const progress = useMemo(() => {
     return sections.map((section) => {
@@ -47,7 +81,11 @@ export default function Questionnaire({
   ).length;
 
   const canPrevious = currentSectionIndex > 0 || currentQuestionIndex > 0;
-  const canNext = answersLength > currentQuestionIndex;
+  const isLastSection = currentSectionIndex === sectionsLength - 1;
+  const isLastQuestion = currentQuestionIndex === questionsLength - 1;
+  const isLastSectionQuestion = isLastSection && isLastQuestion;
+  const canNext =
+    answersLength > currentQuestionIndex && !isLastSectionQuestion;
 
   const totalQuestions = useMemo(
     () => sections.reduce((acc, section) => acc + section.questions.length, 0),
@@ -57,6 +95,11 @@ export default function Questionnaire({
   const canSubmit = answers.length === totalQuestions;
 
   const handleNextQuestion = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+
     if (currentQuestionIndex === questionsLength - 1) {
       if (currentSectionIndex === sectionsLength - 1) {
         return;
@@ -71,6 +114,11 @@ export default function Questionnaire({
   };
 
   const handlePreviousQuestion = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+
     if (currentQuestionIndex === 0) {
       if (currentSectionIndex === 0) {
         return;
@@ -102,19 +150,40 @@ export default function Questionnaire({
     ]);
   };
 
-  const handleSubmit = () => {
-    console.log(computeScores(answers));
-  };
+  const prevAnswersRef = useRef<Answer[]>(answers);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    if (canNext) {
-      const timeout = setTimeout(() => {
+    // Compare the current answers with the previous answers
+    const prevAnswers = prevAnswersRef.current;
+    if (canNext && JSON.stringify(prevAnswers) !== JSON.stringify(answers)) {
+      // Clear any existing timeout
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+
+      // Set a new timeout and store its ID in the ref
+      timeoutRef.current = setTimeout(() => {
         handleNextQuestion();
       }, 500);
 
-      return () => clearTimeout(timeout);
+      // Update the previous answers reference
+      prevAnswersRef.current = answers;
     }
-  }, [answers]);
+
+    // Cleanup function to clear the timeout when dependencies change
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+    };
+  }, [answers, canNext]);
+
+  const handleSubmit = async () => {
+    console.log(computeScores(answers));
+    await submitQuestionnaireAction();
+  };
 
   const currentAnswer = answers.find(
     (answer) =>
@@ -140,6 +209,7 @@ export default function Questionnaire({
           options={currentQuestion!.options}
           onValueChange={handleOnValueChange}
           selectedValue={currentAnswer}
+          readonly={readonly}
         />
 
         <Navigation
@@ -152,13 +222,15 @@ export default function Questionnaire({
           doneSteps={answersLength}
         />
 
-        <Button
-          onClick={handleSubmit}
-          disabled={!canSubmit}
-          className="mx-4 my-4"
-        >
-          Submit
-        </Button>
+        {!readonly && (
+          <Button
+            onClick={handleSubmit}
+            disabled={!canSubmit}
+            className="mx-4 my-4"
+          >
+            Submit
+          </Button>
+        )}
       </div>
     </div>
   );

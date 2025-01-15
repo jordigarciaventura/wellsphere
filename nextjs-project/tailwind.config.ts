@@ -91,7 +91,7 @@ const config = {
       },
       backgroundImage: {
         "gradient-linear":
-          "linear-gradient(352deg, rgba(2,0,36,1) 0%, rgba(58,73,249,1) 0%, rgba(156,44,243,1) 100%)",
+          "linear-gradient(352deg, rgba(254,37,37,1) 0%, rgba(254,149,37,1) 100%)",
       },
     },
   },

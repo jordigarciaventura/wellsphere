@@ -21,6 +21,9 @@ export const computeScores = (answers: Answer[]) => {
 
 const computeScore = (answers: Answer[], section: string) => {
   const sectionAnswers = answers.filter((answer) => answer.section === section);
+
+  if (!sectionAnswers.length) return 0;
+
   const sectionScore = sectionAnswers.reduce((acc, answer) => {
     return acc + getAnswerScore(answer);
   }, 0);

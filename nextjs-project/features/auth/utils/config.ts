@@ -15,8 +15,8 @@ import GoogleProvider from "next-auth/providers/google";
  */
 declare module "next-auth" {
   interface Session extends DefaultSession {
+    id: string;
     user: {
-      id: string;
       // ...other properties
       // role: UserRole;
     } & DefaultSession["user"];

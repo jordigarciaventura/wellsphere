@@ -48,14 +48,16 @@ CREATE TABLE IF NOT EXISTS "moodEntries" (
 CREATE TABLE IF NOT EXISTS "options" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"questionId" integer NOT NULL,
-	"text" text NOT NULL,
+	"label" text NOT NULL,
+	"value" text NOT NULL,
 	"score" integer NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "questions" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"dimension" "dimension" NOT NULL,
-	"text" text NOT NULL,
+	"label" text NOT NULL,
+	"value" text NOT NULL,
 	"questionnaireUserId" varchar(50) NOT NULL,
 	"questionnaireDate" date NOT NULL
 );

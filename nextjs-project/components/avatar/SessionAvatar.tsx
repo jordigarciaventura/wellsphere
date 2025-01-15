@@ -13,7 +13,7 @@ export default async function SessionAvatar({ className }: Props) {
 
   const src = session?.user?.image;
   const userfullname = session?.user?.name;
-  const username = session?.user?.id ?? "";
+  const username = session?.user?.name ?? "";
 
   return (
     <UserAvatar

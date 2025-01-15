@@ -8,6 +8,7 @@ import type { AI } from "@/features/chats/utils/provider";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useActions, useUIState } from "ai/rsc";
+import { SendIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
@@ -75,33 +76,27 @@ export default function PromptForm({ className }: Props) {
           className,
         )}
       >
-        <div className="w-full rounded-lg bg-gradient-to-r from-[#3A49F9] to-[#9C2CF3] p-[1px]">
-          <div className="overflow-hidden rounded-lg">
-            <FormField
-              control={form.control}
-              name="prompt"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <AutosizeTextarea
-                      {...field}
-                      placeholder="Type a message..."
-                      maxHeight={120}
-                      onKeyDown={handleKeyDown} // Add keydown handler here
-                      className="h-fit w-full resize-none rounded-lg border-2 border-transparent bg-card text-sm leading-[1.2rem] outline-none focus:border-transparent focus:ring-0"
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-          </div>
+        <div className="border-1 mb-2 w-full overflow-hidden rounded-lg border-primary">
+          <FormField
+            control={form.control}
+            name="prompt"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <AutosizeTextarea
+                    {...field}
+                    placeholder="Type a message..."
+                    maxHeight={120}
+                    onKeyDown={handleKeyDown} // Add keydown handler here
+                    className="h-fit w-full resize-none rounded-lg border-2 border-transparent bg-card text-sm leading-[1.2rem] outline-none focus:border-transparent focus:ring-0"
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
         </div>
         <button type="submit" className="rounded-full p-2">
-          <img
-            src="/assets/PlayButton_img.svg"
-            alt="Send Message"
-            className="size-12"
-          />
+          <SendIcon size={24} />
         </button>
       </form>
     </Form>
