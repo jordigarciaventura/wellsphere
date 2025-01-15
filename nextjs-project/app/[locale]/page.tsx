@@ -124,19 +124,19 @@ export default async function LandingPage({ params: { locale } }: Props) {
                 icon={<List className="mb-4 h-10 w-10 text-primary" />}
                 title="Task Management Made Simple"
                 description="Stay on top of your to-do list with smart reminders and notifications that keep you organized and focused."
-                image="/placeholder.svg?height=200&width=350"
+                image="/assets/screenshot_tasks.png?height=200&width=350"
               />
               <FeatureCard
                 icon={<MessageCircle className="mb-4 h-10 w-10 text-primary" />}
                 title="Journaling for Clarity"
                 description="Reflect on your day, track your emotions, and build mindfulness habits with ease."
-                image="/placeholder.svg?height=200&width=350"
+                image="/assets/screenshot_journal.png?height=200&width=350"
               />
               <FeatureCard
                 icon={<Heart className="mb-4 h-10 w-10 text-primary" />}
                 title="Mental Health Support"
                 description="Need someone to talk to? Daisy offers a safe, judgment-free space for meaningful conversations and actionable advice."
-                image="/placeholder.svg?height=200&width=350"
+                image="/assets/screenshot_chat.png?height=200&width=350"
               />
             </div>
           </div>
@@ -170,7 +170,7 @@ export default async function LandingPage({ params: { locale } }: Props) {
               </div>
               <div className="flex items-center justify-center">
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/assets/screenshot_home.png?height=400&width=600"
                   width={600}
                   height={400}
                   alt="Daisy Personalized Guidance"
@@ -245,7 +245,7 @@ export default async function LandingPage({ params: { locale } }: Props) {
               </div>
               <div className="flex items-center justify-center">
                 <Image
-                  src="/placeholder.svg?height=400&width=600"
+                  src="/assets/screenshot_login.png?height=400&width=600"
                   width={600}
                   height={400}
                   alt="Daisy Cloud Sync"
