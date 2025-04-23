@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS "messages" (
 	"userId" varchar(255) NOT NULL,
 	"role" "role" NOT NULL,
 	"content" text NOT NULL,
-	"createdAt" timestamp DEFAULT now(),
+	"createdAt" timestamp with time zone DEFAULT now(),
 	"metadata" json
 );
 --> statement-breakpoint
@@ -89,10 +89,10 @@ CREATE TABLE IF NOT EXISTS "tasks" (
 	"description" varchar(200),
 	"completed" boolean DEFAULT false NOT NULL,
 	"dimensions" dimension[],
-	"createdAt" timestamp DEFAULT now(),
-	"updatedAt" timestamp DEFAULT now(),
-	"startDate" timestamp,
-	"endDate" timestamp,
+	"createdAt" timestamp with time zone DEFAULT now(),
+	"updatedAt" timestamp with time zone DEFAULT now(),
+	"startDate" timestamp with time zone,
+	"endDate" timestamp with time zone,
 	"weekdays" weekdays[],
 	"userId" varchar(255) NOT NULL
 );

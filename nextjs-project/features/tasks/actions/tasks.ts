@@ -31,31 +31,21 @@ export async function createTaskUseCase({
   description: string;
   completed: boolean;
   dimensions: Dimension[];
-  date: Date;
-  startTime: string;
-  endTime: string;
+  date?: Date;
+  startTime?: string;
+  endTime?: string;
   weekdays: Weekday[];
 }) {
   const userId = await getUserId();
   if (!userId) return;
-
-  const startDate = new Date(date);
-  const [startHour, startMinute] = startTime.split(":");
-  startDate.setHours(Number(startHour));
-  startDate.setMinutes(Number(startMinute));
-
-  const endDate = new Date(date);
-  const [endHour, endMinute] = endTime.split(":");
-  endDate.setHours(Number(endHour));
-  endDate.setMinutes(Number(endMinute));
 
   await createTask({
     title,
     description,
     completed,
     dimensions,
-    startDate,
-    endDate,
+    startDate: date ? new Date(date.toISOString()) : undefined,
+    endDate: date ? new Date(date.toISOString()) : undefined,
     weekdays,
     userId,
   });

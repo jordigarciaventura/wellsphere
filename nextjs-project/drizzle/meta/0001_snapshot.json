@@ -1,6 +1,6 @@
 {
-  "id": "f5c75a2c-e8bd-4a5f-a950-2408979962a2",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "23b484ff-5b11-4f1d-ba08-e995cc8806d8",
+  "prevId": "f5c75a2c-e8bd-4a5f-a950-2408979962a2",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -467,16 +467,7 @@
           "onUpdate": "no action"
         }
       },
-      "compositePrimaryKeys": {
-        "scores_userId_dimensionId_date_pk": {
-          "name": "scores_userId_dimensionId_date_pk",
-          "columns": [
-            "userId",
-            "dimensionId",
-            "date"
-          ]
-        }
-      },
+      "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
     "public.tasks": {

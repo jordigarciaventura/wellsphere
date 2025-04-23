@@ -41,7 +41,7 @@ export default async function WelcomePage({ params: { locale } }: Props) {
               </p>
             </div>
             <div className="flex w-full justify-center">
-              <Link href={route.home}>
+              <Link href={route.tutorial}>
                 <Button
                   className="px-6 py-3 text-base"
                   aria-label="Get Started with Daisy"

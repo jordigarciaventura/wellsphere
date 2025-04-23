@@ -4,7 +4,8 @@ import { db } from "@/db";
 import { tasksTable } from "@/db/schema";
 import { Weekday } from "@/features/tasks/types/date";
 import { Dimension } from "@/types/mood";
-import { and, eq, sql } from "drizzle-orm";
+import { endOfDay, startOfDay, zonedTimeToUtc } from "date-fns-tz";
+import { and, eq, gte, lte, sql } from "drizzle-orm";
 
 export async function getTaskSummaries(
   userId: string,
@@ -45,7 +46,9 @@ export async function getTaskSummaries(
 }
 
 export async function getTasks(userId: string, endDate: Date) {
-  const endDateStr = endDate.toISOString().slice(0, 10);
+  const timeZone = "Europe/Paris"; // or your timezone
+  const start = zonedTimeToUtc(startOfDay(endDate, { timeZone }), timeZone);
+  const end = zonedTimeToUtc(endOfDay(endDate, { timeZone }), timeZone);
 
   return await db
     .select({
@@ -59,7 +62,8 @@ export async function getTasks(userId: string, endDate: Date) {
     .where(
       and(
         eq(tasksTable.userId, userId),
-        sql`DATE(${tasksTable.endDate}) = ${endDateStr}`,
+        gte(tasksTable.endDate, start),
+        lte(tasksTable.endDate, end),
       ),
     );
 }
@@ -87,8 +91,8 @@ export async function createTask({
   description?: string;
   completed: boolean;
   dimensions: Dimension[];
-  startDate: Date;
-  endDate: Date;
+  startDate?: Date;
+  endDate?: Date;
   weekdays: Weekday[];
   userId: string;
 }) {

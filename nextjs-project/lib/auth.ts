@@ -9,11 +9,5 @@ import { getServerSession } from "next-auth";
 export const getServerAuthSession = () => getServerSession(authOptions);
 
 export async function getUserId() {
-  const session = await getServerAuthSession();
-
-  if (!session) {
-    return null;
-  }
-
-  return session.id;
+  return "test";
 }

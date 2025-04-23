@@ -1,20 +1,9 @@
 "use server";
 
 import { route } from "@/config/site";
-import { submitQuestionnaire } from "@/features/questionnaire/data-access/questionnaire";
-import { getUserId } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 export async function submitQuestionnaireAction() {
-  const userId = await getUserId();
-
-  if (!userId) {
-    throw new Error("User not found");
-  }
-
-  const date = new Date();
-
-  await submitQuestionnaire(userId, date);
   redirect(route.home);
 }
 

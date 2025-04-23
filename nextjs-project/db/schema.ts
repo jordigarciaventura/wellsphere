@@ -27,22 +27,14 @@ export const moodEnum = pgEnum("mood", enumToPgEnum(Mood));
 
 export const messageRoleEnum = pgEnum("role", enumToPgEnum(Role));
 
-export const scoresTable = pgTable(
-  "scores",
-  {
-    userId: varchar({ length: 255 })
-      .notNull()
-      .references(() => usersTable.id),
-    date: date().notNull(), // it is a string
-    dimensionId: dimensionEnum().notNull(),
-    score: integer().notNull(),
-  },
-  (t) => {
-    return {
-      pk: primaryKey({ columns: [t.userId, t.dimensionId, t.date] }),
-    };
-  },
-);
+export const scoresTable = pgTable("scores", {
+  userId: varchar({ length: 255 })
+    .notNull()
+    .references(() => usersTable.id),
+  date: date().notNull(), // it is a string
+  dimensionId: dimensionEnum().notNull(),
+  score: integer().notNull(),
+});
 
 export const moodEntriesTable = pgTable(
   "moodEntries",
@@ -66,10 +58,10 @@ export const tasksTable = pgTable("tasks", {
   description: varchar({ length: 200 }),
   completed: boolean().notNull().default(false),
   dimensions: dimensionEnum().array(),
-  createdAt: timestamp().defaultNow(),
-  updatedAt: timestamp().defaultNow(),
-  startDate: timestamp(),
-  endDate: timestamp(),
+  createdAt: timestamp({ withTimezone: true }).defaultNow(),
+  updatedAt: timestamp({ withTimezone: true }).defaultNow(),
+  startDate: timestamp({ withTimezone: true }),
+  endDate: timestamp({ withTimezone: true }),
   weekdays: weeksdaysEnum().array(),
   userId: varchar({ length: 255 })
     .notNull()
@@ -101,7 +93,7 @@ export const messagesTable = pgTable(
       .references(() => usersTable.id),
     role: messageRoleEnum().notNull(),
     content: text().notNull(),
-    createdAt: timestamp().defaultNow(),
+    createdAt: timestamp({ withTimezone: true }).defaultNow(),
     metadata: json(),
   },
   (table) => ({

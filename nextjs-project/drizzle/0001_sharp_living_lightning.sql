@@ -1,0 +1,1 @@
+ALTER TABLE "scores" DROP CONSTRAINT "scores_userId_dimensionId_date_pk";
